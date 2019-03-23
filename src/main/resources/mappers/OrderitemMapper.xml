@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.OrderitemMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.Orderitem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pId" jdbcType="INTEGER" property="pid" />
+    <result column="oId" jdbcType="INTEGER" property="oid" />
+    <result column="numbers" jdbcType="INTEGER" property="numbers" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="status1" jdbcType="VARCHAR" property="status1" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pId, oId, numbers
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from orderItem
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from orderItem
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.Orderitem">
+    insert into orderItem (id, pId, oId, 
+      numbers)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, 
+      #{numbers,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.Orderitem">
+    insert into orderItem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pid != null">
+        pId,
+      </if>
+      <if test="oid != null">
+        oId,
+      </if>
+      <if test="numbers != null">
+        numbers,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null">
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="numbers != null">
+        #{numbers,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.Orderitem">
+    update orderItem
+    <set>
+      <if test="pid != null">
+        pId = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null">
+        oId = #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="numbers != null">
+        numbers = #{numbers,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.Orderitem">
+    update orderItem
+    set pId = #{pid,jdbcType=INTEGER},
+      oId = #{oid,jdbcType=INTEGER},
+      numbers = #{numbers,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <!-- jhao 添加一个订单项 -->
+  <insert id="addOrderItem">
+    INSERT INTO orderItem(pId, numbers, price, uid)
+    VALUES (#{pid,jdbcType=INTEGER}, #{numbers,jdbcType=INTEGER},
+      #{price,jdbcType=DECIMAL}, #{uid,jdbcType=INTEGER})
+  </insert>
+  
+  <!-- jhao 获取新增订单项的id -->
+  <select id="getOrderItemId" resultType="com.pojo.Orderitem">
+    select id from orderItem WHERE uid=#{uid} and status1="0";
+  </select>
+
+  <!-- jhao更改订单项状态 这个还可以优化！！-->
+  <update id="updateStatus1">
+    UPDATE orderItem
+    SET status1 = "1"
+    WHERE uid=#{uid} and status1="0";
+  </update>
+  
+  <!-- jhao 查看订单详情，根据id逐个寻找orderItem的所有信息 -->
+  <select id="checkDetails" resultMap="BaseResultMap">
+    select * from orderItem
+    WHERE id=#{id}
+  </select>
+
+  <!-- 根据oiid 获取产品名字 -->
+  <select id="getProductName">
+    SELECT * FROM product WHERE id = (
+           SELECT pid FROM orderItem WHERE id=#{id} )
+  </select>
+</mapper>
