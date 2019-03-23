@@ -13,7 +13,7 @@
 <body>
 <form action="/listCategory" method="post">
 <%--<input type="file" name="imageFile">--%>
-    1222l
+    1222lceshi
 <input type="submit">
 </form>
 </body>
