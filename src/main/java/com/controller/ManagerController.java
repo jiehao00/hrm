@@ -37,66 +37,66 @@ public class ManagerController {
     private ManagerService managerService;
     @Autowired
     private RetryLimitHashedCredentialsMatcher matcher;
-    /**
-    * 方法实现说明   管理员注册
-    * @author：      jiehao
-    * @return：
-    * @exception：
-    * @date：       2018/11/30 17:29
-    */
-    @RequestMapping(value = "managerRegister",method = RequestMethod.GET)
-    @ResponseBody
-    public Map managerRegister (Manager manager){
-        Map<String,Object>map=new HashMap<>();
-        Manager record=managerService.findManagerByName(manager.getUsername());
-        if(record ==null){
-            manager.setPasswordSalt(PrimaryKeyUtil.getAllRandomString(4));
-            manager.setPassword(new SimpleHash(matcher.getHashAlgorithmName(),manager.getPassword(),
-                    manager.getPasswordSalt(),matcher.getHashIterations()).toString());
-            int number=managerService.addManager(manager);
-            if (number>0){
-                map.put("status","0");
-                map.put("message","注册成功");
-            }else {
-                map.put("status","1");
-                map.put("message","注册失败");
-            }
-        }else {
-            map.put("status","2");
-            map.put("stayus","用户名已存在");
-        }
-        return map;
-    }
-
-    /**
-    * 方法实现说明   管理员登录
-    * @author：      jiehao
-    * @return：
-    * @exception：
-    * @date：       2018/11/30 17:39
-    */
-    @RequestMapping(value = "managerLogin",method = RequestMethod.GET)
-    @ResponseBody
-    public Map managerLogin(Manager manager, Integer role, HttpServletRequest request){
-        Map<String,Object> map=new HashMap<>();
-        UsernamePasswordCaptchaToken token=new UsernamePasswordCaptchaToken(manager.getUsername(),
-                manager.getPassword(),role);
-        Subject subject=SecurityUtils.getSubject();
-        try {
-            subject.login(token);
-            Manager record=managerService.findManagerByName(manager.getUsername());
-            map.put("status","0");
-            map.put("message","登录成功");
-            map.put("manager",record);
-        }catch (UnknownAccountException e){
-            map.put("status","1");
-            map.put("message","用户或密码错误");
-        }catch (IncorrectCredentialsException e){
-            map.put("status","2");
-            map.put("message","账号或密码错误");
-        }
-        return map;
-    }
+//    /**
+//    * 方法实现说明   管理员注册
+//    * @author：      jiehao
+//    * @return：
+//    * @exception：
+//    * @date：       2018/11/30 17:29
+//    */
+//    @RequestMapping(value = "managerRegister",method = RequestMethod.GET)
+//    @ResponseBody
+//    public Map managerRegister (Manager manager){
+//        Map<String,Object>map=new HashMap<>();
+//        Manager record=managerService.findManagerByName(manager.getUsername());
+//        if(record ==null){
+//            manager.setPasswordSalt(PrimaryKeyUtil.getAllRandomString(4));
+//            manager.setPassword(new SimpleHash(matcher.getHashAlgorithmName(),manager.getPassword(),
+//                    manager.getPasswordSalt(),matcher.getHashIterations()).toString());
+//            int number=managerService.addManager(manager);
+//            if (number>0){
+//                map.put("status","0");
+//                map.put("message","注册成功");
+//            }else {
+//                map.put("status","1");
+//                map.put("message","注册失败");
+//            }
+//        }else {
+//            map.put("status","2");
+//            map.put("stayus","用户名已存在");
+//        }
+//        return map;
+//    }
+//
+//    /**
+//    * 方法实现说明   管理员登录
+//    * @author：      jiehao
+//    * @return：
+//    * @exception：
+//    * @date：       2018/11/30 17:39
+//    */
+//    @RequestMapping(value = "managerLogin",method = RequestMethod.GET)
+//    @ResponseBody
+//    public Map managerLogin(Manager manager, Integer role, HttpServletRequest request){
+//        Map<String,Object> map=new HashMap<>();
+//        UsernamePasswordCaptchaToken token=new UsernamePasswordCaptchaToken(manager.getUsername(),
+//                manager.getPassword(),role);
+//        Subject subject=SecurityUtils.getSubject();
+//        try {
+//            subject.login(token);
+//            Manager record=managerService.findManagerByName(manager.getUsername());
+//            map.put("status","0");
+//            map.put("message","登录成功");
+//            map.put("manager",record);
+//        }catch (UnknownAccountException e){
+//            map.put("status","1");
+//            map.put("message","用户或密码错误");
+//        }catch (IncorrectCredentialsException e){
+//            map.put("status","2");
+//            map.put("message","账号或密码错误");
+//        }
+//        return map;
+//    }
 
 
     /**

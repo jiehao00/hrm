@@ -124,94 +124,94 @@ public class MerchantController {
     }
 
 
-    /**
-    * 方法实现说明  商家注册
-    * @author：      jiehao
-    * @return：
-    * @exception：
-    * @date：       2018/11/29 10:46
-    */
-    @RequestMapping(value = "MerchantRegister",method = RequestMethod.GET)
-    @ResponseBody
-    public Map MerchantRegister(Merchant merchant,HttpServletRequest request){
-        Map<String,Object> map=new HashMap<>();
-        Merchant record=merchantService.findByMerchantName(merchant.getUsername());
-        Merchant shopname=merchantService.findListMerchantByName(merchant.getShopName());
-        Merchant user=merchantService.findMerchantByTel(merchant.getTell());
-        if (record == null){
-                if(shopname ==null) {
-                    if (user == null) {
-                    merchant.setPasswordSalt(PrimaryKeyUtil.getAllRandomString(4));
-                    merchant.setPassword(new SimpleHash(matcher.getHashAlgorithmName(), merchant.getPassword(),
-                            merchant.getPasswordSalt(), matcher.getHashIterations()).toString());
-                    int number = merchantService.insertMerchant(merchant);
-                    if (number > 0) {
-                        map.put("status", "0");
-                        map.put("message", "用户注册成功");
-                    } else {
-                        map.put("status", "1");
-                        map.put("message", "用户注册失败");
-                    }
-                }
-                else {
-                        map.put("status","4");
-                        map.put("message","电话号码重复");
-                    }
-                }else {
-                    map.put("status","3");
-                    map.put("message","店铺名重复");
-                }
-        }else{
-            map.put("record",record);
-            map.put("status","2");
-            map.put("message","用户名重复");
-        }
-        return map;
-    }
-
- /**
- * 方法实现说明    商家登录
- * @author：      jiehao
- * @return：
- * @exception：
- * @date：       2018/11/29 15:12
- */
-    @RequestMapping(value = "MerchantLogin",method = RequestMethod.GET)
-    @ResponseBody
-    public Map MerchantLogin(Merchant merchant, Integer role, HttpServletRequest request){
-        Map<String,Object> map=new HashMap<>();
-        UsernamePasswordCaptchaToken token=new UsernamePasswordCaptchaToken(merchant.getUsername(),
-                merchant.getPassword(),role);
-        Subject subject=SecurityUtils.getSubject();
-        HttpSession session=request.getSession();
-        try {
-            subject.login(token);
-            Merchant record = merchantService.findByMerchantName(merchant.getUsername());
-            session.setAttribute("id",record.getId());
-            session.setAttribute("userName",record.getUsername());
-            map.put("record",record);
-            map.put("status","0");
-            map.put("message","登录成功");
-
-        }catch (UnknownAccountException e){
-            map.put("status","1");
-            map.put("message","账号或密码错误");
-        }catch (IncorrectCredentialsException e){
-            map.put("status","2");
-            map.put("message","账号或密码错误");
-        }catch (DisabledAccountException e){
-            map.put("status","3");
-            map.put("message","管理员被封号");
-        }catch (UnsupportedTokenException e){
-            map.put("status","4");
-            map.put("message","商家还没通过审核");
-        }catch ( ExcessiveAttemptsException e){
-            map.put("status","5");
-            map.put("message","商家不予用过审核");
-
-        }
-        return map;
-    }
+//    /**
+//    * 方法实现说明  商家注册
+//    * @author：      jiehao
+//    * @return：
+//    * @exception：
+//    * @date：       2018/11/29 10:46
+//    */
+//    @RequestMapping(value = "MerchantRegister",method = RequestMethod.GET)
+//    @ResponseBody
+//    public Map MerchantRegister(Merchant merchant,HttpServletRequest request){
+//        Map<String,Object> map=new HashMap<>();
+//        Merchant record=merchantService.findByMerchantName(merchant.getUsername());
+//        Merchant shopname=merchantService.findListMerchantByName(merchant.getShopName());
+//        Merchant user=merchantService.findMerchantByTel(merchant.getTell());
+//        if (record == null){
+//                if(shopname ==null) {
+//                    if (user == null) {
+//                    merchant.setPasswordSalt(PrimaryKeyUtil.getAllRandomString(4));
+//                    merchant.setPassword(new SimpleHash(matcher.getHashAlgorithmName(), merchant.getPassword(),
+//                            merchant.getPasswordSalt(), matcher.getHashIterations()).toString());
+//                    int number = merchantService.insertMerchant(merchant);
+//                    if (number > 0) {
+//                        map.put("status", "0");
+//                        map.put("message", "用户注册成功");
+//                    } else {
+//                        map.put("status", "1");
+//                        map.put("message", "用户注册失败");
+//                    }
+//                }
+//                else {
+//                        map.put("status","4");
+//                        map.put("message","电话号码重复");
+//                    }
+//                }else {
+//                    map.put("status","3");
+//                    map.put("message","店铺名重复");
+//                }
+//        }else{
+//            map.put("record",record);
+//            map.put("status","2");
+//            map.put("message","用户名重复");
+//        }
+//        return map;
+//    }
+//
+// /**
+// * 方法实现说明    商家登录
+// * @author：      jiehao
+// * @return：
+// * @exception：
+// * @date：       2018/11/29 15:12
+// */
+//    @RequestMapping(value = "MerchantLogin",method = RequestMethod.GET)
+//    @ResponseBody
+//    public Map MerchantLogin(Merchant merchant, Integer role, HttpServletRequest request){
+//        Map<String,Object> map=new HashMap<>();
+//        UsernamePasswordCaptchaToken token=new UsernamePasswordCaptchaToken(merchant.getUsername(),
+//                merchant.getPassword(),role);
+//        Subject subject=SecurityUtils.getSubject();
+//        HttpSession session=request.getSession();
+//        try {
+//            subject.login(token);
+//            Merchant record = merchantService.findByMerchantName(merchant.getUsername());
+//            session.setAttribute("id",record.getId());
+//            session.setAttribute("userName",record.getUsername());
+//            map.put("record",record);
+//            map.put("status","0");
+//            map.put("message","登录成功");
+//
+//        }catch (UnknownAccountException e){
+//            map.put("status","1");
+//            map.put("message","账号或密码错误");
+//        }catch (IncorrectCredentialsException e){
+//            map.put("status","2");
+//            map.put("message","账号或密码错误");
+//        }catch (DisabledAccountException e){
+//            map.put("status","3");
+//            map.put("message","管理员被封号");
+//        }catch (UnsupportedTokenException e){
+//            map.put("status","4");
+//            map.put("message","商家还没通过审核");
+//        }catch ( ExcessiveAttemptsException e){
+//            map.put("status","5");
+//            map.put("message","商家不予用过审核");
+//
+//        }
+//        return map;
+//    }
 
  /**
  * 方法实现说明    通过商家用户名查找商家所有菜名(有错误，弃用)

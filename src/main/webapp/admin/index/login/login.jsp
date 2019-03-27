@@ -2,8 +2,12 @@
 <html>
 <head>
      <link type="text/css" rel="stylesheet" href="../../../static/admin/css/login/style.css">
-    <script src="${pageContext.request.contextPath}/../../../static/admin/js/jquery-1.10.2.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/../../../static/admin/js/jquery-1.10.2.js"></script>--%>
     <script src="${pageContext.request.contextPath}/../../../static/admin/js/login/img_ver.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
     <style>
         .bxs-row {
             margin-bottom:12px;
@@ -85,7 +89,7 @@
             <img id="logo" src="${pageContext.request.contextPath}/../../../static/admin/images/login/logo.jpg" style="width:72px;"><span class="tips" style="color:red;"></span>
         </div>
         <div class="bxs-row">
-            <input type="text" class="username" id="username" placeholder="用户名">
+            <input type="text" class="username" id="username" placeholder="用户">
             <p class=" err err-username"></p>
         </div>
         <div class="bxs-row">
@@ -112,16 +116,15 @@
             '${pageContext.request.contextPath}/../../../static/admin/images/login/ver-3.png'
         ],
         success:function () {
-            var name = document.getElementById("username").value;
+            var personnelId = document.getElementById("username").value;
             var password = document.getElementById("password").value;
             $.ajax({
-                type:'post',
                 url:'/login',
-                data:{userName:name,password:password},
+                data:{personnelId:personnelId,password:password},
                 dataType:'json',
                 success:function (data) {
                     console.log(data);
-                    console.log(data.errorCode);
+                    console.log(data.status);
                     console.log(data.message);
                     if (data.errorCode == 1){
                          $(".login").css({
@@ -132,7 +135,7 @@
                              "left":"404px",
                              "opacity":"0"
                          });
-                        $(".tips").html('账号密码错误！');
+                        $(".tips").html(data.message);
                     }
                     else {
                         window.location.href="${pageContext.request.contextPath}/admin/index/main/main.jsp";
@@ -146,10 +149,10 @@
     });
     $(".submit").on('click',function () {
         if($(".username").val() == '') {
-            $(".tips").html('老兄！！你用户名呢！？？？');
+            $(".tips").html('用户名不能为空');
             <%--$("#logo").attr("src",'${pageContext.request.contextPath}/../../../static/admin/images/login/null-username.jpg')--%>
         } else if($(".password").val() == '') {
-            $(".tips").html('老兄！！你密码呢！？？？');
+            $(".tips").html('密码不能为空');
         } else {
             $(".login").css({
                 "left":"-404px",

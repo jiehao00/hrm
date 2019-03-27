@@ -1,0 +1,49 @@
+﻿.middle{
+    float: left;
+}
+.memo{
+    width: 500px;
+    height: 200px;
+    margin-left:50px;
+    margin-top: 10px;
+}
+.announcement{
+    width: 330px;
+    height: 1000px;
+    float: left;
+    margin-left:50px;
+    margin-top: -15px;
+}
+#rili{
+    margin-left: 5px;
+    width: 400px;
+    height: 360px;
+    float: left;
+    margin-top: -13px;
+}
+.user{
+    margin-top: 10px;
+    margin-left:50px;
+    height: 200px;
+}
+.ttt{
+    font-family: 楷体;
+    font-size: 30px;
+    float: left;
+    width: 100px;
+}
+.bottom{
+    position: absolute;
+    top: 560px;
+    left:10px;
+    background: rgba(251,251,251,0);
+}
+.mmm{
+    width: 1000px;
+    margin-top: 75px;
+    margin-left: -6px;
+}
+.addMemo{
+    margin-left: 350px;
+    color: rgba(75,251,159,0.99);
+}

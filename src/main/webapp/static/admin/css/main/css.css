@@ -1,8 +1,8 @@
 
 /*日历*/
 .calendar *{box-sizing:border-box;font-size:14px}
-.calendar-sm{cursor:default;width:800px;height:370px}
-.calendar{cursor:default;width:1200px;height:342px;margin:30px auto}
+.calendar-sm{cursor:default;width:400px;height:370px}
+.calendar{cursor:default;width:400px;height:342px;}
 .calendar-sm .c-pad-top{padding-top:2%}
 
 .c-event-top{
@@ -30,9 +30,9 @@
 .c-event-grid{margin-left:1px;height:inherit;width:565px;float:left;}
 .c-grid-title{float:left;color:#fff}
 /*.c-event-title{width:100%;height:12%;text-align:center;font-weight:700;background-color:#879bbc;color:#fff}*/
-.c-event-body{height:342px;overflow: hidden;}
-.c-event-list{overflow:auto;height:95%;position:relative; overflow-y: scroll;overflow-x: hidden;}
-.c-event-list::-webkit-scrollbar {display:none}
+/*.c-event-body{height:342px;overflow: hidden;}*/
+/*.c-event-list{overflow:auto;height:95%;position:relative; overflow-y: scroll;overflow-x: hidden;}*/
+/*.c-event-list::-webkit-scrollbar {display:none}*/
 .c-event-item>.title{font-weight:700}
 .c-event-item>div{text-overflow:ellipsis;width:inherit;overflow:hidden;white-space:nowrap}
 .c-event-item{transition:all .5s;-moz-transition:all .5s;-webkit-transition:all .5s;-o-transition:all .5s;padding-left:10px;padding: 20px 0px 20px 20px;margin-left: 30px;border-bottom: 1px solid #f9f9f9;}

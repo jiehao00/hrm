@@ -48,91 +48,91 @@ public class CustmerController {
     private CustmerService custmerService;
 
 
-    /**
-    * 方法实现说明  用户注册
-    * @author：      jiehao
-    * @param
-    * @return：
-    * @exception：
-    * @date：       2018/11/29 10:22
-    */
-    @RequestMapping(value = "register",method = RequestMethod.GET)
-    @ResponseBody
-    public Map registerCustmer(Customer customer) {
-        //Customer record=new Customer();
-        System.out.println("进入了方法");
-        Map<String, Object> map = new HashMap<String, Object>();
-        Customer user = custmerService.findbyUserName(customer.getUsername());
-        Customer record = custmerService.findCustmerBytel(customer.getTell());
-        if (user == null) {
-            if (record == null) {
-            customer.setPasswordsalt(PrimaryKeyUtil.getAllRandomString(4));
-            System.out.println(customer.getPasswordsalt());
-            //二次加密;
-            customer.setPassword(new SimpleHash(matcher.getHashAlgorithmName(), customer.getPassword(), customer.getPasswordsalt(),
-                    matcher.getHashIterations()).toString());
-            System.out.println(customer.getPassword());
-            if (custmerService.insert(customer) == 1) {
-                //注册成功
-                map.put("status", "0");
-                map.put("message", "注册成功");
-            } else {
-                //注册失败
-                map.put("status", "1");
-                map.put("message", "注册失败");
-            }
-        }
-        else {
-                map.put("status","3");
-                map.put("message","电话号码重复");
-            }
-    }
-        else {
-            //用户名重复
-            map.put("status","2");
-            map.put("message","用户名重复");
-        }
-        return map;
-    }
-
-    /**
-    * 方法实现说明    用户登录
-    * @author：      jiehao
-    * @param
-    * @return：
-    * @exception：
-    * @date：       2018/11/29 10:23
-    */
-    @RequestMapping(value = "login",method = RequestMethod.GET)
-    @ResponseBody
-    public Map login(Customer customer, Integer role, HttpServletRequest request){
-        Map<String,Object> map = new HashMap<String, Object>();
-        UsernamePasswordCaptchaToken token=new UsernamePasswordCaptchaToken(customer.getUsername(),
-                customer.getPassword(),role);
-        Subject subject=SecurityUtils.getSubject();
-        HttpSession session=  (HttpSession)request.getSession();
-        try {
-            subject.login(token);
-            Customer record=custmerService.findbyUserName(customer.getUsername());
-            session.setAttribute("username",record.getUsername());
-            session.setAttribute("id",record.getId());
-            map.put("status","0");
-            map.put("message","登录成功");
-            map.put("record",record);
-            //账号不存在
-        }catch (UnknownAccountException e){
-            map.put("status","1");
-            map.put("message","账号或密码错误");
-            //密码错误
-        }catch (IncorrectCredentialsException e){
-            map.put("status","2");
-            map.put("message","账号或密码错误");
-        } catch (DisabledAccountException e){
-            map.put("status","3");
-            map.put("message","用户已被封号");
-        }
-        return map;
-    }
+//    /**
+//    * 方法实现说明  用户注册
+//    * @author：      jiehao
+//    * @param
+//    * @return：
+//    * @exception：
+//    * @date：       2018/11/29 10:22
+//    */
+//    @RequestMapping(value = "register",method = RequestMethod.GET)
+//    @ResponseBody
+//    public Map registerCustmer(Customer customer) {
+//        //Customer record=new Customer();
+//        System.out.println("进入了方法");
+//        Map<String, Object> map = new HashMap<String, Object>();
+//        Customer user = custmerService.findbyUserName(customer.getUsername());
+//        Customer record = custmerService.findCustmerBytel(customer.getTell());
+//        if (user == null) {
+//            if (record == null) {
+//            customer.setPasswordsalt(PrimaryKeyUtil.getAllRandomString(4));
+//            System.out.println(customer.getPasswordsalt());
+//            //二次加密;
+//            customer.setPassword(new SimpleHash(matcher.getHashAlgorithmName(), customer.getPassword(), customer.getPasswordsalt(),
+//                    matcher.getHashIterations()).toString());
+//            System.out.println(customer.getPassword());
+//            if (custmerService.insert(customer) == 1) {
+//                //注册成功
+//                map.put("status", "0");
+//                map.put("message", "注册成功");
+//            } else {
+//                //注册失败
+//                map.put("status", "1");
+//                map.put("message", "注册失败");
+//            }
+//        }
+//        else {
+//                map.put("status","3");
+//                map.put("message","电话号码重复");
+//            }
+//    }
+//        else {
+//            //用户名重复
+//            map.put("status","2");
+//            map.put("message","用户名重复");
+//        }
+//        return map;
+//    }
+//
+//    /**
+//    * 方法实现说明    用户登录
+//    * @author：      jiehao
+//    * @param
+//    * @return：
+//    * @exception：
+//    * @date：       2018/11/29 10:23
+//    */
+//    @RequestMapping(value = "login",method = RequestMethod.GET)
+//    @ResponseBody
+//    public Map login(Customer customer, Integer role, HttpServletRequest request){
+//        Map<String,Object> map = new HashMap<String, Object>();
+//        UsernamePasswordCaptchaToken token=new UsernamePasswordCaptchaToken(customer.getUsername(),
+//                customer.getPassword(),role);
+//        Subject subject=SecurityUtils.getSubject();
+//        HttpSession session=  (HttpSession)request.getSession();
+//        try {
+//            subject.login(token);
+//            Customer record=custmerService.findbyUserName(customer.getUsername());
+//            session.setAttribute("username",record.getUsername());
+//            session.setAttribute("id",record.getId());
+//            map.put("status","0");
+//            map.put("message","登录成功");
+//            map.put("record",record);
+//            //账号不存在
+//        }catch (UnknownAccountException e){
+//            map.put("status","1");
+//            map.put("message","账号或密码错误");
+//            //密码错误
+//        }catch (IncorrectCredentialsException e){
+//            map.put("status","2");
+//            map.put("message","账号或密码错误");
+//        } catch (DisabledAccountException e){
+//            map.put("status","3");
+//            map.put("message","用户已被封号");
+//        }
+//        return map;
+//    }
  /**
  * 方法实现说明   增加用户外卖地址
  * @author：      jiehao

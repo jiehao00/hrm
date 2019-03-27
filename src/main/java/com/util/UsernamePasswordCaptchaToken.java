@@ -30,5 +30,7 @@ public class UsernamePasswordCaptchaToken extends UsernamePasswordToken {
     public UsernamePasswordCaptchaToken(String username, String password,int role) {
      super(username ,password);
       this.role=role;
+
+
 }
 }

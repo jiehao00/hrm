@@ -125,4 +125,11 @@
       Status = #{status,jdbcType=INTEGER}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+
+
+<!--jiehao 19-03-27 通过用户id查找信息 -->
+  <select id="findMessage" resultType="com.pojo.LoginMessage">
+    select * from login_message where Personnel_Id =#{personnelId}
+  </select>
+
 </mapper>

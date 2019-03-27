@@ -159,10 +159,10 @@ function Rili() {
 
 			var cBody = $('<div/>').addClass('c-grid');
 			var cEvents = $('<div/>').addClass('c-event-grid');
-			var cEventsBody = $('<div/>').addClass('c-event-body');
+			//var cEventsBody = $('<div/>').addClass('c-event-body');
 			var cEventsTop = $('<div/>').addClass('c-event-top clearfix');
 			cEvents.append($('<div/>').addClass('c-event-title c-pad-top').html(settings.eventTitle));
-			cEvents.append(cEventsBody);
+			//cEvents.append(cEventsBody);
 			var cNext = $('<div/>').addClass('c-next c-grid-title c-pad-top');
 			var cMonth = $('<div/>').addClass('c-month c-grid-title c-pad-top');
 			var cPrevious = $('<div/>').addClass('c-previous c-grid-title c-pad-top');
@@ -214,7 +214,7 @@ function Rili() {
 				}
 				cBody.append(cDay);
 			}
-			var eventList = $('<div/>').addClass('c-event-list');
+			//var eventList = $('<div/>').addClass('c-event-list');
 			for(var i = 0; i < settings.events.length; i++) {
 				var d = settings.events[i].datetime;
 
@@ -222,7 +222,7 @@ function Rili() {
 			
 			$(instance).addClass('calendar');
 
-			cEventsBody.append(eventList);
+			//cEventsBody.append(eventList);
 			$(instance).html(cBody).append(cEvents);
 			$(instance).prepend(cEventsTop);
 			$(".c-event-item").addClass("clearfix");
