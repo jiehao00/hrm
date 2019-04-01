@@ -42,7 +42,7 @@ public class CategoryController {
 		// 放入转发参数
 		//mav.addObject("cs", cs);
 		// 放入jsp路径
-		mav.setViewName("main/test");
+		mav.setViewName("main/addPersonnel");
 		System.out.println("已经设置返回了");
 		return mav;
 	}

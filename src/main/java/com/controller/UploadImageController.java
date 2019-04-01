@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -38,21 +39,19 @@ public class UploadImageController {
     */
     @RequestMapping(value = "uploadImage" ,method = RequestMethod.POST)
     @ResponseBody
-    public Map uploadImageTest(Merchant merchant, HttpServletRequest request)throws Exception{
+    public Map uploadImageTest(MultipartFile file, HttpServletRequest request)throws Exception{
         String dir = request.getSession().getServletContext().getRealPath("")+"/upload/images/";
-        File file=new File(dir);
+        File file1=new File(dir);
         //如果文件夹不存在
-        if(!file.exists()){
+        if(!file1.exists()){
             //创建文件夹
-            file.mkdirs();
+            file1.mkdirs();
             System.out.println("+++++++++++++");
         }
         uploadImage=new UoloadImage();
-        String  filename=uploadImage.uploadImage(merchant.getImageFile(),dir);
+        String  filename=uploadImage.uploadImage(file,dir);
         Map<String,Object> map = new HashMap<String, Object>();
         String sqlPath=ImageConfig.imageUrl +filename;
-        //System.out.println(sqlPath);
-        //map.put("sqlPath",sqlPath);
         map.put("fileName",filename);
         return map;
     }

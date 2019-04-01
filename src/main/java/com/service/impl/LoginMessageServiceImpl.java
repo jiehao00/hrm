@@ -49,7 +49,6 @@ public class LoginMessageServiceImpl implements LoginMessageService {
     */
     @Override
     public LoginMessage findMessage(Integer id) {
-        System.out.println(id);
         return loginMessageMapper.findMessage(id);
     }
 

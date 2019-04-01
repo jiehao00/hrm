@@ -2,11 +2,11 @@ package com.controller;
 
 import com.pojo.LoginMessage;
 import com.service.LoginMessageService;
+import com.service.impl.LoginMessageServiceImpl;
 import com.util.PrimaryKeyUtil;
 import com.util.RetryLimitHashedCredentialsMatcher;
 import com.util.UsernamePasswordCaptchaToken;
 import org.apache.shiro.SecurityUtils;
-
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.crypto.hash.SimpleHash;
@@ -47,21 +47,19 @@ public class LoginController {
     * @exception
     * @date        2019/3/27 14:24
     */
-    @RequestMapping(value = "login",method = RequestMethod.GET)
+    @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
-    public Map login(String personnelId,String password) {
+    public Map login(String username,String password) {
         Map<String, Object> map = new HashMap<String, Object>();
-        int role = 0;
-        UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(personnelId, password, role);
+        UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(username, password);
         Subject subject=SecurityUtils.getSubject();
-
         try {
             subject.login(token);
             map.put("status", "0");
             map.put("message", "登录成功");
         } catch (UnknownAccountException e) {
             map.put("errorCode", "1");
-            map.put("message", "用户不存在！");
+            map.put("message", "账号或密码错误");
         } catch (IncorrectCredentialsException e) {
             map.put("errorCode", "1");
             map.put("message", "账号或密码错误");
@@ -83,14 +81,15 @@ public class LoginController {
     @ResponseBody
     public Map register(LoginMessage loginMessage){
         Map<String,Object> map = new HashMap<String, Object>();
-
         loginMessage.setSalt(PrimaryKeyUtil.getAllRandomString(4));
         loginMessage.setPassword(new SimpleHash(matcher.getHashAlgorithmName(),loginMessage.getPassword(),loginMessage.getSalt(),
                 matcher.getHashIterations()).toString());
         if(loginMessageService.insert(loginMessage)>0){
-            map.put("status","注册成功");
+            map.put("status",0);
+            map.put("message","注册成功");
         }else {
-            map.put("status","注册失败");
+            map.put("status",1);
+            map.put("message","注册失败");
         }
         return map;
     }

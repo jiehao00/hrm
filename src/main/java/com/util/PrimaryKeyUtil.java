@@ -27,4 +27,16 @@ public class PrimaryKeyUtil {
         }
         return str;
     }
+
+    //返回指定位数（x）的数字
+    public static String getAllRandomNumber(int x){
+        char[] c = {'0','1','2','3','4','5','6','7','8','9'};
+        String str = "";
+        for(int i=0; i<x; i++){
+            int num = ran.nextInt(c.length);
+            str += c[num];
+        }
+        return str;
+    }
+
 }

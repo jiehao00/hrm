@@ -42,7 +42,7 @@ public class ShiroReam extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
         SimpleAuthorizationInfo simpleAuthorizationInfo=new SimpleAuthorizationInfo();
-        //String username=principalCollection.getPrimaryPrincipal().toString();
+        String username=principalCollection.getPrimaryPrincipal().toString();
 
 
         return simpleAuthorizationInfo;
@@ -57,15 +57,11 @@ public class ShiroReam extends AuthorizingRealm {
     * @date：       2018/11/29 10:24
     */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws  AuthenticationException {
         UsernamePasswordCaptchaToken token= (UsernamePasswordCaptchaToken) authenticationToken;
         String personnelId=token.getUsername();
-        int role=token.getRole();
-        System.out.println(Integer.valueOf(personnelId));
-
         LoginMessage loginMessage=loginMessageService.findMessage(Integer.valueOf(personnelId));
         if (loginMessage == null){
-            System.out.println("==================");
             throw new UnknownAccountException();
         }else {
             ByteSource salt=ByteSource.Util.bytes(loginMessage.getSalt());

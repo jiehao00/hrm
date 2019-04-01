@@ -14,23 +14,9 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 
 public class UsernamePasswordCaptchaToken extends UsernamePasswordToken {
 
-    private int role;
-
-    public int getRole() {
-        return role;
-    }
-
-    public void setRole(int role) {
-        this.role = role;
-    }
-
-    public UsernamePasswordCaptchaToken(){
-        super();
-    }
-    public UsernamePasswordCaptchaToken(String username, String password,int role) {
+    
+    public UsernamePasswordCaptchaToken(String username, String password) {
      super(username ,password);
-      this.role=role;
-
 
 }
 }

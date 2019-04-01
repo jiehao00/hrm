@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DepartmentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.DepartmentInfo">
+    <id column="Department_Id" jdbcType="INTEGER" property="departmentId" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="Deparment_Introduction" jdbcType="VARCHAR" property="deparmentIntroduction" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Department_Id, Department, Deparment_Introduction
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from department_info
+    where Department_Id = #{departmentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from department_info
+    where Department_Id = #{departmentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.DepartmentInfo">
+    insert into department_info (Department_Id, Department, Deparment_Introduction
+      )
+    values (#{departmentId,jdbcType=INTEGER}, #{department,jdbcType=VARCHAR}, #{deparmentIntroduction,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.DepartmentInfo">
+    insert into department_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="departmentId != null">
+        Department_Id,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="deparmentIntroduction != null">
+        Deparment_Introduction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="departmentId != null">
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="deparmentIntroduction != null">
+        #{deparmentIntroduction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.DepartmentInfo">
+    update department_info
+    <set>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="deparmentIntroduction != null">
+        Deparment_Introduction = #{deparmentIntroduction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Department_Id = #{departmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.DepartmentInfo">
+    update department_info
+    set Department = #{department,jdbcType=VARCHAR},
+      Deparment_Introduction = #{deparmentIntroduction,jdbcType=VARCHAR}
+    where Department_Id = #{departmentId,jdbcType=INTEGER}
+  </update>
+  <!--jieHao 19-03-29 查找部门-->
+  <select id="searchDepartment" resultMap="BaseResultMap">
+    select * from department_info
+  </select>
+</mapper>

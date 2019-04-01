@@ -13,7 +13,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>网站后台管理模版</title>
+    <title>人事管理系统</title>
     <link rel="stylesheet" type="text/css" href="../../../static/admin/layui/css/layui.css"/>
     <link rel="stylesheet" type="text/css" href="../../../static/admin/css/admin.css"/>
 </head>
@@ -32,10 +32,10 @@
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;"><i class="iconfont">&#xe608;</i>内容管理</a>
+                <a href="javascript:;"><i class="iconfont">&#xe608;</i>员工管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-url="../article-list.html" data-id='3' data-text="文章管理"><span class="l-line"></span>文章管理</a></dd>
-                    <dd><a href="javascript:;" data-url="../danye-list.html" data-id='9' data-text="单页管理"><span class="l-line"></span>单页管理</a></dd>
+                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/addPersonnel.jsp" data-id='3' data-text="添加员工"><span class="l-line"></span>添加员工</a></dd>
+                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/managePersonnel.jsp" data-id='7' data-text="管理员工"><span class="l-line"></span>管理员工</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">

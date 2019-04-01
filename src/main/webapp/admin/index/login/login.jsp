@@ -4,10 +4,7 @@
      <link type="text/css" rel="stylesheet" href="../../../static/admin/css/login/style.css">
     <%--<script src="${pageContext.request.contextPath}/../../../static/admin/js/jquery-1.10.2.js"></script>--%>
     <script src="${pageContext.request.contextPath}/../../../static/admin/js/login/img_ver.js"></script>
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"></script>
+    <script src="../../../js/jquery.js"></script>
     <style>
         .bxs-row {
             margin-bottom:12px;
@@ -120,7 +117,8 @@
             var password = document.getElementById("password").value;
             $.ajax({
                 url:'/login',
-                data:{personnelId:personnelId,password:password},
+                method:'post',
+                data:{username:personnelId,password:password},
                 dataType:'json',
                 success:function (data) {
                     console.log(data);

@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.DossierInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.DossierInfo">
+    <id column="Id" jdbcType="INTEGER" property="id" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Sex" jdbcType="VARCHAR" property="sex" />
+    <result column="Age" jdbcType="INTEGER" property="age" />
+    <result column="Photo" jdbcType="VARCHAR" property="photo" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="Positional_Tile" jdbcType="VARCHAR" property="positionalTile" />
+    <result column="Nationality" jdbcType="VARCHAR" property="nationality" />
+    <result column="Native_Province" jdbcType="VARCHAR" property="nativeProvince" />
+    <result column="Email" jdbcType="VARCHAR" property="email" />
+    <result column="Political_Status" jdbcType="VARCHAR" property="politicalStatus" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="Telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="Address" jdbcType="VARCHAR" property="address" />
+    <result column="ID_Card" jdbcType="VARCHAR" property="idCard" />
+    <result column="Citizenship" jdbcType="VARCHAR" property="citizenship" />
+    <result column="Birth_Place" jdbcType="VARCHAR" property="birthPlace" />
+    <result column="Birth_Date" jdbcType="VARCHAR" property="birthDate" />
+    <result column="Specialty" jdbcType="VARCHAR" property="specialty" />
+    <result column="Faith" jdbcType="VARCHAR" property="faith" />
+    <result column="Marriage_Status" jdbcType="VARCHAR" property="marriageStatus" />
+    <result column="School" jdbcType="VARCHAR" property="school" />
+    <result column="Social_Security_number" jdbcType="VARCHAR" property="socialSecurityNumber" />
+    <result column="Wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="Advanced_Degree" jdbcType="VARCHAR" property="advancedDegree" />
+    <result column="Professional" jdbcType="VARCHAR" property="professional" />
+    <result column="Years_Of_Education" jdbcType="VARCHAR" property="yearsOfEducation" />
+    <result column="Basic_Wage" jdbcType="VARCHAR" property="basicWage" />
+    <result column="Bank" jdbcType="VARCHAR" property="bank" />
+    <result column="Bank_Account" jdbcType="VARCHAR" property="bankAccount" />
+    <result column="Hobby" jdbcType="VARCHAR" property="hobby" />
+    <result column="Date_Into_Company" jdbcType="VARCHAR" property="dateIntoCompany" />
+    <result column="First_Start_Time" jdbcType="VARCHAR" property="firstStartTime" />
+    <result column="Last_End_Time" jdbcType="VARCHAR" property="lastEndTime" />
+    <result column="Information_Entry_Time" jdbcType="VARCHAR" property="informationEntryTime" />
+    <result column="Family_Relationship" jdbcType="VARCHAR" property="familyRelationship" />
+    <result column="Remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, Personnel_Id, Personnel_Name, Sex, Age, Photo, Department, Position, Positional_Tile, 
+    Nationality, Native_Province, Email, Political_Status, QQ, Telephone, Address, ID_Card, 
+    Citizenship, Birth_Place, Birth_Date, Specialty, Faith, Marriage_Status, School, 
+    Social_Security_number, Wechat, Advanced_Degree, Professional, Years_Of_Education, 
+    Basic_Wage, Bank, Bank_Account, Hobby, Date_Into_Company, First_Start_Time, Last_End_Time, 
+    Information_Entry_Time, Family_Relationship, Remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dossier_info
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from dossier_info
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.DossierInfo">
+    insert into dossier_info (Id, Personnel_Id, Personnel_Name, 
+      Sex, Age, Photo, Department, 
+      Position, Positional_Tile, Nationality, 
+      Native_Province, Email, Political_Status, 
+      QQ, Telephone, Address, 
+      ID_Card, Citizenship, Birth_Place, 
+      Birth_Date, Specialty, Faith, 
+      Marriage_Status, School, Social_Security_number, 
+      Wechat, Advanced_Degree, Professional, 
+      Years_Of_Education, Basic_Wage, Bank, 
+      Bank_Account, Hobby, Date_Into_Company, 
+      First_Start_Time, Last_End_Time, Information_Entry_Time, 
+      Family_Relationship, Remark)
+    values (#{id,jdbcType=INTEGER}, #{personnelId,jdbcType=INTEGER}, #{personnelName,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{photo,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{positionalTile,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}, 
+      #{nativeProvince,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{politicalStatus,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{citizenship,jdbcType=VARCHAR}, #{birthPlace,jdbcType=VARCHAR}, 
+      #{birthDate,jdbcType=VARCHAR}, #{specialty,jdbcType=VARCHAR}, #{faith,jdbcType=VARCHAR}, 
+      #{marriageStatus,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, #{socialSecurityNumber,jdbcType=VARCHAR}, 
+      #{wechat,jdbcType=VARCHAR}, #{advancedDegree,jdbcType=VARCHAR}, #{professional,jdbcType=VARCHAR}, 
+      #{yearsOfEducation,jdbcType=VARCHAR}, #{basicWage,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, 
+      #{bankAccount,jdbcType=VARCHAR}, #{hobby,jdbcType=VARCHAR}, #{dateIntoCompany,jdbcType=VARCHAR}, 
+      #{firstStartTime,jdbcType=VARCHAR}, #{lastEndTime,jdbcType=VARCHAR}, #{informationEntryTime,jdbcType=VARCHAR}, 
+      #{familyRelationship,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.DossierInfo">
+    insert into dossier_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="personnelId != null">
+        Personnel_Id,
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name,
+      </if>
+      <if test="sex != null">
+        Sex,
+      </if>
+      <if test="age != null">
+        Age,
+      </if>
+      <if test="photo != null">
+        Photo,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="positionalTile != null">
+        Positional_Tile,
+      </if>
+      <if test="nationality != null">
+        Nationality,
+      </if>
+      <if test="nativeProvince != null">
+        Native_Province,
+      </if>
+      <if test="email != null">
+        Email,
+      </if>
+      <if test="politicalStatus != null">
+        Political_Status,
+      </if>
+      <if test="qq != null">
+        QQ,
+      </if>
+      <if test="telephone != null">
+        Telephone,
+      </if>
+      <if test="address != null">
+        Address,
+      </if>
+      <if test="idCard != null">
+        ID_Card,
+      </if>
+      <if test="citizenship != null">
+        Citizenship,
+      </if>
+      <if test="birthPlace != null">
+        Birth_Place,
+      </if>
+      <if test="birthDate != null">
+        Birth_Date,
+      </if>
+      <if test="specialty != null">
+        Specialty,
+      </if>
+      <if test="faith != null">
+        Faith,
+      </if>
+      <if test="marriageStatus != null">
+        Marriage_Status,
+      </if>
+      <if test="school != null">
+        School,
+      </if>
+      <if test="socialSecurityNumber != null">
+        Social_Security_number,
+      </if>
+      <if test="wechat != null">
+        Wechat,
+      </if>
+      <if test="advancedDegree != null">
+        Advanced_Degree,
+      </if>
+      <if test="professional != null">
+        Professional,
+      </if>
+      <if test="yearsOfEducation != null">
+        Years_Of_Education,
+      </if>
+      <if test="basicWage != null">
+        Basic_Wage,
+      </if>
+      <if test="bank != null">
+        Bank,
+      </if>
+      <if test="bankAccount != null">
+        Bank_Account,
+      </if>
+      <if test="hobby != null">
+        Hobby,
+      </if>
+      <if test="dateIntoCompany != null">
+        Date_Into_Company,
+      </if>
+      <if test="firstStartTime != null">
+        First_Start_Time,
+      </if>
+      <if test="lastEndTime != null">
+        Last_End_Time,
+      </if>
+      <if test="informationEntryTime != null">
+        Information_Entry_Time,
+      </if>
+      <if test="familyRelationship != null">
+        Family_Relationship,
+      </if>
+      <if test="remark != null">
+        Remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="positionalTile != null">
+        #{positionalTile,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeProvince != null">
+        #{nativeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatus != null">
+        #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="citizenship != null">
+        #{citizenship,jdbcType=VARCHAR},
+      </if>
+      <if test="birthPlace != null">
+        #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null">
+        #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null">
+        #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="faith != null">
+        #{faith,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null">
+        #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurityNumber != null">
+        #{socialSecurityNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="advancedDegree != null">
+        #{advancedDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null">
+        #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="yearsOfEducation != null">
+        #{yearsOfEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="basicWage != null">
+        #{basicWage,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="dateIntoCompany != null">
+        #{dateIntoCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="firstStartTime != null">
+        #{firstStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEndTime != null">
+        #{lastEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="informationEntryTime != null">
+        #{informationEntryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="familyRelationship != null">
+        #{familyRelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.DossierInfo">
+    update dossier_info
+    <set>
+      <if test="personnelId != null">
+        Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        Age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="photo != null">
+        Photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="positionalTile != null">
+        Positional_Tile = #{positionalTile,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        Nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeProvince != null">
+        Native_Province = #{nativeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatus != null">
+        Political_Status = #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        Telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        ID_Card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="citizenship != null">
+        Citizenship = #{citizenship,jdbcType=VARCHAR},
+      </if>
+      <if test="birthPlace != null">
+        Birth_Place = #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null">
+        Birth_Date = #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null">
+        Specialty = #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="faith != null">
+        Faith = #{faith,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null">
+        Marriage_Status = #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        School = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurityNumber != null">
+        Social_Security_number = #{socialSecurityNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        Wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="advancedDegree != null">
+        Advanced_Degree = #{advancedDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null">
+        Professional = #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="yearsOfEducation != null">
+        Years_Of_Education = #{yearsOfEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="basicWage != null">
+        Basic_Wage = #{basicWage,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        Bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        Bank_Account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        Hobby = #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="dateIntoCompany != null">
+        Date_Into_Company = #{dateIntoCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="firstStartTime != null">
+        First_Start_Time = #{firstStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEndTime != null">
+        Last_End_Time = #{lastEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="informationEntryTime != null">
+        Information_Entry_Time = #{informationEntryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="familyRelationship != null">
+        Family_Relationship = #{familyRelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.DossierInfo">
+    update dossier_info
+    set Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Age = #{age,jdbcType=INTEGER},
+      Photo = #{photo,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      Position = #{position,jdbcType=VARCHAR},
+      Positional_Tile = #{positionalTile,jdbcType=VARCHAR},
+      Nationality = #{nationality,jdbcType=VARCHAR},
+      Native_Province = #{nativeProvince,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
+      Political_Status = #{politicalStatus,jdbcType=VARCHAR},
+      QQ = #{qq,jdbcType=VARCHAR},
+      Telephone = #{telephone,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      ID_Card = #{idCard,jdbcType=VARCHAR},
+      Citizenship = #{citizenship,jdbcType=VARCHAR},
+      Birth_Place = #{birthPlace,jdbcType=VARCHAR},
+      Birth_Date = #{birthDate,jdbcType=VARCHAR},
+      Specialty = #{specialty,jdbcType=VARCHAR},
+      Faith = #{faith,jdbcType=VARCHAR},
+      Marriage_Status = #{marriageStatus,jdbcType=VARCHAR},
+      School = #{school,jdbcType=VARCHAR},
+      Social_Security_number = #{socialSecurityNumber,jdbcType=VARCHAR},
+      Wechat = #{wechat,jdbcType=VARCHAR},
+      Advanced_Degree = #{advancedDegree,jdbcType=VARCHAR},
+      Professional = #{professional,jdbcType=VARCHAR},
+      Years_Of_Education = #{yearsOfEducation,jdbcType=VARCHAR},
+      Basic_Wage = #{basicWage,jdbcType=VARCHAR},
+      Bank = #{bank,jdbcType=VARCHAR},
+      Bank_Account = #{bankAccount,jdbcType=VARCHAR},
+      Hobby = #{hobby,jdbcType=VARCHAR},
+      Date_Into_Company = #{dateIntoCompany,jdbcType=VARCHAR},
+      First_Start_Time = #{firstStartTime,jdbcType=VARCHAR},
+      Last_End_Time = #{lastEndTime,jdbcType=VARCHAR},
+      Information_Entry_Time = #{informationEntryTime,jdbcType=VARCHAR},
+      Family_Relationship = #{familyRelationship,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="searchDossierInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from dossier_info limit #{start},#{rows}
+  </select>
+
+  <select id="selectCountDossier" resultType="java.lang.Integer">
+    select count(*) from dossier_info
+  </select>
+</mapper>
