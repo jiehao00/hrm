@@ -19,4 +19,15 @@ public interface PositionInfoMapper {
 
 
     List<PositionInfo> searchPosition(Integer departmentId);
+
+
+    /**
+    * 方法实现说明 根据职位id查找职位信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/2 18:19
+    */
+    PositionInfo searchPositionById(Integer positionId);
 }

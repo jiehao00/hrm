@@ -74,5 +74,9 @@
   <select id="searchPosition" resultMap="BaseResultMap">
     select * from position_info where Department_Id=#{departmentId}
   </select>
+<!--jieHao 19-04-02 根据职位id查找职位信息-->
+  <select id="searchPositionById" resultMap="BaseResultMap">
+    select * from position_info where Position_Id = #{positionId}
+  </select>
 
 </mapper>

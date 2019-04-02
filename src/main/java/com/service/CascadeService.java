@@ -35,4 +35,26 @@ public interface CascadeService {
      * @date        2019/3/29 17:52
      */
     List<PositionInfo> searchPosition(Integer departmentId);
+
+
+    /**
+    * 方法实现说明 根据部门id查找部门信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/2 18:15
+    */
+    DepartmentInfo searchDepartmentById(Integer departmentId);
+
+    /**
+    * 方法实现说明  根据职位id查找职位信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/2 18:16
+    */
+    PositionInfo searchPositionById(Integer positionId);
+
 }

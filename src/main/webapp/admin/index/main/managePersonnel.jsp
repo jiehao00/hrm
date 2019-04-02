@@ -14,8 +14,10 @@
 
 <style>
     .layui-table-cell .layui-form-checkbox[lay-skin="primary"]{
-        top: 50%;
-        transform: translateY(-50%);
+        margin-top: 10px;
+    }
+    .layui-form{
+        margin-left: 70px;
     }
 </style>
 <body>
@@ -24,11 +26,19 @@
 
 <script type="text/html" id="toolbarDemo">
     <div class="demoTable">
-        搜索ID：
         <div class="layui-inline">
-            <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+            <input  class="layui-input" name="personnelId" id="personnelId" autocomplete="off" placeholder="ID"/>
         </div>
-        <button class="layui-btn" data-type="reload">搜索</button>
+        <div class="layui-inline">
+            <input  class="layui-input" name="personnelName" id="personnelName" autocomplete="off" placeholder="名字"/>
+        </div>
+        <div class="layui-inline">
+            <input  class="layui-input" name="department" id="department" autocomplete="off" placeholder="部门"/>
+        </div>
+        <div class="layui-inline">
+            <input  class="layui-input" name="informationEntryTime" id="informationEntryTime" autocomplete="off" placeholder="信息录入时间"/>
+        </div>
+        <button class="layui-btn" data-type="reload" id="search">搜索</button>
     </div>
 </script>
 

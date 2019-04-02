@@ -492,12 +492,34 @@
     where Id = #{id,jdbcType=INTEGER}
   </update>
 
-
-  <select id="searchDossierInfo" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select * from dossier_info limit #{start},#{rows}
+  <!--jieHao 19-04-02 搜索员工-->
+  <select id="searchDossierInfo" resultMap="BaseResultMap">
+    select * from dossier_info
+    <where>
+    <if test="dossierInfo.personnelId!=null ">
+      Personnel_Id = #{dossierInfo.personnelId}
+    </if>
+    <if test="dossierInfo.personnelName!= null">
+     and  Personnel_Name like "%"#{dossierInfo.personnelName}"%"
+    </if>
+    <if test="dossierInfo.department!= null">
+     and  Department like "%"#{dossierInfo.department}"%"
+    </if>
+    <if test="dossierInfo.informationEntryTime!=null">
+     and  Information_Entry_Time = #{dossierInfo.informationEntryTime}
+    </if>
+    </where>
+    limit #{start},#{rows}
   </select>
 
+  <!--jieHao 19-04-02 查找员工总数-->
   <select id="selectCountDossier" resultType="java.lang.Integer">
     select count(*) from dossier_info
   </select>
+
+  <!--jieHao 19-04-02 删除员工-->
+  <delete id="delDossierInfo" parameterType="com.pojo.DossierInfo">
+     delete from dossier_info
+    where  Personnel_Id = #{personnelId}
+  </delete>
 </mapper>

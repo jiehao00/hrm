@@ -18,7 +18,33 @@ public interface DossierInfoMapper {
 
     int updateByPrimaryKey(DossierInfo record);
 
-    List<DossierInfo> searchDossierInfo(@Param("start")int start,@Param("rows")int rows);
+    /**
+     * 方法实现说明  搜索员工信息
+     * @author      jieHao
+     *@param: null
+     * @return
+     * @exception
+     * @date        2019/4/2 18:09
+     */
+    List<DossierInfo> searchDossierInfo(@Param("start")int start,@Param("rows")int rows,@Param("dossierInfo")DossierInfo dossierInfo);
 
+    /**
+     * 方法实现说明 搜索员工总数
+     * @author      jieHao
+     *@param: null
+     * @return
+     * @exception
+     * @date        2019/4/2 18:09
+     */
     int selectCountDossier();
+
+    /**
+     * 方法实现说明 删除员工
+     * @author      jieHao
+     *@param: null
+     * @return
+     * @exception
+     * @date        2019/4/2 18:10
+     */
+    int delDossierInfo(DossierInfo dossierInfo);
 }
