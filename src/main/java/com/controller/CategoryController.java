@@ -109,33 +109,5 @@ public class CategoryController {
 		//return mav;
 	}
 
-//	/**
-//	* 上传图片测试
-//	* @author：      jiehao
-//	* @param
-//	* @return：
-//	* @exception：
-//	* @date：       2018/11/27 10:45
-//	*/
-//	@RequestMapping(value = "uploadImage" ,method = RequestMethod.POST)
-//	@ResponseBody
-//	public Map uploadImageTest(Merchant merchant, HttpServletRequest request)throws Exception{
-//		String dir = request.getSession().getServletContext().getRealPath("")+ImageConfig.imageUrl;
-//		File file=new File(dir);
-//		//如果文件夹不存在
-//		if(!file.exists()){
-//			//创建文件夹
-//			file.mkdirs();
-//			System.out.println("+++++++++++++");
-//		}
-//		uploadImage=new UoloadImage();
-//		String  filename=uploadImage.uploadImage(merchant.getImageFile(),dir);
-//		Map<String,Object> map = new HashMap<String, Object>();
-//		String sqlPath=ImageConfig.imageUrl +filename;
-//		//System.out.println(sqlPath);
-//		//map.put("sqlPath",sqlPath);
-//		map.put("fileName",filename);
-//		return map;
-//	}
 
 }

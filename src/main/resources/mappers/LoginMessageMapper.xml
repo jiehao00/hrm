@@ -132,4 +132,9 @@
     select * from login_message where Personnel_Id =#{personnelId}
   </select>
 
+  <delete id="delLoginMessage" parameterType="com.pojo.LoginMessage">
+     delete from login_message
+    where Personnel_Id =#{personnelId}
+  </delete>
+
 </mapper>

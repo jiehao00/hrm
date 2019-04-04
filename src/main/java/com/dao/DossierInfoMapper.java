@@ -47,4 +47,10 @@ public interface DossierInfoMapper {
      * @date        2019/4/2 18:10
      */
     int delDossierInfo(DossierInfo dossierInfo);
+
+
+    DossierInfo findDossierInfoByPersonnelId(DossierInfo dossierInfo);
+
+
+    int uploadUpdatedPersonnelMessage(DossierInfo dossierInfo);
 }

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TransferredInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.TransferredInfo">
+    <id column="Transferred_Id" jdbcType="INTEGER" property="transferredId" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Department_Before" jdbcType="VARCHAR" property="departmentBefore" />
+    <result column="Position_Before" jdbcType="VARCHAR" property="positionBefore" />
+    <result column="Positional_Tile_Before" jdbcType="VARCHAR" property="positionalTileBefore" />
+    <result column="Department_After" jdbcType="VARCHAR" property="departmentAfter" />
+    <result column="Position_After" jdbcType="VARCHAR" property="positionAfter" />
+    <result column="Positional_Tile_After" jdbcType="VARCHAR" property="positionalTileAfter" />
+    <result column="Transferred_Time" jdbcType="VARCHAR" property="transferredTime" />
+    <result column="Transferred_Result" jdbcType="VARCHAR" property="transferredResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Transferred_Id, Personnel_Id, Personnel_Name, Department_Before, Position_Before, 
+    Positional_Tile_Before, Department_After, Position_After, Positional_Tile_After, 
+    Transferred_Time, Transferred_Result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transferred_info
+    where Transferred_Id = #{transferredId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from transferred_info
+    where Transferred_Id = #{transferredId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.TransferredInfo">
+    insert into transferred_info (Transferred_Id, Personnel_Id, Personnel_Name, 
+      Department_Before, Position_Before, Positional_Tile_Before, 
+      Department_After, Position_After, Positional_Tile_After, 
+      Transferred_Time, Transferred_Result)
+    values (#{transferredId,jdbcType=INTEGER}, #{personnelId,jdbcType=INTEGER}, #{personnelName,jdbcType=VARCHAR}, 
+      #{departmentBefore,jdbcType=VARCHAR}, #{positionBefore,jdbcType=VARCHAR}, #{positionalTileBefore,jdbcType=VARCHAR}, 
+      #{departmentAfter,jdbcType=VARCHAR}, #{positionAfter,jdbcType=VARCHAR}, #{positionalTileAfter,jdbcType=VARCHAR}, 
+      #{transferredTime,jdbcType=VARCHAR}, #{transferredResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.TransferredInfo">
+    insert into transferred_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transferredId != null">
+        Transferred_Id,
+      </if>
+      <if test="personnelId != null">
+        Personnel_Id,
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name,
+      </if>
+      <if test="departmentBefore != null">
+        Department_Before,
+      </if>
+      <if test="positionBefore != null">
+        Position_Before,
+      </if>
+      <if test="positionalTileBefore != null">
+        Positional_Tile_Before,
+      </if>
+      <if test="departmentAfter != null">
+        Department_After,
+      </if>
+      <if test="positionAfter != null">
+        Position_After,
+      </if>
+      <if test="positionalTileAfter != null">
+        Positional_Tile_After,
+      </if>
+      <if test="transferredTime != null">
+        Transferred_Time,
+      </if>
+      <if test="transferredResult != null">
+        Transferred_Result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transferredId != null">
+        #{transferredId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentBefore != null">
+        #{departmentBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="positionBefore != null">
+        #{positionBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="positionalTileBefore != null">
+        #{positionalTileBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentAfter != null">
+        #{departmentAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="positionAfter != null">
+        #{positionAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="positionalTileAfter != null">
+        #{positionalTileAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="transferredTime != null">
+        #{transferredTime,jdbcType=VARCHAR},
+      </if>
+      <if test="transferredResult != null">
+        #{transferredResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.TransferredInfo">
+    update transferred_info
+    <set>
+      <if test="personnelId != null">
+        Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentBefore != null">
+        Department_Before = #{departmentBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="positionBefore != null">
+        Position_Before = #{positionBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="positionalTileBefore != null">
+        Positional_Tile_Before = #{positionalTileBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentAfter != null">
+        Department_After = #{departmentAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="positionAfter != null">
+        Position_After = #{positionAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="positionalTileAfter != null">
+        Positional_Tile_After = #{positionalTileAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="transferredTime != null">
+        Transferred_Time = #{transferredTime,jdbcType=VARCHAR},
+      </if>
+      <if test="transferredResult != null">
+        Transferred_Result = #{transferredResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Transferred_Id = #{transferredId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.TransferredInfo">
+    update transferred_info
+    set Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      Department_Before = #{departmentBefore,jdbcType=VARCHAR},
+      Position_Before = #{positionBefore,jdbcType=VARCHAR},
+      Positional_Tile_Before = #{positionalTileBefore,jdbcType=VARCHAR},
+      Department_After = #{departmentAfter,jdbcType=VARCHAR},
+      Position_After = #{positionAfter,jdbcType=VARCHAR},
+      Positional_Tile_After = #{positionalTileAfter,jdbcType=VARCHAR},
+      Transferred_Time = #{transferredTime,jdbcType=VARCHAR},
+      Transferred_Result = #{transferredResult,jdbcType=VARCHAR}
+    where Transferred_Id = #{transferredId,jdbcType=INTEGER}
+  </update>
+</mapper>

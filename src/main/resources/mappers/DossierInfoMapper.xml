@@ -522,4 +522,128 @@
      delete from dossier_info
     where  Personnel_Id = #{personnelId}
   </delete>
+
+  <select id="findDossierInfoByPersonnelId" resultMap="BaseResultMap">
+    select * from dossier_info where  Personnel_Id = #{personnelId}
+  </select>
+
+
+  <update id="uploadUpdatedPersonnelMessage" parameterType="com.pojo.DossierInfo">
+    update dossier_info
+    <set>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        Age = #{age,jdbcType=INTEGER},
+      </if>
+      <!--<if test="photo != null">-->
+        <!--Photo = #{photo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="positionalTile != null">
+        Positional_Tile = #{positionalTile,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        Nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="nativeProvince != null">
+        Native_Province = #{nativeProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        Email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalStatus != null">
+        Political_Status = #{politicalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        Telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        ID_Card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="citizenship != null">
+        Citizenship = #{citizenship,jdbcType=VARCHAR},
+      </if>
+      <if test="birthPlace != null">
+        Birth_Place = #{birthPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null">
+        Birth_Date = #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="specialty != null">
+        Specialty = #{specialty,jdbcType=VARCHAR},
+      </if>
+      <if test="faith != null">
+        Faith = #{faith,jdbcType=VARCHAR},
+      </if>
+      <if test="marriageStatus != null">
+        Marriage_Status = #{marriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        School = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurityNumber != null">
+        Social_Security_number = #{socialSecurityNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        Wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="advancedDegree != null">
+        Advanced_Degree = #{advancedDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="professional != null">
+        Professional = #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="yearsOfEducation != null">
+        Years_Of_Education = #{yearsOfEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="basicWage != null">
+        Basic_Wage = #{basicWage,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        Bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        Bank_Account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="hobby != null">
+        Hobby = #{hobby,jdbcType=VARCHAR},
+      </if>
+      <if test="dateIntoCompany != null">
+        Date_Into_Company = #{dateIntoCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="firstStartTime != null">
+        First_Start_Time = #{firstStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="lastEndTime != null">
+        Last_End_Time = #{lastEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="informationEntryTime != null">
+        Information_Entry_Time = #{informationEntryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="familyRelationship != null">
+        Family_Relationship = #{familyRelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Personnel_Id = #{personnelId,jdbcType=INTEGER}
+  </update>
+
 </mapper>

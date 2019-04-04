@@ -44,7 +44,8 @@
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">解聘</a>
+    <a class="layui-btn layui-btn-xs" lay-event="transfer">调职</a>
 </script>
 <script type="text/javascript" src="../../../js/jquery.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../../layui/layui.js" charset="UTF-8"></script>

@@ -1,0 +1,17 @@
+.layui-input{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.terminationForm{
+    margin-left: 20px;
+}
+#transferredResult{
+    width: 470px;
+    height: 90px;
+}
+.message{
+    margin-top: 10px;
+}
+.rightMessage{
+    margin-left: 48px;
+}

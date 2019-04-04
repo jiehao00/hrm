@@ -1,6 +1,7 @@
-layui.use(['table','laydate'], function() {
+layui.use(['table','laydate','form'], function() {
     var table = layui.table;
     var laydate=layui.laydate;
+    var form=layui.form;
     var $ = layui.$;
     laydate.render({
         elem: '#informationEntryTime',
@@ -55,35 +56,105 @@ layui.use(['table','laydate'], function() {
     //监听删除编辑操作
     table.on('tool(personnelInfo)', function(obj){
         var data = obj.data;
-        console.log(data.personnelId);
+        console.log(data);
 
         if(obj.event === 'del'){
-             layer.confirm('确认删除', function(index){
-                 $.ajax({
-                     url:'/delDossierInfo',
-                     data:{personnelId:data.personnelId},
-                     success:function (data) {
-                         if(data.status==0){
-                             obj.del();
-                             layer.close(index);
-                             layer.msg(data.message);
-                         }else {
-                             layer.msg(data.message);
-                         }
-                     }
-                 })
-            });
+            layer.open({
+                type: 2,
+                offset: ['50px','100px'],
+                title:'解聘信息',
+                maxmin: true,
+                area: ['50%', '86%'],
+                content: 'termination.jsp',
+                btn: ['确定', '关闭'],
+                success:function (layero, index) {
+                    var body = layui.layer.getChildFrame('body', index);
+                    body.find("#personnelId").val(data.personnelId);
+                    body.find("#personnelName").val(data.personnelName);
+                    body.find("#department").val(data.department);
+                    body.find("#position").val(data.position);
+                    form.render();
+                },
+                yes:function (index,layero) {
+                    var body = layui.layer.getChildFrame('body', index);
+                    var personnelId=body.find("#personnelId").val();
+                    var personnelName=body.find("#personnelName").val();
+                    var department=body.find("#department").val();
+                    var position=body.find("#position").val();
+                    var terminationTime=body.find("#terminationTime").val();
+                    var stopSalaryTime=body.find("#stopSalaryTime").val();
+                    var terminationResult=body.find("#terminationResult").val();
+                    $.ajax({
+                        url:'/delDossierInfo',
+                        data:{personnelId:personnelId,personnelName:personnelName,
+                            department:department,position:position,terminationTime:terminationTime,
+                            stopSalaryTime:stopSalaryTime,terminationResult:terminationResult},
+                        success:function (data) {
+                            if(data.status==0){
+                                obj.del();
+                                layer.close(index);
+                                layer.msg(data.message);
+                            }else {
+                                layer.msg(data.message);
+                            }
+                        }
+                    })
+                    layer.close(index);
+                }
+            })
         } else if(obj.event === 'edit'){
-            // layer.prompt({
-            //     formType: 2
-            //     ,value: data.email
-            // }, function(value, index){
-            //     obj.update({
-            //         email: value
-            //     });
-            //     layer.close(index);
-            // });
+            window.location.href="/updatePersonnel?personnelId="+data.personnelId;
+        }else if(obj.event ==='transfer'){
+            // layer.msg("进入了");
+            layer.open({
+                type: 2,
+                offset: ['50px','100px'],
+                title:'调职信息',
+                maxmin: true,
+                area: ['60%', '86%'],
+                content: 'transfer.jsp',
+                btn: ['确定', '关闭'],
+                success:function (layero, index) {
+                     var body = layui.layer.getChildFrame('body', index);
+                     body.find("#personnelId").val(data.personnelId);
+                     body.find("#personnelName").val(data.personnelName);
+                     body.find("#departmentBefore").val(data.department);
+                     body.find("#positionBefore").val(data.position);
+                     body.find("#positionalTileBefore").val(data.positionalTile);
+                     form.render();
+                },
+                yes:function (index,layero) {
+                    var body = layui.layer.getChildFrame('body', index);
+                    var personnelId=body.find("#personnelId").val();
+                    var personnelName=body.find("#personnelName").val();
+                    var departmentBefore=body.find("#departmentBefore").val();
+                    var positionBefore=body.find("#positionBefore").val();
+                    var positionalTileBefore=body.find("#positionalTileBefore").val();
+                    var departmentAfter=body.find("#department").val();
+                    var positionAfter=body.find("#position").val();
+                    var positionalTileAfter=body.find("#positionalTileAfter").val();
+                    var transferredTime=body.find("#transferredTime").val();
+                    var transferredResult=body.find("#transferredResult").val();
+                    $.ajax({
+                        url:'/transferPersonnel',
+                        data:{personnelId:personnelId,personnelName:personnelName,departmentBefore:departmentBefore,
+                              positionBefore:positionBefore,positionalTileBefore:positionalTileBefore,departmentAfter:departmentAfter,
+                              positionAfter:positionAfter,positionalTileAfter:positionalTileAfter,transferredTime:transferredTime,transferredResult:transferredResult},
+                        success:function (data) {
+                            if (data.status==0){
+                                // obj.update();
+                                table.reload('personnelInfo', {
+                                })
+                                layer.close(index);
+                                layer.msg(data.message);
+                            } else {
+                                layer.msg(data.message);
+                            }
+                        }
+                    })
+                    layer.close(index);
+                }
+            })
         }
     });
-
 });

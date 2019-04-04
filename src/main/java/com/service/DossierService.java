@@ -1,6 +1,8 @@
 package com.service;
 
 import com.pojo.DossierInfo;
+import com.pojo.TerminationInfo;
+import com.pojo.TransferredInfo;
 
 import java.util.List;
 /**
@@ -53,5 +55,17 @@ public interface DossierService {
      * @date        2019/4/2 18:10
      */
      int delDossierInfo(DossierInfo dossierInfo);
+
+
+     int insertTermination(TerminationInfo terminationInfo);
+
+
+     DossierInfo findDossierInfoByPersonnelId(DossierInfo dossierInfo);
+
+
+     int uploadUpdatedPersonnelMessage(DossierInfo dossierInfo);
+
+
+     int insertTransferredInfo(TransferredInfo transferredInfo);
 
 }

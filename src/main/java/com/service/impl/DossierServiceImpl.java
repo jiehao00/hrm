@@ -1,7 +1,11 @@
 package com.service.impl;
 
 import com.dao.DossierInfoMapper;
+import com.dao.TerminationInfoMapper;
+import com.dao.TransferredInfoMapper;
 import com.pojo.DossierInfo;
+import com.pojo.TerminationInfo;
+import com.pojo.TransferredInfo;
 import com.service.DossierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +27,12 @@ public class DossierServiceImpl implements DossierService {
 
     @Autowired
     private DossierInfoMapper dossierInfoMapper;
+
+    @Autowired
+    private TerminationInfoMapper terminationInfoMapper;
+
+    @Autowired
+    private TransferredInfoMapper transferredInfoMapper;
     /**
      * 方法实现说明 增加员工信息
      * @author      jieHao
@@ -72,5 +82,25 @@ public class DossierServiceImpl implements DossierService {
     @Override
     public int delDossierInfo(DossierInfo dossierInfo) {
         return dossierInfoMapper.delDossierInfo(dossierInfo);
+    }
+
+    @Override
+    public int insertTermination(TerminationInfo terminationInfo) {
+        return terminationInfoMapper.insertSelective(terminationInfo);
+    }
+
+    @Override
+    public DossierInfo findDossierInfoByPersonnelId(DossierInfo dossierInfo) {
+        return dossierInfoMapper.findDossierInfoByPersonnelId(dossierInfo);
+    }
+
+    @Override
+    public int uploadUpdatedPersonnelMessage(DossierInfo dossierInfo) {
+        return dossierInfoMapper.uploadUpdatedPersonnelMessage(dossierInfo);
+    }
+
+    @Override
+    public int insertTransferredInfo(TransferredInfo transferredInfo) {
+        return transferredInfoMapper.insertSelective(transferredInfo);
     }
 }

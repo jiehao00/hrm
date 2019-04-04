@@ -1,7 +1,7 @@
 package com.controller;
 
 
-import com.pojo.Merchant;
+
 import com.util.Upload.UoloadImage;
 import com.util.config.ImageConfig;
 import org.springframework.stereotype.Controller;

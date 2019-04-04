@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TerminationInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.TerminationInfo">
+    <id column="Termination_Id" jdbcType="INTEGER" property="terminationId" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="Termination_Time" jdbcType="VARCHAR" property="terminationTime" />
+    <result column="Termination_Result" jdbcType="VARCHAR" property="terminationResult" />
+    <result column="Stop_Salary_Time" jdbcType="VARCHAR" property="stopSalaryTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Termination_Id, Personnel_Id, Personnel_Name, Department, Position, Termination_Time,
+    Termination_Result, Stop_Salary_Time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from termination_info
+    where Termination_Id = #{terminationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from termination_info
+    where Termination_Id = #{terminationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.TerminationInfo">
+    insert into termination_info (Termination_Id, Personnel_Id, Personnel_Name,
+      Department, Position, Termination_Time, 
+      Termination_Result, Stop_Salary_Time)
+    values (#{terminationId,jdbcType=INTEGER}, #{personnelId,jdbcType=INTEGER}, #{personnelName,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{terminationTime,jdbcType=VARCHAR}, 
+      #{terminationResult,jdbcType=VARCHAR}, #{stopSalaryTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.TerminationInfo">
+    insert into termination_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="terminationId != null">
+        Termination_Id,
+      </if>
+      <if test="personnelId != null">
+        Personnel_Id,
+      </if>
+      <if test="personnelName != null">
+       Personnel_Name,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="terminationTime != null">
+        Termination_Time,
+      </if>
+      <if test="terminationResult != null">
+        Termination_Result,
+      </if>
+      <if test="stopSalaryTime != null">
+        Stop_Salary_Time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="terminationId != null">
+        #{terminationId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="terminationTime != null">
+        #{terminationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="terminationResult != null">
+        #{terminationResult,jdbcType=VARCHAR},
+      </if>
+      <if test="stopSalaryTime != null">
+        #{stopSalaryTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.TerminationInfo">
+    update termination_info
+    <set>
+      <if test="personnelId != null">
+        Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="terminationTime != null">
+        Termination_Time = #{terminationTime,jdbcType=VARCHAR},
+      </if>
+      <if test="terminationResult != null">
+        Termination_Result = #{terminationResult,jdbcType=VARCHAR},
+      </if>
+      <if test="stopSalaryTime != null">
+        Stop_Salary_Time = #{stopSalaryTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Termination_Id = #{terminationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.TerminationInfo">
+    update termination_info
+    set Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      Personnel_Name= #{personnelName,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      Position = #{position,jdbcType=VARCHAR},
+      Termination_Time = #{terminationTime,jdbcType=VARCHAR},
+      Termination_Result = #{terminationResult,jdbcType=VARCHAR},
+      Stop_Salary_Time = #{stopSalaryTime,jdbcType=VARCHAR}
+    where Termination_Id = #{terminationId,jdbcType=INTEGER}
+  </update>
+</mapper>

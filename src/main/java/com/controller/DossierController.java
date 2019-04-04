@@ -1,12 +1,11 @@
 package com.controller;
 
-import com.pojo.DepartmentInfo;
-import com.pojo.DossierInfo;
-import com.pojo.LoginMessage;
-import com.pojo.PositionInfo;
+import com.pojo.*;
 import com.service.CascadeService;
 import com.service.DossierService;
+import com.service.LoginMessageService;
 import com.util.PrimaryKeyUtil;
+import com.util.config.ImageConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +33,8 @@ public class DossierController {
     private DossierService dossierService;
     @Autowired
     private CascadeService cascadeService;
+    @Autowired
+    private LoginMessageService loginMessageService;
 
 
 
@@ -55,6 +56,7 @@ public class DossierController {
             dossierInfo.setPhoto(null);
         }
         dossierInfo.setPersonnelId(Integer.valueOf(PrimaryKeyUtil.getAllRandomNumber(8)));
+
         DepartmentInfo departmentInfo=cascadeService.searchDepartmentById(Integer.valueOf(dossierInfo.getDepartment()));
         dossierInfo.setDepartment(departmentInfo.getDepartment());
         PositionInfo positionInfo=cascadeService.searchPositionById(Integer.valueOf(dossierInfo.getPosition()));
@@ -107,7 +109,7 @@ public class DossierController {
     }
 
     /**
-    * 方法实现说明 删除员工信息（加删除员工登录信息表信息）
+    * 方法实现说明 删除员工信息
     * @author      jieHao
     *@param: null
     * @return
@@ -116,15 +118,116 @@ public class DossierController {
     */
     @RequestMapping("delDossierInfo")
     @ResponseBody
-    public Map delDossierInfo(DossierInfo dossierInfo){
+    public Map delDossierInfo(TerminationInfo terminationInfo){
         Map<String, Object> map = new HashMap<String, Object>();
-        if (dossierService.delDossierInfo(dossierInfo)>0){
-            map.put("status",0);
-            map.put("message","删除成功");
-        }
-        else {
+        DossierInfo dossierInfo=new DossierInfo();
+        LoginMessage loginMessage=new LoginMessage();
+        dossierInfo.setPersonnelId(terminationInfo.getPersonnelId());
+        loginMessage.setPersonnelId(terminationInfo.getPersonnelId());
+        if (dossierService.insertTermination(terminationInfo)>0){
+            if (dossierService.delDossierInfo(dossierInfo)>0){
+                if (loginMessageService.delLoginMessage(loginMessage)>0){
+                    map.put("status",0);
+                    map.put("message","删除成功");
+                }else {
+                    map.put("status",1);
+                    map.put("message","删除失败");
+                }
+            }else {
+                map.put("status",1);
+                map.put("message","删除失败");
+            }
+        } else {
             map.put("status",1);
             map.put("message","删除失败");
+        }
+        return map;
+    }
+
+    /**
+    * 方法实现说明  找出需要更新的员工信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/4 14:33
+    */
+    @RequestMapping("updatePersonnel")
+    public ModelAndView updatePersonnel(DossierInfo dossierInfo){
+        ModelAndView mav=new ModelAndView();
+        String num;
+        DossierInfo dossier=dossierService.findDossierInfoByPersonnelId(dossierInfo);
+        if (dossier.getSex().equals("男")){
+            num="0";
+        }else {
+            num="1";
+        }
+        if (dossier.getPhoto()!=null){
+            dossier.setPhoto(ImageConfig.imageUrl+dossier.getPhoto());
+        }
+        mav.addObject("num",num);
+        mav.addObject("dossierInfo",dossier);
+        mav.setViewName("main/updatePersonnel");
+        return mav;
+    }
+
+    /**
+    * 方法实现说明    更新修改好的员工信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/4 14:38
+    */
+    @RequestMapping("uploadUpdatedPersonnelMessage")
+    @ResponseBody
+    public Map uploadUpdatedPersonnelMessage(DossierInfo dossierInfo){
+        String sex="0";
+        Map<String,Object> map=new HashMap<>();
+        if (dossierInfo.getSex().equals(sex)){
+            dossierInfo.setSex("男");
+        }else{
+            dossierInfo.setSex("女");
+        }
+        if (dossierService.uploadUpdatedPersonnelMessage(dossierInfo)>0){
+            map.put("status",0);
+            map.put("message","更新成功");
+        }else {
+            map.put("status",1);
+            map.put("message","更新失败");
+        }
+        return map;
+    }
+
+    @RequestMapping("transferPersonnel")
+    @ResponseBody
+    public Map transferPersonnel(TransferredInfo transferredInfo){
+        Map<String,Object>map=new HashMap<>();
+        DossierInfo dossierInfo=new DossierInfo();
+        DepartmentInfo departmentInfo=cascadeService.searchDepartmentById(Integer.valueOf(transferredInfo.getDepartmentAfter()));
+        transferredInfo.setDepartmentAfter(departmentInfo.getDepartment());
+        PositionInfo positionInfo=cascadeService.searchPositionById(Integer.valueOf(transferredInfo.getPositionAfter()));
+        transferredInfo.setPositionAfter(positionInfo.getPosition());
+        dossierInfo.setPersonnelId(transferredInfo.getPersonnelId());
+        dossierInfo.setDepartment(transferredInfo.getDepartmentAfter());
+        dossierInfo.setPosition(transferredInfo.getPositionAfter());
+        if (transferredInfo.getPositionalTileAfter()==null || transferredInfo.getPositionalTileAfter()==""){
+            transferredInfo.setPositionalTileAfter(transferredInfo.getPositionalTileBefore());
+            dossierInfo.setPositionalTile(transferredInfo.getPositionalTileBefore());
+        }else {
+            dossierInfo.setPositionalTile(transferredInfo.getPositionalTileAfter());
+        }
+        if (dossierService.insertTransferredInfo(transferredInfo)>0){
+            if (dossierService.uploadUpdatedPersonnelMessage(dossierInfo)>0){
+                map.put("status",0);
+                map.put("message","操作成功");
+            }else {
+                map.put("status",1);
+                map.put("message","操作失败");
+            }
+        }else {
+            map.put("status",1);
+            map.put("message","操作失败");
         }
         return map;
     }

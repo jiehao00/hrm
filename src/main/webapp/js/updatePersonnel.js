@@ -4,8 +4,6 @@ layui.use(['form','layer','laydate','upload'], function(){
     var layer=layui.layer;
     var laydate=layui.laydate;
     var upload = layui.upload;
-
-
     laydate.render({
         elem: '#birthDate',
         type:'date',
@@ -26,39 +24,23 @@ layui.use(['form','layer','laydate','upload'], function(){
         elem: '#informationEntryTime',
         type:'date',
     });
-
-    form.on('submit(demo1)', function(data){
-        var password=123456;
+    form.on('submit(dem)', function(data){
         $.ajax({
-            url:'/insertDossierInfo',
+            url:'/uploadUpdatedPersonnelMessage',
             type:'post',
             data:data.field,
             success:function (data) {
                 if(data.status==0){
-                    $.ajax({
-                        url:'/HRRegister',
-                        type:'post',
-                        data:{personnelId:data.personnelId,password:password,personnelName:data.personnelName},
-                        success:function (data) {
-                            if (data.status==0){
-                                layer.msg('增加成功');
-                                document.getElementById("myForm").reset();
-　　                            $('#myForm')[0].reset();
-                                form.render();
-                            }
-                            else {
-                                layer.msg('用户注册失败');
-                            }
-                        }
-                    })
+                    layer.msg('修改成功');
+                    window.location.href="admin/index/main/managePersonnel.jsp";
                 }
                 else {
-                    layer.msg('增加失败');
+                    layer.msg('修改失败');
                 }
             }
         })
         return false;
-});
+    });
     upload.render({
         elem: '.bbb',
         url: '/uploadImage',
@@ -84,5 +66,4 @@ layui.use(['form','layer','laydate','upload'], function(){
             '年龄输入范围为0-100'
         ]
     })
-
 });

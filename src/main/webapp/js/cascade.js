@@ -35,8 +35,5 @@ window.addEventListener('load',function () {
                 }
             });
         });
-
     })
-
-
 })

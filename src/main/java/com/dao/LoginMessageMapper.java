@@ -33,4 +33,7 @@ public interface LoginMessageMapper {
     * @date        2019/3/27 19:39
     */
     LoginMessage findMessage(Integer personnelId);
+
+
+    int delLoginMessage(LoginMessage loginMessage);
 }

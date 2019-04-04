@@ -52,5 +52,10 @@ public class LoginMessageServiceImpl implements LoginMessageService {
         return loginMessageMapper.findMessage(id);
     }
 
+    @Override
+    public int delLoginMessage(LoginMessage loginMessage) {
+        return loginMessageMapper.delLoginMessage(loginMessage);
+    }
+
 
 }

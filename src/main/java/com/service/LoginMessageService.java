@@ -35,4 +35,7 @@ public interface LoginMessageService {
     LoginMessage findMessage(Integer id);
 
 
+    int delLoginMessage(LoginMessage loginMessage);
+
+
 }
