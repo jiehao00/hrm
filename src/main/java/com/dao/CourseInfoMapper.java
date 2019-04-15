@@ -38,4 +38,14 @@ public interface CourseInfoMapper {
     * @date        2019/4/15 19:05
     */
     int searchCourseCount();
+
+    /**
+    * 方法实现说明 结课（人工）
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/15 19:57
+    */
+    int endCourse(Integer courseCode);
 }

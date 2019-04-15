@@ -112,5 +112,28 @@ public class CourseController {
         return map;
     }
 
+    /**
+    * 方法实现说明 结课（人工）
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/15 19:56
+    */
+    @RequestMapping("endCourse")
+    @ResponseBody
+    public Map endCourse(CourseInfo courseInfo){
+        Map<String,Object>map=new HashMap<>();
+        System.out.println("进入了方法");
+        if (courseService.endCourse(courseInfo.getCourseCode())>0){
+            map.put("status",0);
+            map.put("message","结课成功");
+        }else {
+            map.put("status",1);
+            map.put("message","结课失败");
+        }
+        return map;
+    }
+
 
 }

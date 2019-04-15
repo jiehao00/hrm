@@ -212,4 +212,11 @@
   <select id="searchCourseCount" resultType="java.lang.Integer">
     select count(*) from course_info
   </select>
+  <!--jieHao 2019-04-15 结课-->
+  <update id="endCourse" parameterType="java.lang.Integer">
+    update course_info
+    set
+     Course_Status = '2'
+      where Course_Code = #{courseCode,jdbcType=INTEGER}
+  </update>
 </mapper>

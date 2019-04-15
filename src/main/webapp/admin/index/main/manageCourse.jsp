@@ -54,7 +54,7 @@
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-    <a class="layui-btn layui-btn-xs" lay-event="transfer">结课</a>
+    <a class="layui-btn layui-btn-xs" lay-event="classEnd">结课</a>
 </script>
 
 

@@ -75,4 +75,19 @@ public class CourseServiceImpl implements CourseService {
     public int delCourseInfo(Integer courseCode) {
         return courseInfoMapper.deleteByPrimaryKey(courseCode);
     }
+
+    /**
+    * 方法实现说明 结课（人工）
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/15 19:57
+    */
+    @Override
+    public int endCourse(Integer courseCode) {
+        return courseInfoMapper.endCourse(courseCode);
+    }
+
+
 }

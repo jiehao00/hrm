@@ -102,6 +102,32 @@ layui.use(['table','laydate','form'], function() {
         else if(obj.event ==='edit'){
             layer.msg("edit");
         }
+        else if (obj.event ==='classEnd') {
+
+            if (data.courseStatus =='0') {
+                layer.msg("本课程还没开课");
+            } if (data.courseStatus=='1'){
+                layer.msg("开课");
+                $.ajax({
+                    url:'/endCourse',
+                    dataType:'json',
+                    type:'post',
+                    data:{courseCode:data.courseCode},
+                    success:function (data) {
+                        console.log(data)
+                        if (data.status==0){
+                            layer.msg(data.message);
+                            table.reload('manageCourse', {
+                            })
+                        } else {
+                            layer.msg(data.message);
+                        }
+                    }
+                })
+            }if (data.courseStatus=='2'){
+                layer.msg("本课程已结课");
+            }
+        }
 
     })
 
