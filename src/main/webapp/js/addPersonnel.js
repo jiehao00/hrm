@@ -4,8 +4,6 @@ layui.use(['form','layer','laydate','upload'], function(){
     var layer=layui.layer;
     var laydate=layui.laydate;
     var upload = layui.upload;
-
-
     laydate.render({
         elem: '#birthDate',
         type:'date',

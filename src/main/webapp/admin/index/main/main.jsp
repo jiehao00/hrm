@@ -39,7 +39,12 @@
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" data-url="../danye-list.html" data-id='9' data-text="单页管理"><i class="iconfont">&#xe604;</i>推荐位管理</a>
+                <a href="javascript:;"><i class="iconfont">&#xe604;</i>培训发展</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/addCourse.jsp" data-id="8" data-text="课程管理"><span class="l-line"></span>课程管理</a></dd>
+                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/manageCourse.jsp" data-id="9" data-text="培训课程"><span class="l-line"></span>培训课程</a></dd>
+                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/tt.jsp" data-id="10" data-text="申请记录"><span class="l-line"></span>申请记录</a></dd>
+                </dl>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe60c;</i>友情链接</a>

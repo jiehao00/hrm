@@ -93,6 +93,8 @@ layui.use(['table','laydate','form'], function() {
                             if(data.status==0){
                                 obj.del();
                                 layer.close(index);
+                                table.reload('personnelInfo', {
+                                })
                                 layer.msg(data.message);
                             }else {
                                 layer.msg(data.message);

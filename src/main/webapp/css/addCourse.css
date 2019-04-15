@@ -1,0 +1,16 @@
+.layui-form{
+    padding-left: 210px;
+    padding-top: 50px;
+}
+.layui-form-text{
+    width: 900px;
+}
+.layui-form-pane .layui-form-label {
+    width: 130px;
+}
+.layui-form-item .layui-inline {
+    margin-right: 100px;
+}
+.layui-form-item{
+    margin-bottom: 40px;
+}

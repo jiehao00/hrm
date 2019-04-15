@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CourseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.CourseInfo">
+    <id column="Course_Code" jdbcType="INTEGER" property="courseCode" />
+    <result column="Course_Name" jdbcType="VARCHAR" property="courseName" />
+    <result column="Course_Department" jdbcType="VARCHAR" property="courseDepartment" />
+    <result column="Students_Type" jdbcType="VARCHAR" property="studentsType" />
+    <result column="Teaching_Hours" jdbcType="VARCHAR" property="teachingHours" />
+    <result column="Planned_Start_Time" jdbcType="VARCHAR" property="plannedStartTime" />
+    <result column="Planned_End_Time" jdbcType="VARCHAR" property="plannedEndTime" />
+    <result column="Actual_Start_Time" jdbcType="VARCHAR" property="actualStartTime" />
+    <result column="Actual_End_Time" jdbcType="VARCHAR" property="actualEndTime" />
+    <result column="Accrued_Headcount" jdbcType="VARCHAR" property="accruedHeadcount" />
+    <result column="Attend_Headcount" jdbcType="VARCHAR" property="attendHeadcount" />
+    <result column="Course_Introduction" jdbcType="VARCHAR" property="courseIntroduction" />
+    <result column="Course_Status" jdbcType="VARCHAR" property="courseStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Course_Code, Course_Name, Course_Department, Students_Type, Teaching_Hours, Planned_Start_Time, 
+    Planned_End_Time, Actual_Start_Time, Actual_End_Time, Accrued_Headcount, Attend_Headcount, 
+    Course_Introduction, Course_Status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course_info
+    where Course_Code = #{courseCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course_info
+    where Course_Code = #{courseCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.CourseInfo">
+    insert into course_info (Course_Code, Course_Name, Course_Department, 
+      Students_Type, Teaching_Hours, Planned_Start_Time, 
+      Planned_End_Time, Actual_Start_Time, Actual_End_Time, 
+      Accrued_Headcount, Attend_Headcount, Course_Introduction, 
+      Course_Status)
+    values (#{courseCode,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{courseDepartment,jdbcType=VARCHAR}, 
+      #{studentsType,jdbcType=VARCHAR}, #{teachingHours,jdbcType=VARCHAR}, #{plannedStartTime,jdbcType=VARCHAR},
+      #{plannedEndTime,jdbcType=VARCHAR}, #{actualStartTime,jdbcType=VARCHAR}, #{actualEndTime,jdbcType=VARCHAR}, 
+      #{accruedHeadcount,jdbcType=VARCHAR}, #{attendHeadcount,jdbcType=VARCHAR}, #{courseIntroduction,jdbcType=VARCHAR}, 
+      #{courseStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.CourseInfo">
+    insert into course_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="courseCode != null">
+        Course_Code,
+      </if>
+      <if test="courseName != null">
+        Course_Name,
+      </if>
+      <if test="courseDepartment != null">
+        Course_Department,
+      </if>
+      <if test="studentsType != null">
+        Students_Type,
+      </if>
+      <if test="teachingHours != null">
+        Teaching_Hours,
+      </if>
+      <if test="plannedStartTime != null">
+        Planned_Start_Time,
+      </if>
+      <if test="plannedEndTime != null">
+        Planned_End_Time,
+      </if>
+      <if test="actualStartTime != null">
+        Actual_Start_Time,
+      </if>
+      <if test="actualEndTime != null">
+        Actual_End_Time,
+      </if>
+      <if test="accruedHeadcount != null">
+        Accrued_Headcount,
+      </if>
+      <if test="attendHeadcount != null">
+        Attend_Headcount,
+      </if>
+      <if test="courseIntroduction != null">
+        Course_Introduction,
+      </if>
+      <if test="courseStatus != null">
+        Course_Status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="courseCode != null">
+        #{courseCode,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null">
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDepartment != null">
+        #{courseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="studentsType != null">
+        #{studentsType,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingHours != null">
+        #{teachingHours,jdbcType=VARCHAR},
+      </if>
+      <if test="plannedStartTime != null">
+        #{plannedStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="plannedEndTime != null">
+        #{plannedEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="actualStartTime != null">
+        #{actualStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="actualEndTime != null">
+        #{actualEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="accruedHeadcount != null">
+        #{accruedHeadcount,jdbcType=VARCHAR},
+      </if>
+      <if test="attendHeadcount != null">
+        #{attendHeadcount,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIntroduction != null">
+        #{courseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="courseStatus != null">
+        #{courseStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.CourseInfo">
+    update course_info
+    <set>
+      <if test="courseName != null">
+        Course_Name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseDepartment != null">
+        Course_Department = #{courseDepartment,jdbcType=VARCHAR},
+      </if>
+      <if test="studentsType != null">
+        Students_Type = #{studentsType,jdbcType=VARCHAR},
+      </if>
+      <if test="teachingHours != null">
+        Teaching_Hours = #{teachingHours,jdbcType=VARCHAR},
+      </if>
+      <if test="plannedStartTime != null">
+        Planned_Start_Time = #{plannedStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="plannedEndTime != null">
+        Planned_End_Time = #{plannedEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="actualStartTime != null">
+        Actual_Start_Time = #{actualStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="actualEndTime != null">
+        Actual_End_Time = #{actualEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="accruedHeadcount != null">
+        Accrued_Headcount = #{accruedHeadcount,jdbcType=VARCHAR},
+      </if>
+      <if test="attendHeadcount != null">
+        Attend_Headcount = #{attendHeadcount,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIntroduction != null">
+        Course_Introduction = #{courseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="courseStatus != null">
+        Course_Status = #{courseStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Course_Code = #{courseCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.CourseInfo">
+    update course_info
+    set Course_Name = #{courseName,jdbcType=VARCHAR},
+      Course_Department = #{courseDepartment,jdbcType=VARCHAR},
+      Students_Type = #{studentsType,jdbcType=VARCHAR},
+      Teaching_Hours = #{teachingHours,jdbcType=VARCHAR},
+      Planned_Start_Time = #{plannedStartTime,jdbcType=VARCHAR},
+      Planned_End_Time = #{plannedEndTime,jdbcType=VARCHAR},
+      Actual_Start_Time = #{actualStartTime,jdbcType=VARCHAR},
+      Actual_End_Time = #{actualEndTime,jdbcType=VARCHAR},
+      Accrued_Headcount = #{accruedHeadcount,jdbcType=VARCHAR},
+      Attend_Headcount = #{attendHeadcount,jdbcType=VARCHAR},
+      Course_Introduction = #{courseIntroduction,jdbcType=VARCHAR},
+      Course_Status = #{courseStatus,jdbcType=VARCHAR}
+    where Course_Code = #{courseCode,jdbcType=INTEGER}
+  </update>
+  <!--jieHao 2019-04-15 查询课程信息-->
+  <select id="searchCourse" resultMap="BaseResultMap">
+    select * from course_info
+    <where>
+      <if test="courseInfo.courseName!=null">
+        Course_Name like "%"#{courseInfo.courseName}"%"
+      </if>
+      <if test="courseInfo.studentsType!=null">
+       and  Students_Type like "%"#{courseInfo.studentsType}"%"
+      </if>
+      <if test="courseInfo.plannedStartTime!=null">
+       and  Planned_Start_Time <![CDATA[>=]]> #{courseInfo.plannedStartTime}
+      </if>
+      <if test="courseInfo.plannedEndTime !=null">
+       and  Planned_End_Time &lt;= #{courseInfo.plannedEndTime}
+      </if>
+      <if test="courseInfo.courseStatus !=null">
+        and Course_Status =#{courseInfo.courseStatus}
+      </if>
+    </where>
+    limit #{page},#{limit}
+  </select>
+  <!--jieHao 2019-04-15 查询课程信息总数-->
+  <select id="searchCourseCount" resultType="java.lang.Integer">
+    select count(*) from course_info
+  </select>
+</mapper>
