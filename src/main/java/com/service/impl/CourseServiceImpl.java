@@ -89,5 +89,10 @@ public class CourseServiceImpl implements CourseService {
         return courseInfoMapper.endCourse(courseCode);
     }
 
+    @Override
+    public int updateCourseMessage(CourseInfo courseInfo) {
+        return courseInfoMapper.updateByPrimaryKeySelective(courseInfo);
+    }
+
 
 }

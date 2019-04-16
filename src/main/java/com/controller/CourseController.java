@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -131,6 +134,35 @@ public class CourseController {
         }else {
             map.put("status",1);
             map.put("message","结课失败");
+        }
+        return map;
+    }
+
+
+    @RequestMapping("updateCourseMessage")
+    @ResponseBody
+    public Map updateCourseMessage(CourseInfo courseInfo) throws ParseException {
+        Map<String,Object>map=new HashMap<>();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String date = df.format(new Date());
+        Date nowDate = df.parse(date);
+        Date plannedStartTime= df.parse(courseInfo.getPlannedStartTime());
+        Date plannedEndTime=df.parse(courseInfo.getPlannedEndTime());
+        if (nowDate.getTime()>=plannedStartTime.getTime()){
+            courseInfo.setCourseStatus("1");
+        }
+        if (nowDate.getTime()<plannedStartTime.getTime()){
+            courseInfo.setCourseStatus("0");
+        }
+        if (nowDate.getTime()>=plannedEndTime.getTime()){
+            courseInfo.setCourseStatus("2");
+        }
+        if (courseService.updateCourseMessage(courseInfo)>0){
+            map.put("status",0);
+            map.put("message","修改成功");
+        }else {
+            map.put("status",1);
+            map.put("message","修改失败");
         }
         return map;
     }

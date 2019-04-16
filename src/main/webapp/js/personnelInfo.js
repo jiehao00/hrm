@@ -107,7 +107,6 @@ layui.use(['table','laydate','form'], function() {
         } else if(obj.event === 'edit'){
             window.location.href="/updatePersonnel?personnelId="+data.personnelId;
         }else if(obj.event ==='transfer'){
-            // layer.msg("进入了");
             layer.open({
                 type: 2,
                 offset: ['50px','100px'],

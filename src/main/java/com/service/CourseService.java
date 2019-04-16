@@ -67,4 +67,6 @@ public interface CourseService {
     * @date        2019/4/15 19:57
     */
     int endCourse(Integer courseCode);
+
+    int updateCourseMessage(CourseInfo courseInfo);
 }
