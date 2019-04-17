@@ -4,9 +4,14 @@ package com.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pojo.Category;
+import com.pojo.DepartmentInfo;
+import com.pojo.PositionInfo;
+import com.pojo.TestMode;
+import com.service.CascadeService;
 import com.service.CategoryService;
 import com.util.Page;
 import com.util.Upload.UoloadImage;
+import com.util.GetDeptTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 // 告诉spring mvc这是一个控制器类
 @Controller
@@ -27,6 +29,9 @@ public class CategoryController {
 
 	@Autowired
 	CategoryService categoryService;
+
+	@Autowired
+	private CascadeService cascadeService;
 
 	private UoloadImage uploadImage;
 
@@ -108,6 +113,8 @@ public class CategoryController {
 		return map;
 		//return mav;
 	}
+
+
 
 
 }

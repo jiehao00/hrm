@@ -1,5 +1,7 @@
 package com.pojo;
 
+import java.util.List;
+
 public class PositionInfo {
     private Integer positionId;
 
@@ -30,4 +32,5 @@ public class PositionInfo {
     public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
+
 }

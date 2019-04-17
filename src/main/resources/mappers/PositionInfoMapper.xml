@@ -79,4 +79,8 @@
     select * from position_info where Position_Id = #{positionId}
   </select>
 
+  <select id="searchPositionALL" resultMap="BaseResultMap">
+    select * from position_info
+  </select>
+
 </mapper>

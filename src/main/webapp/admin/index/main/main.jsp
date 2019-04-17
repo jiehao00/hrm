@@ -27,7 +27,8 @@
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;"><i class="iconfont">&#xe607;</i>组织架构</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/test.jsp" data-id='1' data-text="公司简介"><span class="l-line"></span>公司简介</a></dd>
+                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/companyInfo.jsp" data-id='1' data-text="公司简介"><span class="l-line"></span>公司简介</a></dd>
+                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/CompanyStructure.jsp" data-id='11' data-text="组织结构"><span class="l-line"></span>组织结构</a></dd>
                     <dd><a href="javascript:;" data-url="../menu2.html" data-id='2' data-text="部门设置"><span class="l-line"></span>部门设置</a></dd>
                 </dl>
             </li>

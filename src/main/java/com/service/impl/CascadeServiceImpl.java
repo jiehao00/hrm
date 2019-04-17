@@ -81,4 +81,9 @@ public class CascadeServiceImpl implements CascadeService {
     public PositionInfo searchPositionById(Integer positionId) {
         return positionInfoMapper.searchPositionById(positionId);
     }
+
+    @Override
+    public List<PositionInfo> searchPositionALL() {
+        return positionInfoMapper.searchPositionALL();
+    }
 }

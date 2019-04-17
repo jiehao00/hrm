@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CompanyInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.CompanyInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="Company_Name" jdbcType="VARCHAR" property="companyName" />
+    <result column="Legal_Representative" jdbcType="VARCHAR" property="legalRepresentative" />
+    <result column="Company_Address" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="Company_Telephone" jdbcType="VARCHAR" property="companyTelephone" />
+    <result column="Company_Web" jdbcType="VARCHAR" property="companyWeb" />
+    <result column="Company_Introduction" jdbcType="VARCHAR" property="companyIntroduction" />
+    <result column="Company_Photo" jdbcType="VARCHAR" property="companyPhoto" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, Company_Name, Legal_Representative, Company_Address, Company_Telephone, Company_Web, 
+    Company_Introduction, Company_Photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from company_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from company_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.CompanyInfo">
+    insert into company_info (id, Company_Name, Legal_Representative, 
+      Company_Address, Company_Telephone, Company_Web, 
+      Company_Introduction, Company_Photo)
+    values (#{id,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, #{legalRepresentative,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{companyTelephone,jdbcType=VARCHAR}, #{companyWeb,jdbcType=VARCHAR}, 
+      #{companyIntroduction,jdbcType=VARCHAR}, #{companyPhoto,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.CompanyInfo">
+    insert into company_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyName != null">
+        Company_Name,
+      </if>
+      <if test="legalRepresentative != null">
+        Legal_Representative,
+      </if>
+      <if test="companyAddress != null">
+        Company_Address,
+      </if>
+      <if test="companyTelephone != null">
+        Company_Telephone,
+      </if>
+      <if test="companyWeb != null">
+        Company_Web,
+      </if>
+      <if test="companyIntroduction != null">
+        Company_Introduction,
+      </if>
+      <if test="companyPhoto != null">
+        Company_Photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentative != null">
+        #{legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelephone != null">
+        #{companyTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeb != null">
+        #{companyWeb,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIntroduction != null">
+        #{companyIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhoto != null">
+        #{companyPhoto,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.CompanyInfo">
+    update company_info
+    <set>
+      <if test="companyName != null">
+        Company_Name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentative != null">
+        Legal_Representative = #{legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        Company_Address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelephone != null">
+        Company_Telephone = #{companyTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeb != null">
+        Company_Web = #{companyWeb,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIntroduction != null">
+        Company_Introduction = #{companyIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhoto != null">
+        Company_Photo = #{companyPhoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.CompanyInfo">
+    update company_info
+    set Company_Name = #{companyName,jdbcType=VARCHAR},
+      Legal_Representative = #{legalRepresentative,jdbcType=VARCHAR},
+      Company_Address = #{companyAddress,jdbcType=VARCHAR},
+      Company_Telephone = #{companyTelephone,jdbcType=VARCHAR},
+      Company_Web = #{companyWeb,jdbcType=VARCHAR},
+      Company_Introduction = #{companyIntroduction,jdbcType=VARCHAR},
+      Company_Photo = #{companyPhoto,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

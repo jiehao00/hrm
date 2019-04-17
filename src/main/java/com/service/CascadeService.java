@@ -57,4 +57,7 @@ public interface CascadeService {
     */
     PositionInfo searchPositionById(Integer positionId);
 
+
+    List<PositionInfo> searchPositionALL();
+
 }

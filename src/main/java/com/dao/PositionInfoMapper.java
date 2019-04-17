@@ -30,4 +30,7 @@ public interface PositionInfoMapper {
     * @date        2019/4/2 18:19
     */
     PositionInfo searchPositionById(Integer positionId);
+
+
+    List<PositionInfo> searchPositionALL();
 }
