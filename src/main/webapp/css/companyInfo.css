@@ -1,0 +1,24 @@
+.layui-form-pane .layui-form-label{
+    width: 200px;
+    border-style: none;
+    background-color:white;
+}
+.companyTr{
+    padding-top: 50px;
+}
+#companyInfo{
+    width: 500px;
+}
+.companyButton{
+    padding-left: 1000px;
+}
+#CompanyForm{
+    padding-left: 175px;
+    padding-top: 50px;
+}
+.uploadPhoto{
+    margin-top: -465px;
+    margin-left: 845px;
+    width: 99.2px;
+    height: 117px;
+}

@@ -126,4 +126,37 @@
       Company_Photo = #{companyPhoto,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--jieHao 19-04-23 更新公司信息-->
+  <update id="updateCompanyMessage" parameterType="com.pojo.CompanyInfo">
+    update company_info
+    <set>
+      <if test="companyName != null">
+        Company_Name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentative != null">
+        Legal_Representative = #{legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        Company_Address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelephone != null">
+        Company_Telephone = #{companyTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeb != null">
+        Company_Web = #{companyWeb,jdbcType=VARCHAR},
+      </if>
+      <if test="companyIntroduction != null">
+        Company_Introduction = #{companyIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhoto != null">
+        Company_Photo = #{companyPhoto,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = '1'
+  </update>
+  <!--jieHao 19-04-23 搜索公司信息-->
+  <select id="searchCompanyMessage" resultMap="BaseResultMap">
+    select * from company_info where id = '1'
+  </select>
+
 </mapper>

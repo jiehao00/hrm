@@ -11,6 +11,7 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="../../../layui/css/layui.css">
     <link rel="stylesheet" type="text/css" href="../../../css/addCourse.css">
+    
 </head>
 <body>
 <form class="layui-form layui-form-pane" id="CourseForm" action="/addCourse" method="post">
