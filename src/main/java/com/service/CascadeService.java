@@ -1,5 +1,6 @@
 package com.service;
 
+import com.pojo.CourseInfo;
 import com.pojo.DepartmentInfo;
 import com.pojo.PositionInfo;
 
@@ -58,6 +59,64 @@ public interface CascadeService {
     PositionInfo searchPositionById(Integer positionId);
 
 
+    /**
+    * 方法实现说明 查找所有职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 14:42
+    */
     List<PositionInfo> searchPositionALL();
+
+    /**
+    * 方法实现说明 分页模糊查询部门信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 15:05
+    */
+    List<DepartmentInfo>searchAllDepartmentByPaging(int start, int limit,DepartmentInfo departmentInfo);
+
+    /**
+    * 方法实现说明  查找部门数目
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 15:06
+    */
+    int searchAllDepartmentCount();
+    /**
+    * 方法实现说明 添加部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 17:12
+    */
+    int addDepartment(DepartmentInfo departmentInfo);
+
+    /**
+    * 方法实现说明 更新部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 17:59
+    */
+    int updateDepartment(DepartmentInfo departmentInfo);
+
+    /**
+    * 方法实现说明 删除部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 19:23
+    */
+    int delDepartment(Integer departmentId);
+
 
 }

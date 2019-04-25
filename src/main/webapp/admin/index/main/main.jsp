@@ -29,7 +29,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/companyInfo.jsp" data-id='1' data-text="公司简介"><span class="l-line"></span>公司简介</a></dd>
                     <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/CompanyStructure.jsp" data-id='11' data-text="组织结构"><span class="l-line"></span>组织结构</a></dd>
-                    <dd><a href="javascript:;" data-url="../menu2.html" data-id='2' data-text="部门设置"><span class="l-line"></span>部门设置</a></dd>
+                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/manageDepartmentAndPosition.jsp" data-id='12' data-text="职位部门"><span class="l-line"></span>职位部门</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">

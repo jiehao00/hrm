@@ -80,7 +80,6 @@ layui.use(['table','laydate','form'], function() {
     table.on('tool(manageCourse)', function(obj) {
         var data = obj.data;
         if (obj.event ==='del'){
-
             $.ajax({
                 url:'/delCourseInfo',
                 dataType:'json',
@@ -132,7 +131,6 @@ layui.use(['table','laydate','form'], function() {
                               studentsType:studentsType,teachingHours:teachingHours, plannedStartTime:plannedStartTime,
                               plannedEndTime:plannedEndTime, courseIntroduction:courseIntroduction},
                         success:function (data) {
-                            console.log(data);
                             if(data.status==0){
                                 table.reload('manageCourse', {
                                 })

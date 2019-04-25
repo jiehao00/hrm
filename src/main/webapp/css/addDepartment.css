@@ -1,0 +1,9 @@
+.layui-input {
+    width: 30%;
+}
+.layui-textarea{
+    width: 70%;
+ }
+#DepartmentForm{
+    margin-top: 20px;
+}

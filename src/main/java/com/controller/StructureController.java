@@ -1,10 +1,12 @@
 package com.controller;
 
 
+import com.pojo.CompanyInfo;
 import com.pojo.DepartmentInfo;
 import com.pojo.PositionInfo;
 import com.pojo.TestMode;
 import com.service.CascadeService;
+import com.service.CompanyMessageService;
 import com.util.GetDeptTree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,9 +31,11 @@ public class StructureController {
 
     @Autowired
     private CascadeService cascadeService;
+    @Autowired
+    private CompanyMessageService companyMessageService;
 
     /**
-    * 方法实现说明  查找部门，和相对应职位，并转化为树形结构(用以前端以功能结构图展示)，待加：查找公司名字
+    * 方法实现说明  查找部门，和相对应职位，并转化为树形结构(用以前端以功能结构图展示)
     * @author      jieHao
     *@param: null
     * @return
@@ -44,11 +48,12 @@ public class StructureController {
         Integer adb=-1;
         List<DepartmentInfo>departmentInfo=cascadeService.searchDepartment();
         List<PositionInfo> positionInfo=cascadeService.searchPositionALL();
+        CompanyInfo companyInfo=companyMessageService.searchCompanyMessage();
         List<TestMode> test=new ArrayList<>();
         TestMode testMode2 = new TestMode();
         testMode2.setParentId(0);
         testMode2.setId(-1);
-        testMode2.setName("公司");
+        testMode2.setName(companyInfo.getCompanyName());
         test.add(testMode2);
         for (int i=0;i<departmentInfo.size();i++){
             TestMode testMode = new TestMode();

@@ -82,8 +82,81 @@ public class CascadeServiceImpl implements CascadeService {
         return positionInfoMapper.searchPositionById(positionId);
     }
 
+    /**
+    * 方法实现说明 查找所有职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 15:08
+    */
     @Override
     public List<PositionInfo> searchPositionALL() {
         return positionInfoMapper.searchPositionALL();
+    }
+
+    /**
+    * 方法实现说明 分页模糊查询 查找部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 15:08
+    */
+    @Override
+    public List<DepartmentInfo> searchAllDepartmentByPaging(int start, int limit, DepartmentInfo departmentInfo) {
+        return departmentInfoMapper.searchAllDepartmentByPaging(start,limit,departmentInfo);
+    }
+
+    /**
+    * 方法实现说明 查找部门总数
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 15:08
+    */
+    @Override
+    public int searchAllDepartmentCount() {
+        return departmentInfoMapper.searchAllDepartmentCount();
+    }
+
+    /**
+    * 方法实现说明 添加部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 17:12
+    */
+    @Override
+    public int addDepartment(DepartmentInfo departmentInfo) {
+        return departmentInfoMapper.insertSelective(departmentInfo);
+    }
+
+    /**
+    * 方法实现说明 更新部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 17:59
+    */
+    @Override
+    public int updateDepartment(DepartmentInfo departmentInfo) {
+        return departmentInfoMapper.updateByPrimaryKeySelective(departmentInfo);
+    }
+
+    /**
+    * 方法实现说明  删除部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 19:24
+    */
+    @Override
+    public int delDepartment(Integer departmentId) {
+        return departmentInfoMapper.deleteByPrimaryKey(departmentId);
     }
 }

@@ -72,4 +72,20 @@
   <select id="searchDepartment" resultMap="BaseResultMap">
     select * from department_info
   </select>
+
+  <!--jieHao 19-04-25 分页模糊查询部门信息-->
+  <select id="searchAllDepartmentByPaging" resultMap="BaseResultMap">
+    select * from department_info
+    <where>
+      <if test="departmentInfo.department!=null">
+        and Department like "%"#{departmentInfo.department}"%"
+      </if>
+    </where>
+    limit #{start},#{limit}
+  </select>
+
+  <!--jieHao 19-04-25 查找部门总数-->
+  <select id="searchAllDepartmentCount" resultType="java.lang.Integer">
+    select count(*) from department_info
+  </select>
 </mapper>
