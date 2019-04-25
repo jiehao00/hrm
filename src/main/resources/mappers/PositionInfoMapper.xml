@@ -3,11 +3,21 @@
 <mapper namespace="com.dao.PositionInfoMapper">
   <resultMap id="BaseResultMap" type="com.pojo.PositionInfo">
     <id column="Position_Id" jdbcType="INTEGER" property="positionId" />
-    <result column=" Position" jdbcType="VARCHAR" property="position" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="Position_Introduction" jdbcType="VARCHAR" property="positionIntroduction" />
     <result column="Department_Id" jdbcType="INTEGER" property="departmentId" />
   </resultMap>
+
+  <resultMap id="positionDepartment" type="com.pojo.PositionInfo">
+    <id column="Position_Id" jdbcType="INTEGER" property="positionId" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="Position_Introduction" jdbcType="VARCHAR" property="positionIntroduction" />
+    <result column="Department_Id" jdbcType="INTEGER" property="departmentId" />
+    <result column="Department"  jdbcType="VARCHAR" property="department" />
+  </resultMap>
+
   <sql id="Base_Column_List">
-    Position_Id, " Position", Department_Id
+    Position_Id, "Position",Position_Introduction ,Department_Id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -20,9 +30,9 @@
     where Position_Id = #{positionId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.pojo.PositionInfo">
-    insert into position_info (Position_Id, " Position", Department_Id
+    insert into position_info (Position_Id, "Position",Position_Introduction,Department_Id
       )
-    values (#{positionId,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}
+    values (#{positionId,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR},#{positionIntroduction,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.PositionInfo">
@@ -32,7 +42,10 @@
         Position_Id,
       </if>
       <if test="position != null">
-        " Position",
+        "Position",
+      </if>
+      <if test="positionIntroduction != null">
+        Position_Introduction,
       </if>
       <if test="departmentId != null">
         Department_Id,
@@ -45,6 +58,9 @@
       <if test="position != null">
         #{position,jdbcType=VARCHAR},
       </if>
+      <if test="positionIntroduction != null">
+        #{positionIntroduction,jdbcType=VARCHAR},
+      </if>
       <if test="departmentId != null">
         #{departmentId,jdbcType=INTEGER},
       </if>
@@ -54,7 +70,10 @@
     update position_info
     <set>
       <if test="position != null">
-        " Position" = #{position,jdbcType=VARCHAR},
+        "Position" = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="positionIntroduction != null">
+        Position_Introduction = #{position,jdbcType=VARCHAR},
       </if>
       <if test="departmentId != null">
         Department_Id = #{departmentId,jdbcType=INTEGER},
@@ -64,7 +83,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pojo.PositionInfo">
     update position_info
-    set " Position" = #{position,jdbcType=VARCHAR},
+    set "Position" = #{position,jdbcType=VARCHAR},
+        Position_Introduction = #{positionIntroduction,jdbcType=VARCHAR},
       Department_Id = #{departmentId,jdbcType=INTEGER}
     where Position_Id = #{positionId,jdbcType=INTEGER}
   </update>
@@ -78,9 +98,29 @@
   <select id="searchPositionById" resultMap="BaseResultMap">
     select * from position_info where Position_Id = #{positionId}
   </select>
-
+  <!--jieHao 19-04-25 查找所有职位-->
   <select id="searchPositionALL" resultMap="BaseResultMap">
     select * from position_info
   </select>
 
+
+  <select id="searchAllPositionByPaging" resultMap="positionDepartment">
+    SELECT a.Position_Id ,a.Position,a.Department_Id,a.Position_Introduction,b.Department
+    from position_info a LEFT JOIN department_info b
+    on a.Department_Id=b.Department_Id
+    <where>
+      <if test="positionInfo.position!=null">
+        and a.Position like "%"#{positionInfo.position}"%"
+      </if>
+      <if test="positionInfo.department!=null">
+        and b.Department like "%"#{positionInfo.department}"%"
+      </if>
+    </where>
+    limit #{start},#{limit}
+  </select>
+
+
+  <select id="searchAllPositionCount" resultType="java.lang.Integer">
+    select count(*) from position_info
+  </select>
 </mapper>

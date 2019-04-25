@@ -7,7 +7,11 @@ public class PositionInfo {
 
     private String position;
 
+    private String positionIntroduction;
+
     private Integer departmentId;
+
+    private String department;
 
     public Integer getPositionId() {
         return positionId;
@@ -33,4 +37,19 @@ public class PositionInfo {
         this.departmentId = departmentId;
     }
 
+    public String getPositionIntroduction() {
+        return positionIntroduction;
+    }
+
+    public void setPositionIntroduction(String positionIntroduction) {
+        this.positionIntroduction = positionIntroduction;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
 }

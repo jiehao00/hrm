@@ -118,5 +118,28 @@ public interface CascadeService {
     */
     int delDepartment(Integer departmentId);
 
+    /**
+    * 方法实现说明 分页模糊查询职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 21:59
+    */
+    List<PositionInfo> searchAllPositionByPaging(int start, int limit,PositionInfo positionInfo);
+
+    /**
+    * 方法实现说明  搜索职位数量
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 22:14
+    */
+    int searchAllPositionCount();
+
+
+    DepartmentInfo searchIsExitDepartment(DepartmentInfo departmentInfo);
+
 
 }

@@ -58,8 +58,10 @@ layui.use(['element','table','layer','form'], function(){
                                 })
                                 layer.close(index);
                                 layer.msg(data.message);
-                            }else {
-                                layer.msg(data.message);
+                            }else if (data.status==1) {
+                                layer.msg(data.message);//添加部门失败
+                            }else if(data.status==2){
+                                layer.msg(data.message);//部门已存在
                             }
                         }
                     })
@@ -143,12 +145,15 @@ layui.use(['element','table','layer','form'], function(){
     table.render({
         elem: '#positionTable'
         ,height: 312
-        ,url: '' //数据接口
+        ,url: '/searchAllPositionByPaging' //数据接口
         ,page: true //开启分页
+        ,id:'positionTable'
         ,cols: [[ //表头
-            {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-            ,{field: 'username', title: '用户名', width:80}
-            ,{field: 'sex', title: '性别', width:80, sort: true}
+            {field: 'positionId', title: 'ID', width:80, sort: true, fixed: 'left'}
+            ,{field: 'position', title: '用户名', width:80}
+            ,{field: 'department', title: '所属部门', width:80,}
+            ,{field: 'positionIntroduction', title: '职位介绍', width:80,}
+            ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
         ]]
     });
 

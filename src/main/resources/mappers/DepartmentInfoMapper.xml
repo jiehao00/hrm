@@ -88,4 +88,9 @@
   <select id="searchAllDepartmentCount" resultType="java.lang.Integer">
     select count(*) from department_info
   </select>
+
+  <select id="searchIsExitDepartment" resultMap="BaseResultMap">
+    select * from department_info
+    where Department = #{department}
+  </select>
 </mapper>

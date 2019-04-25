@@ -93,7 +93,7 @@ public class CascadeController {
 
 
     /**
-    * 方法实现说明 添加部门
+    * 方法实现说明 添加部门（添加部门是否已存在功能）
     * @author      jieHao
     *@param: null
     * @return
@@ -104,16 +104,29 @@ public class CascadeController {
     @ResponseBody
     public Map addDepartment(DepartmentInfo departmentInfo){
         Map<String,Object>map=new HashMap<>();
-        if (cascadeService.addDepartment(departmentInfo)>0){
-            map.put("status",0);
-            map.put("message","添加成功");
-        }
-        else {
-            map.put("status",1);
-            map.put("message","添加失败");
+        if (cascadeService.searchIsExitDepartment(departmentInfo)!=null){
+            map.put("status",2);
+            map.put("message","部门已存在");
+        }else{
+            if (cascadeService.addDepartment(departmentInfo)>0){
+                map.put("status",0);
+                map.put("message","添加成功");
+            }
+            else {
+                map.put("status",1);
+                map.put("message","添加失败");
+            }
         }
         return map;
     }
+    /**
+    * 方法实现说明 更新部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 19:47
+    */
     @RequestMapping("updateDepartment")
     @ResponseBody
     public Map updateDepartment(DepartmentInfo departmentInfo){
@@ -129,6 +142,14 @@ public class CascadeController {
         return map;
     }
 
+    /**
+    * 方法实现说明  删除部门
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 20:22
+    */
     @RequestMapping("delDepartment")
     @ResponseBody
     public Map delDepartment(DepartmentInfo departmentInfo){
@@ -148,6 +169,33 @@ public class CascadeController {
             }
 
         }
+        return map;
+    }
+
+    /**
+    * 方法实现说明  分页模糊查询职位信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 20:25
+    */
+    @RequestMapping("searchAllPositionByPaging")
+    @ResponseBody
+    public Map searchAllPositionByPaging(int page, int limit,PositionInfo positionInfo){
+        Map<String,Object>map=new HashMap<>();
+        int start = (page-1)*limit;
+        if (positionInfo.getPosition()==""){
+            positionInfo.setPosition(null);
+        }
+        if (positionInfo.getDepartment()==""){
+            positionInfo.setDepartment(null);
+        }
+        List<PositionInfo> positionInfos=cascadeService.searchAllPositionByPaging(start,limit,positionInfo);
+        int count=cascadeService.searchAllPositionCount();
+        map.put("code",0);
+        map.put("count",count);
+        map.put("data",positionInfos);
         return map;
     }
 

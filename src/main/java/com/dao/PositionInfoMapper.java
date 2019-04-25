@@ -1,6 +1,8 @@
 package com.dao;
 
+import com.pojo.DepartmentInfo;
 import com.pojo.PositionInfo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -32,5 +34,29 @@ public interface PositionInfoMapper {
     PositionInfo searchPositionById(Integer positionId);
 
 
+    /**
+    * 方法实现说明 查询全部职位信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 22:00
+    */
     List<PositionInfo> searchPositionALL();
+
+    /**
+    * 方法实现说明 分页模糊查询职位信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 22:00
+    */
+    List<PositionInfo>searchAllPositionByPaging(@Param("start")int start, @Param("limit")int limit, @Param("positionInfo")PositionInfo positionInfo);
+
+    int searchAllPositionCount();
+
+
+
+
 }

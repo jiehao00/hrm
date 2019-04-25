@@ -159,4 +159,35 @@ public class CascadeServiceImpl implements CascadeService {
     public int delDepartment(Integer departmentId) {
         return departmentInfoMapper.deleteByPrimaryKey(departmentId);
     }
+
+    /**
+    * 方法实现说明 分页模糊查询职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 22:00
+    */
+    @Override
+    public List<PositionInfo> searchAllPositionByPaging(int start, int limit, PositionInfo positionInfo) {
+        return positionInfoMapper.searchAllPositionByPaging(start,limit,positionInfo);
+    }
+
+    /**
+    * 方法实现说明  搜索全部职位数量
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 22:14
+    */
+    @Override
+    public int searchAllPositionCount() {
+        return positionInfoMapper.searchAllPositionCount();
+    }
+
+    @Override
+    public DepartmentInfo searchIsExitDepartment(DepartmentInfo departmentInfo) {
+        return departmentInfoMapper.searchIsExitDepartment(departmentInfo);
+    }
 }

@@ -48,4 +48,6 @@ public interface DepartmentInfoMapper {
     * @date        2019/4/25 15:07
     */
     int searchAllDepartmentCount();
+
+    DepartmentInfo searchIsExitDepartment(DepartmentInfo departmentInfo);
 }
