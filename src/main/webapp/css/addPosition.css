@@ -1,0 +1,12 @@
+.positionInput {
+    width: 30%;
+}
+.layui-textarea{
+    width: 70%;
+}
+.departmentSelect{
+    width: 25.5%;
+}
+#positionForm{
+    margin-top: 20px;
+}

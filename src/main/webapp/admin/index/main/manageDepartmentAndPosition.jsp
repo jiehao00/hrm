@@ -17,15 +17,17 @@
 <div class="layui-tab layui-tab-brief " lay-filter="docDemoTabBrief">
     <ul class="layui-tab-title">
         <div class="posLi">
-        <li class="layui-this">部门设置</li>
-        <li>职位设置</li>
+            <li class="layui-this">部门设置</li>
+            <li>职位设置</li>
+
         </div>
     </ul>
     <div class="layui-tab-content">
-    <div class="layui-tab-item layui-show"><table id="departmentTable" lay-filter="departmentTable"></table></div>
-    <div class="layui-tab-item"><table id="positionTable" lay-filter="positionTable"></table></div>
+        <div class="layui-tab-item layui-show"><table id="departmentTable" lay-filter="departmentTable"></table></div>
+        <div class="layui-tab-item"><table id="positionTable" lay-filter="positionTable"></table></div>
     </div>
 </div>
+<!--部门-->
 <script type="text/html" id="toolbarDemo">
     <div class="demoTable">
         <button class="layui-btn layui-btn-sm" id="addDepartment">
@@ -36,7 +38,21 @@
         </div>
         <button class="layui-btn" data-type="reload" id="search">搜索</button>
     </div>
-
+</script>
+<!--职位-->
+<script type="text/html" id="positionToolbar">
+    <div class="demoTable">
+        <button class="layui-btn layui-btn-sm" id="addPosition">
+            <i class="layui-icon">&#xe608;</i> 添加
+        </button>
+        <div class="layui-inline">
+            <input  class="layui-input" name="position" id="position" autocomplete="off" placeholder="职位名字"/>
+        </div>
+        <div class="layui-inline">
+            <input  class="layui-input" name="department" id="positionDepartment" autocomplete="off" placeholder="部门名字"/>
+        </div>
+        <button class="layui-btn" data-type="reload" id="searchPosition">搜索</button>
+    </div>
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>

@@ -4,6 +4,7 @@ import com.pojo.DepartmentInfo;
 import com.pojo.PositionInfo;
 import com.service.CascadeService;
 import org.apache.ibatis.annotations.Param;
+import org.apache.shiro.crypto.hash.Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -106,7 +107,7 @@ public class CascadeController {
         Map<String,Object>map=new HashMap<>();
         if (cascadeService.searchIsExitDepartment(departmentInfo)!=null){
             map.put("status",2);
-            map.put("message","部门已存在");
+            map.put("message","部门已存在，请勿重复录入");
         }else{
             if (cascadeService.addDepartment(departmentInfo)>0){
                 map.put("status",0);
@@ -196,6 +197,91 @@ public class CascadeController {
         map.put("code",0);
         map.put("count",count);
         map.put("data",positionInfos);
+        return map;
+    }
+
+    /**
+    * 方法实现说明  增加职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:07
+    */
+    @RequestMapping("addPosition")
+    @ResponseBody
+    public Map addPosition(PositionInfo positionInfo){
+        Map<String,Object>map=new HashMap<>();
+        System.out.println(positionInfo.getPosition());
+        System.out.println(positionInfo.getDepartmentId());
+        if (cascadeService.searchIsExitPosition(positionInfo)!=null){
+            map.put("status",2);
+            map.put("message","职位已存在，请勿重复录入");
+        }else {
+            if (cascadeService.addPosition(positionInfo)>0){
+                map.put("status",0);
+                map.put("message","添加成功");
+            }
+            else {
+                map.put("status",1);
+                map.put("message","添加失败");
+            }
+        }
+        return map;
+    }
+
+    /**
+    * 方法实现说明  更新职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 19:16
+    */
+    @RequestMapping("updatePosition")
+    @ResponseBody
+    public Map updatePosition(PositionInfo positionInfo){
+        Map<String,Object>map=new HashMap<>();
+
+        if (positionInfo.getDepartmentId()==null){
+            DepartmentInfo record=new DepartmentInfo();
+            record.setDepartment(positionInfo.getDepartment());
+            DepartmentInfo departmentInfo=cascadeService.searchIsExitDepartment(record);
+            positionInfo.setDepartmentId(departmentInfo.getDepartmentId());
+        }
+        if (positionInfo.getPositionIntroduction()==""){
+            positionInfo.setPositionIntroduction(null);
+        }
+           PositionInfo oldPosition=cascadeService.searchPositionById(positionInfo.getPositionId());
+            if (cascadeService.updatePosition(positionInfo)>0){
+                if (cascadeService.searchPositionExitCount(positionInfo)>1){
+                    cascadeService.updatePosition(oldPosition);
+                    map.put("status",2);
+                    map.put("message","职位已存在,更新失败");
+                }else {
+                    map.put("status",0);
+                    map.put("message","更新成功");
+                }
+            }
+            else {
+                map.put("status",1);
+                map.put("message","更新失败");
+            }
+        return map;
+    }
+
+    @RequestMapping("delPosition")
+    @ResponseBody
+    public Map delPosition(PositionInfo positionInfo){
+        Map<String,Object>map=new HashMap<>();
+        if (cascadeService.delPosition(positionInfo.getPositionId())>0){
+            map.put("status",0);
+            map.put("message","删除成功");
+        }else{
+            map.put("status",1);
+            map.put("message","删除失败");
+        }
+
         return map;
     }
 

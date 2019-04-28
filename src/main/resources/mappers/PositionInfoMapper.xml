@@ -17,7 +17,7 @@
   </resultMap>
 
   <sql id="Base_Column_List">
-    Position_Id, "Position",Position_Introduction ,Department_Id
+    Position_Id,Position,Position_Introduction ,Department_Id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,7 +30,7 @@
     where Position_Id = #{positionId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.pojo.PositionInfo">
-    insert into position_info (Position_Id, "Position",Position_Introduction,Department_Id
+    insert into position_info (Position_Id, Position,Position_Introduction,Department_Id
       )
     values (#{positionId,jdbcType=INTEGER}, #{position,jdbcType=VARCHAR},#{positionIntroduction,jdbcType=VARCHAR}, #{departmentId,jdbcType=INTEGER}
       )
@@ -42,7 +42,7 @@
         Position_Id,
       </if>
       <if test="position != null">
-        "Position",
+        Position,
       </if>
       <if test="positionIntroduction != null">
         Position_Introduction,
@@ -70,10 +70,10 @@
     update position_info
     <set>
       <if test="position != null">
-        "Position" = #{position,jdbcType=VARCHAR},
+        Position = #{position,jdbcType=VARCHAR},
       </if>
       <if test="positionIntroduction != null">
-        Position_Introduction = #{position,jdbcType=VARCHAR},
+        Position_Introduction = #{positionIntroduction,jdbcType=VARCHAR},
       </if>
       <if test="departmentId != null">
         Department_Id = #{departmentId,jdbcType=INTEGER},
@@ -83,7 +83,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.pojo.PositionInfo">
     update position_info
-    set "Position" = #{position,jdbcType=VARCHAR},
+    set Position = #{position,jdbcType=VARCHAR},
         Position_Introduction = #{positionIntroduction,jdbcType=VARCHAR},
       Department_Id = #{departmentId,jdbcType=INTEGER}
     where Position_Id = #{positionId,jdbcType=INTEGER}
@@ -103,7 +103,7 @@
     select * from position_info
   </select>
 
-
+  <!--jieHao 19-04-25 分页模糊查找所有职位-->
   <select id="searchAllPositionByPaging" resultMap="positionDepartment">
     SELECT a.Position_Id ,a.Position,a.Department_Id,a.Position_Introduction,b.Department
     from position_info a LEFT JOIN department_info b
@@ -119,8 +119,23 @@
     limit #{start},#{limit}
   </select>
 
-
+  <!--jieHao 19-04-25 查找全部职位数量-->
   <select id="searchAllPositionCount" resultType="java.lang.Integer">
     select count(*) from position_info
+  </select>
+
+  <!--jieHao 19-04-27 查找是否存在某部门职位-->
+  <select id="searchIsExitPosition" resultMap="BaseResultMap">
+    select * from
+    position_info where
+     Position = #{position} and
+     Department_Id = #{departmentId}
+  </select>
+  <!--jieHao 19-04-27 查找某部门职位数量-->
+  <select id="searchPositionExitCount" resultType="java.lang.Integer">
+     select count(*)
+     from position_info
+     where
+     Position = #{position} and Department_Id = #{departmentId}
   </select>
 </mapper>

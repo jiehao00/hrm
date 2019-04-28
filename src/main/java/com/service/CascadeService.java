@@ -138,8 +138,66 @@ public interface CascadeService {
     */
     int searchAllPositionCount();
 
-
+    /**
+    * 方法实现说明 查找部门是否存在
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:09
+    */
     DepartmentInfo searchIsExitDepartment(DepartmentInfo departmentInfo);
+
+    /**
+    * 方法实现说明 查找职位是否存在
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:10
+    */
+    PositionInfo searchIsExitPosition(PositionInfo positionInfo);
+
+    /**
+    * 方法实现说明 增加职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:38
+    */
+    int addPosition(PositionInfo positionInfo);
+
+    /**
+    * 方法实现说明 更新职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 19:20
+    */
+    int updatePosition(PositionInfo positionInfo);
+
+    /**
+    * 方法实现说明
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/28 12:43
+    */
+    int searchPositionExitCount(PositionInfo positionInfo);
+
+    /**
+    * 方法实现说明  删除职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/28 14:17
+    */
+    int delPosition (Integer positionId);
+
 
 
 }

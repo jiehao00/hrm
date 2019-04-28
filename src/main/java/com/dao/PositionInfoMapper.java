@@ -54,7 +54,35 @@ public interface PositionInfoMapper {
     */
     List<PositionInfo>searchAllPositionByPaging(@Param("start")int start, @Param("limit")int limit, @Param("positionInfo")PositionInfo positionInfo);
 
+    /**
+    * 方法实现说明  查找职位数量
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:11
+    */
     int searchAllPositionCount();
+
+    /**
+    * 方法实现说明 查找职位是否存在
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:12
+    */
+    PositionInfo searchIsExitPosition(PositionInfo positionInfo);
+
+    /**
+    * 方法实现说明 查找存在相同部门职位数量
+     * * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/28 12:42
+    */
+    int searchPositionExitCount(PositionInfo positionInfo);
 
 
 

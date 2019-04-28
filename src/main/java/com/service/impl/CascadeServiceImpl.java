@@ -186,8 +186,73 @@ public class CascadeServiceImpl implements CascadeService {
         return positionInfoMapper.searchAllPositionCount();
     }
 
+    /**
+    * 方法实现说明 查询部门是否已存在
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/25 22:40
+    */
     @Override
     public DepartmentInfo searchIsExitDepartment(DepartmentInfo departmentInfo) {
         return departmentInfoMapper.searchIsExitDepartment(departmentInfo);
+    }
+
+    /**
+    * 方法实现说明 查找职位是否存在
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:10
+    */
+    @Override
+    public PositionInfo searchIsExitPosition(PositionInfo positionInfo) {
+        return positionInfoMapper.searchIsExitPosition(positionInfo);
+    }
+
+    /**
+    * 方法实现说明 增加职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 18:39
+    */
+    @Override
+    public int addPosition(PositionInfo positionInfo) {
+        return positionInfoMapper.insertSelective(positionInfo);
+    }
+
+    /**
+    * 方法实现说明  更新职位
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/27 19:21
+    */
+    @Override
+    public int updatePosition(PositionInfo positionInfo) {
+        return positionInfoMapper.updateByPrimaryKeySelective(positionInfo);
+    }
+
+    /**
+    * 方法实现说明 查找存在相同部门职位数量
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/4/28 12:43
+    */
+    @Override
+    public int searchPositionExitCount(PositionInfo positionInfo) {
+        return positionInfoMapper.searchPositionExitCount(positionInfo);
+    }
+
+    @Override
+    public int delPosition(Integer positionId) {
+        return positionInfoMapper.deleteByPrimaryKey(positionId);
     }
 }
