@@ -8,4 +8,9 @@ layui.use(['table','laydate','form','element'], function() {
         elem: '#rewardTime',
         type:'date',
     });
+    laydate.render({
+        elem: '#punishTime',
+        type:'date',
+    });
+
 })

@@ -126,4 +126,28 @@
       Punish_Result = #{punishResult,jdbcType=VARCHAR}
     where Punishment_Id = #{punishmentId,jdbcType=INTEGER}
   </update>
+
+  <select id="searchPunishmentMessage" resultMap="BaseResultMap">
+    select * from  punishment_info
+    <where>
+      <if test="punishmentInfo.personnelName!=null">
+        Personnel_Name like "%"#{punishmentInfo.personnelName}"%"
+      </if>
+      <if test="punishmentInfo.department!=null">
+        and Department like "%"#{punishmentInfo.department}"%"
+      </if>
+      <if test="punishmentInfo.startTime!=null">
+        and  Punish_Time <![CDATA[>=]]> #{punishmentInfo.startTime}
+      </if>
+      <if test="punishmentInfo.endTime!=null">
+        and  Punish_Time &lt;= #{punishmentInfo.endTime}
+      </if>
+    </where>
+    limit #{start},#{limit}
+  </select>
+
+  <select id="searchPunishmentCount" resultType="java.lang.Integer">
+     select count(*) from punishment_info
+  </select>
+
 </mapper>

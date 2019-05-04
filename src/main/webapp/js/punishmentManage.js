@@ -62,17 +62,17 @@ layui.use(['table','laydate','form','element'], function() {
             type:'date',
         });
     });
-    //监听增加员工奖励操作
+    //监听增加员工惩罚操作
     table.on('tool(personnelInfo)', function(obj){
         var data = obj.data;
-        if(obj.event === 'addRewards'){
+        if(obj.event === 'addPunishment'){
             layer.open({
                 type: 2,
                 offset: ['50px','100px'],
                 title:'奖励信息',
                 maxmin: true,
                 area: ['80%', '80%'],
-                content: 'addRewards.jsp',
+                content: 'addPunishment.jsp',
                 btn: ['确定', '关闭'],
                 success:function (layero, index) {
                     var body = layui.layer.getChildFrame('body', index);
@@ -88,18 +88,17 @@ layui.use(['table','laydate','form','element'], function() {
                     var personnelName=body.find("#personnelName").val();
                     var department=body.find("#department").val();
                     var position=body.find("#position").val();
-                    var awardMoney=body.find("#awardMoney").val();
-                    var rewardTime=body.find("#rewardTime").val();
-                    var rewardResult=body.find("#rewardResult").val();
-                    console.log(rewardTime);
-                    if (rewardTime=="" || rewardTime==null){
+                    var finedMoney=body.find("#finedMoney").val();
+                    var punishTime=body.find("#punishTime").val();
+                    var punishResult=body.find("#punishResult").val();
+                    if (punishTime=="" || punishTime==null){
                         layer.msg("日期不能为空");
                     }else {
                         $.ajax({
-                            url:'/addRewards',
+                            url:'/addPunishment',
                             data:{personnelId:personnelId,personnelName:personnelName,
-                                department:department,position:position,awardMoney:awardMoney,
-                                rewardTime:rewardTime,rewardResult:rewardResult},
+                                department:department,position:position,finedMoney:finedMoney,
+                                punishTime:punishTime,punishResult:punishResult},
                             success:function (data) {
                                 if (data.status==0){
                                     layer.msg(data.message);
@@ -119,23 +118,23 @@ layui.use(['table','laydate','form','element'], function() {
     });
 
     table.render({
-        elem: '#showRewardsTable',
+        elem: '#showPunishmentTable',
         height: 555,
         width : 1160,
         toolbar: '#toolShowRewardsBar',
-        url: '/searchRewardsMessage', //数据接口
+        url: '/searchPunishmentMessage', //数据接口
         page: true, //开启分页
         limit:11,
-        id:'showRewardsTable',
+        id:'showPunishmentTable',
         cols: [[ //表头
             {type: 'checkbox',fixed: 'left'}
             ,{field: 'personnelId', title: '员工Id', width:120,fixed: 'left'}
             ,{field: 'personnelName', title: '名字', width:80}
             ,{field: 'department', title: '部门', width:100}
             ,{field: 'position', title: '职位', width: 100}
-            ,{field: 'awardMoney', title: '奖赏金额', width: 120}
-            ,{field: 'rewardTime', title: '奖赏时间', width: 135, sort: true}
-            ,{field: 'rewardResult', title: '奖赏原因', width: 295}
+            ,{field: 'finedMoney', title: '奖赏金额', width: 120}
+            ,{field: 'punishTime', title: '惩罚时间', width: 135, sort: true}
+            ,{field: 'punishResult', title: '惩罚原因', width: 295}
             ,{fixed: 'right', title:'操作', toolbar: '#showRewardsBar', width:150}
         ]]
     });
@@ -145,7 +144,7 @@ layui.use(['table','laydate','form','element'], function() {
         var department=$('#RewardsDepartment');
         var startTime=$('#startTime');
         var endTime = $('#endTime');
-        table.reload('showRewardsTable', {
+        table.reload('showPunishmentTable', {
             where:{
                 personnelName: personnelName.val(),
                 department:department.val(),
@@ -165,15 +164,15 @@ layui.use(['table','laydate','form','element'], function() {
             type:'date',
         });
     });
-    table.on('tool(showRewardsTable)', function(obj) {
+    table.on('tool(showPunishmentTable)', function(obj) {
         var data = obj.data;
         if(obj.event === 'del'){
             $.ajax({
-                url:'/delRewards',
-                data:{rewardsId:data.rewardsId},
+                url:'/delPunishment',
+                data:{punishmentId:data.punishmentId},
                 success:function (data) {
                     if (data.status==0){
-                        table.reload('showRewardsTable', {
+                        table.reload('showPunishmentTable', {
                         })
                         layer.msg(data.message);
                     }
