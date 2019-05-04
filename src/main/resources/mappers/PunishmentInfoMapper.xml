@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PunishmentInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.PunishmentInfo">
+    <id column="Punishment_Id" jdbcType="INTEGER" property="punishmentId" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="Fined_Money" jdbcType="VARCHAR" property="finedMoney" />
+    <result column="Punish_Time" jdbcType="VARCHAR" property="punishTime" />
+    <result column="Punish_Result" jdbcType="VARCHAR" property="punishResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Punishment_Id, Personnel_Id, Personnel_Name, Department, Position, Fined_Money, Punish_Time, 
+    Punish_Result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from punishment_info
+    where Punishment_Id = #{punishmentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from punishment_info
+    where Punishment_Id = #{punishmentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.PunishmentInfo">
+    insert into punishment_info (Punishment_Id, Personnel_Id, Personnel_Name, 
+      Department, Position, Fined_Money, 
+      Punish_Time, Punish_Result)
+    values (#{punishmentId,jdbcType=INTEGER}, #{personnelId,jdbcType=INTEGER}, #{personnelName,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{finedMoney,jdbcType=VARCHAR}, 
+      #{punishTime,jdbcType=VARCHAR}, #{punishResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.PunishmentInfo">
+    insert into punishment_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="punishmentId != null">
+        Punishment_Id,
+      </if>
+      <if test="personnelId != null">
+        Personnel_Id,
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="finedMoney != null">
+        Fined_Money,
+      </if>
+      <if test="punishTime != null">
+        Punish_Time,
+      </if>
+      <if test="punishResult != null">
+        Punish_Result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="punishmentId != null">
+        #{punishmentId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="finedMoney != null">
+        #{finedMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="punishTime != null">
+        #{punishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="punishResult != null">
+        #{punishResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.PunishmentInfo">
+    update punishment_info
+    <set>
+      <if test="personnelId != null">
+        Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="finedMoney != null">
+        Fined_Money = #{finedMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="punishTime != null">
+        Punish_Time = #{punishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="punishResult != null">
+        Punish_Result = #{punishResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Punishment_Id = #{punishmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.PunishmentInfo">
+    update punishment_info
+    set Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      Position = #{position,jdbcType=VARCHAR},
+      Fined_Money = #{finedMoney,jdbcType=VARCHAR},
+      Punish_Time = #{punishTime,jdbcType=VARCHAR},
+      Punish_Result = #{punishResult,jdbcType=VARCHAR}
+    where Punishment_Id = #{punishmentId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RewardsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.RewardsInfo">
+    <id column="Rewards_Id" jdbcType="INTEGER" property="rewardsId" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="Award_Money" jdbcType="VARCHAR" property="awardMoney" />
+    <result column="Reward_Time" jdbcType="VARCHAR" property="rewardTime" />
+    <result column="Reward_Result" jdbcType="VARCHAR" property="rewardResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Rewards_Id, Personnel_Id, Personnel_Name, Department, Position, Award_Money, Reward_Time, 
+    Reward_Result
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from rewards_info
+    where Rewards_Id = #{rewardsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from rewards_info
+    where Rewards_Id = #{rewardsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.RewardsInfo">
+    insert into rewards_info (Rewards_Id, Personnel_Id, Personnel_Name, 
+      Department, Position, Award_Money, 
+      Reward_Time, Reward_Result)
+    values (#{rewardsId,jdbcType=INTEGER}, #{personnelId,jdbcType=INTEGER}, #{personnelName,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{awardMoney,jdbcType=VARCHAR}, 
+      #{rewardTime,jdbcType=VARCHAR}, #{rewardResult,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.RewardsInfo">
+    insert into rewards_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rewardsId != null">
+        Rewards_Id,
+      </if>
+      <if test="personnelId != null">
+        Personnel_Id,
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="awardMoney != null">
+        Award_Money,
+      </if>
+      <if test="rewardTime != null">
+        Reward_Time,
+      </if>
+      <if test="rewardResult != null">
+        Reward_Result,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rewardsId != null">
+        #{rewardsId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="awardMoney != null">
+        #{awardMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardTime != null">
+        #{rewardTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardResult != null">
+        #{rewardResult,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.RewardsInfo">
+    update rewards_info
+    <set>
+      <if test="personnelId != null">
+        Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="awardMoney != null">
+        Award_Money = #{awardMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardTime != null">
+        Reward_Time = #{rewardTime,jdbcType=VARCHAR},
+      </if>
+      <if test="rewardResult != null">
+        Reward_Result = #{rewardResult,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Rewards_Id = #{rewardsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.RewardsInfo">
+    update rewards_info
+    set Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      Position = #{position,jdbcType=VARCHAR},
+      Award_Money = #{awardMoney,jdbcType=VARCHAR},
+      Reward_Time = #{rewardTime,jdbcType=VARCHAR},
+      Reward_Result = #{rewardResult,jdbcType=VARCHAR}
+    where Rewards_Id = #{rewardsId,jdbcType=INTEGER}
+  </update>
+
+   <!--jieHao 19-05-04 分页模糊查询奖赏信息-->
+  <select id="searchRewardsMessage" resultMap="BaseResultMap">
+    select * from rewards_info
+    <where>
+      <if test="rewardsInfo.personnelName!=null">
+        Personnel_Name like "%"#{rewardsInfo.personnelName}"%"
+      </if>
+      <if test="rewardsInfo.department!=null">
+        and Department like "%"#{rewardsInfo.department}"%"
+      </if>
+      <if test="rewardsInfo.startTime!=null">
+        and  Reward_Time <![CDATA[>=]]> #{rewardsInfo.startTime}
+      </if>
+      <if test="rewardsInfo.endTime!=null">
+        and  Reward_Time &lt;= #{rewardsInfo.endTime}
+      </if>
+    </where>
+    limit #{start},#{limit}
+  </select>
+
+
+  <select id="searchRewardsCount" resultType="java.lang.Integer">
+     select count(*) from rewards_info
+  </select>
+
+  <delete id="delRewards" parameterType="java.lang.Integer">
+    delete from rewards_info
+    where Personnel_Id = #{personnelId} and Reward_Time=#{rewardTime}
+  </delete>
+
+</mapper>
