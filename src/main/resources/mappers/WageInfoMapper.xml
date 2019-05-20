@@ -267,8 +267,8 @@
     Round((a.Basic_Wage *#{proInsurance.proOfInjuryInsurance}),2)Injury_Insurance,
     Round((a.Basic_Wage *#{proInsurance.proOfMaternityInsurance}),2)Maternity_Insurance,
     Round((a.Basic_Wage *#{proInsurance.proOfHousingFund}),2)Housing_Fund,
-    Round((a.Basic_Wage+ifnull(b.Award_Money,0)+ifnull(c.Fined_Money,0)+Round((a.Basic_Wage *#{proInsurance.proOfRetirementInsurance}),2)+Round((a.Basic_Wage *#{proInsurance.proOfMedicalInsurance}),2)+
-    Round((a.Basic_Wage *#{proInsurance.proOfEmploymentInsurance}),2)+Round((a.Basic_Wage *#{proInsurance.proOfInjuryInsurance}),2)+Round((a.Basic_Wage *#{proInsurance.proOfMaternityInsurance}),2)+
+    Round((a.Basic_Wage+ifnull(b.Award_Money,0)-ifnull(c.Fined_Money,0)-Round((a.Basic_Wage *#{proInsurance.proOfRetirementInsurance}),2)-Round((a.Basic_Wage *#{proInsurance.proOfMedicalInsurance}),2)-
+    Round((a.Basic_Wage *#{proInsurance.proOfEmploymentInsurance}),2)-Round((a.Basic_Wage *#{proInsurance.proOfInjuryInsurance}),2)-Round((a.Basic_Wage *#{proInsurance.proOfMaternityInsurance}),2)-
     Round((a.Basic_Wage *#{proInsurance.proOfHousingFund}),2)),2)Final_Wage,
     #{proInsurance.year},#{proInsurance.month} FROM dossier_info a
     LEFT JOIN (SELECT Personnel_Id,SUM(Award_Money)Award_Money FROM rewards_info b
