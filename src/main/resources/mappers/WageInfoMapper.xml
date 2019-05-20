@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.WageInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.WageInfo">
+    <id column="Wage_Id" jdbcType="INTEGER" property="wageId" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Department" jdbcType="VARCHAR" property="department" />
+    <result column="Position" jdbcType="VARCHAR" property="position" />
+    <result column="Basic_Wage" jdbcType="VARCHAR" property="basicWage" />
+    <result column="Final_Wage" jdbcType="VARCHAR" property="finalWage" />
+    <result column="Wage_Year" jdbcType="VARCHAR" property="wageYear" />
+    <result column="Wage_Month" jdbcType="VARCHAR" property="wageMonth" />
+    <result column="Retirement_Insurance" jdbcType="VARCHAR" property="retirementInsurance" />
+    <result column="Medical_Insurance" jdbcType="VARCHAR" property="medicalInsurance" />
+    <result column="Employment_Insurance" jdbcType="VARCHAR" property="employmentInsurance" />
+    <result column="Injury_Insurance" jdbcType="VARCHAR" property="injuryInsurance" />
+    <result column="Maternity_Insurance" jdbcType="VARCHAR" property="maternityInsurance" />
+    <result column="Housing_Fund" jdbcType="VARCHAR" property="housingFund" />
+    <result column="Award_Money" jdbcType="VARCHAR" property="awardMoney" />
+    <result column="Fined_Money" jdbcType="VARCHAR" property="finedMoney" />
+    <result column="Vacate_Days" jdbcType="VARCHAR" property="vacateDays" />
+    <result column="Bank_Account" jdbcType="VARCHAR" property="bankAccount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Wage_Id, Personnel_Id, Personnel_Name, Department, Position, Basic_Wage, Final_Wage, 
+    Wage_Year, Wage_Month, Retirement_Insurance, Medical_Insurance, Employment_Insurance, 
+    Injury_Insurance, Maternity_Insurance, Housing_Fund, Award_Money, Fined_Money, Vacate_Days, 
+    Bank_Account
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wage_info
+    where Wage_Id = #{wageId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wage_info
+    where Wage_Id = #{wageId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.WageInfo">
+    insert into wage_info (Wage_Id, Personnel_Id, Personnel_Name, 
+      Department, Position, Basic_Wage, 
+      Final_Wage, Wage_Year, Wage_Month, 
+      Retirement_Insurance, Medical_Insurance, 
+      Employment_Insurance, Injury_Insurance, Maternity_Insurance, 
+      Housing_Fund, Award_Money, Fined_Money, 
+      Vacate_Days, Bank_Account)
+    values (#{wageId,jdbcType=INTEGER}, #{personnelId,jdbcType=INTEGER}, #{personnelName,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{basicWage,jdbcType=VARCHAR}, 
+      #{finalWage,jdbcType=VARCHAR}, #{wageYear,jdbcType=VARCHAR}, #{wageMonth,jdbcType=VARCHAR}, 
+      #{retirementInsurance,jdbcType=VARCHAR}, #{medicalInsurance,jdbcType=VARCHAR}, 
+      #{employmentInsurance,jdbcType=VARCHAR}, #{injuryInsurance,jdbcType=VARCHAR}, #{maternityInsurance,jdbcType=VARCHAR}, 
+      #{housingFund,jdbcType=VARCHAR}, #{awardMoney,jdbcType=VARCHAR}, #{finedMoney,jdbcType=VARCHAR}, 
+      #{vacateDays,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.WageInfo">
+    insert into wage_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wageId != null">
+        Wage_Id,
+      </if>
+      <if test="personnelId != null">
+        Personnel_Id,
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name,
+      </if>
+      <if test="department != null">
+        Department,
+      </if>
+      <if test="position != null">
+        Position,
+      </if>
+      <if test="basicWage != null">
+        Basic_Wage,
+      </if>
+      <if test="finalWage != null">
+        Final_Wage,
+      </if>
+      <if test="wageYear != null">
+        Wage_Year,
+      </if>
+      <if test="wageMonth != null">
+        Wage_Month,
+      </if>
+      <if test="retirementInsurance != null">
+        Retirement_Insurance,
+      </if>
+      <if test="medicalInsurance != null">
+        Medical_Insurance,
+      </if>
+      <if test="employmentInsurance != null">
+        Employment_Insurance,
+      </if>
+      <if test="injuryInsurance != null">
+        Injury_Insurance,
+      </if>
+      <if test="maternityInsurance != null">
+        Maternity_Insurance,
+      </if>
+      <if test="housingFund != null">
+        Housing_Fund,
+      </if>
+      <if test="awardMoney != null">
+        Award_Money,
+      </if>
+      <if test="finedMoney != null">
+        Fined_Money,
+      </if>
+      <if test="vacateDays != null">
+        Vacate_Days,
+      </if>
+      <if test="bankAccount != null">
+        Bank_Account,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wageId != null">
+        #{wageId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="basicWage != null">
+        #{basicWage,jdbcType=VARCHAR},
+      </if>
+      <if test="finalWage != null">
+        #{finalWage,jdbcType=VARCHAR},
+      </if>
+      <if test="wageYear != null">
+        #{wageYear,jdbcType=VARCHAR},
+      </if>
+      <if test="wageMonth != null">
+        #{wageMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="retirementInsurance != null">
+        #{retirementInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalInsurance != null">
+        #{medicalInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentInsurance != null">
+        #{employmentInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="injuryInsurance != null">
+        #{injuryInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="maternityInsurance != null">
+        #{maternityInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="housingFund != null">
+        #{housingFund,jdbcType=VARCHAR},
+      </if>
+      <if test="awardMoney != null">
+        #{awardMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="finedMoney != null">
+        #{finedMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="vacateDays != null">
+        #{vacateDays,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.WageInfo">
+    update wage_info
+    <set>
+      <if test="personnelId != null">
+        Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null">
+        Department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        Position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="basicWage != null">
+        Basic_Wage = #{basicWage,jdbcType=VARCHAR},
+      </if>
+      <if test="finalWage != null">
+        Final_Wage = #{finalWage,jdbcType=VARCHAR},
+      </if>
+      <if test="wageYear != null">
+        Wage_Year = #{wageYear,jdbcType=VARCHAR},
+      </if>
+      <if test="wageMonth != null">
+        Wage_Month = #{wageMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="retirementInsurance != null">
+        Retirement_Insurance = #{retirementInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="medicalInsurance != null">
+        Medical_Insurance = #{medicalInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="employmentInsurance != null">
+        Employment_Insurance = #{employmentInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="injuryInsurance != null">
+        Injury_Insurance = #{injuryInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="maternityInsurance != null">
+        Maternity_Insurance = #{maternityInsurance,jdbcType=VARCHAR},
+      </if>
+      <if test="housingFund != null">
+        Housing_Fund = #{housingFund,jdbcType=VARCHAR},
+      </if>
+      <if test="awardMoney != null">
+        Award_Money = #{awardMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="finedMoney != null">
+        Fined_Money = #{finedMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="vacateDays != null">
+        Vacate_Days = #{vacateDays,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        Bank_Account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Wage_Id = #{wageId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.WageInfo">
+    update wage_info
+    set Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      Department = #{department,jdbcType=VARCHAR},
+      Position = #{position,jdbcType=VARCHAR},
+      Basic_Wage = #{basicWage,jdbcType=VARCHAR},
+      Final_Wage = #{finalWage,jdbcType=VARCHAR},
+      Wage_Year = #{wageYear,jdbcType=VARCHAR},
+      Wage_Month = #{wageMonth,jdbcType=VARCHAR},
+      Retirement_Insurance = #{retirementInsurance,jdbcType=VARCHAR},
+      Medical_Insurance = #{medicalInsurance,jdbcType=VARCHAR},
+      Employment_Insurance = #{employmentInsurance,jdbcType=VARCHAR},
+      Injury_Insurance = #{injuryInsurance,jdbcType=VARCHAR},
+      Maternity_Insurance = #{maternityInsurance,jdbcType=VARCHAR},
+      Housing_Fund = #{housingFund,jdbcType=VARCHAR},
+      Award_Money = #{awardMoney,jdbcType=VARCHAR},
+      Fined_Money = #{finedMoney,jdbcType=VARCHAR},
+      Vacate_Days = #{vacateDays,jdbcType=VARCHAR},
+      Bank_Account = #{bankAccount,jdbcType=VARCHAR}
+    where Wage_Id = #{wageId,jdbcType=INTEGER}
+  </update>
+<!-- jieHao 2019-05-20 生成当月工资-->
+  <insert id="createWage">
+    INSERT into wage_info(Personnel_Id,Personnel_Name,Department,Position,Basic_Wage,Bank_Account,Award_Money,Fined_Money,Retirement_Insurance,Medical_Insurance,Employment_Insurance,Injury_Insurance,Maternity_Insurance,Housing_Fund,Final_Wage,Wage_year,Wage_Month)
+    SELECT a.Personnel_Id,a.Personnel_Name,a.Department,a.Position,a.Basic_Wage,a.Bank_Account,b.Award_Money,c.Fined_Money,
+    Round((a.Basic_Wage *#{proInsurance.proOfRetirementInsurance}),2)Retirement_Insurance,
+    Round((a.Basic_Wage *#{proInsurance.proOfMedicalInsurance}),2)Medical_Insurance,
+    Round((a.Basic_Wage *#{proInsurance.proOfEmploymentInsurance}),2)Employment_Insurance,
+    Round((a.Basic_Wage *#{proInsurance.proOfInjuryInsurance}),2)Injury_Insurance,
+    Round((a.Basic_Wage *#{proInsurance.proOfMaternityInsurance}),2)Maternity_Insurance,
+    Round((a.Basic_Wage *#{proInsurance.proOfHousingFund}),2)Housing_Fund,
+    Round((a.Basic_Wage+ifnull(b.Award_Money,0)+ifnull(c.Fined_Money,0)+Round((a.Basic_Wage *#{proInsurance.proOfRetirementInsurance}),2)+Round((a.Basic_Wage *#{proInsurance.proOfMedicalInsurance}),2)+
+    Round((a.Basic_Wage *#{proInsurance.proOfEmploymentInsurance}),2)+Round((a.Basic_Wage *#{proInsurance.proOfInjuryInsurance}),2)+Round((a.Basic_Wage *#{proInsurance.proOfMaternityInsurance}),2)+
+    Round((a.Basic_Wage *#{proInsurance.proOfHousingFund}),2)),2)Final_Wage,
+    #{proInsurance.year},#{proInsurance.month} FROM dossier_info a
+    LEFT JOIN (SELECT Personnel_Id,SUM(Award_Money)Award_Money FROM rewards_info b
+    WHERE b.Reward_Time <![CDATA[>=]]>#{proInsurance.yearMonth} and b.Reward_Time <![CDATA[<=]]>#{proInsurance.preYearMonth} GROUP BY b.Personnel_Id) b
+    on a.Personnel_Id=b.Personnel_Id
+    left JOIN (SELECT Personnel_Id,SUM(Fined_Money)Fined_Money FROM punishment_info c
+    WHERE c.Punish_Time <![CDATA[>=]]>#{proInsurance.yearMonth} and c.Punish_Time<![CDATA[<=]]>#{proInsurance.preYearMonth} GROUP BY c.Personnel_Id) c
+    on a.Personnel_Id=c.Personnel_Id
+  </insert>
+  <!-- jieHao 2019-05-20 删除当月重复工资-->
+  <delete id="delRepeatWage" >
+    delete from wage_info where Wage_Year=#{pro.year} and Wage_Month=#{pro.month}
+  </delete>
+
+  <!-- jieHao 2019-05-20 搜索当月工资-->
+  <select id="searchWageInfo" resultMap="BaseResultMap">
+    select * from wage_info
+    where Wage_Year=#{pro.year} and Wage_Month=#{pro.month}
+    limit #{start},#{limit}
+  </select>
+
+
+  <select id="searchCount" resultType="java.lang.Integer">
+    select count(*) from wage_info where Wage_Year=#{pro.year} and Wage_Month=#{pro.month}
+  </select>
+
+</mapper>

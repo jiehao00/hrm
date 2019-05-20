@@ -1,20 +1,17 @@
 package com.controller;
 
 
-import com.dao.PunishmentInfoMapper;
-import com.pojo.PunishmentInfo;
-import com.pojo.RewardsInfo;
+import com.pojo.*;
 import com.service.PunishmentService;
 import com.service.RewardsService;
+import com.service.WageService;
+import com.util.GetYearAndMonthUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
 * @Description:    薪酬管理控制类
@@ -31,6 +28,11 @@ public class WageController {
     private RewardsService rewardsService;
     @Autowired
     private PunishmentService punishmentService;
+    @Autowired
+    private WageService wageService;
+
+
+
 
     /**
     * 方法实现说明   添加奖赏原因
@@ -139,6 +141,14 @@ public class WageController {
         return map;
     }
 
+    /**
+    * 方法实现说明 搜索惩罚信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/20 20:16
+    */
     @RequestMapping("searchPunishmentMessage")
     @ResponseBody
     public Map searchPunishmentMessage(int page, int limit,PunishmentInfo punishmentInfo){
@@ -167,6 +177,14 @@ public class WageController {
         return map;
     }
 
+    /**
+    * 方法实现说明  删除惩罚
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/20 20:16
+    */
     @RequestMapping("delPunishment")
     @ResponseBody
     public Map delPunishment(PunishmentInfo punishmentInfo){
@@ -179,6 +197,36 @@ public class WageController {
             map.put("status",1);
             map.put("message","删除失败");
         }
+        return map;
+    }
+
+
+    /**
+    * 方法实现说明 生成当月工资
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/21 0:04
+    */
+    @RequestMapping("createWage")
+    @ResponseBody
+    public Map createWage(int page, int limit){
+        int start = (page-1)*limit;
+        Map<String,Object>map=new HashMap<>();
+        GetYearAndMonthUtil getTimeUtil=new GetYearAndMonthUtil();
+        ProInsurance proInsurance =wageService.searchProInsurance();
+        proInsurance.setYear(getTimeUtil.getYear());
+        proInsurance.setMonth(getTimeUtil.getMonth());
+        proInsurance.setYearMonth(getTimeUtil.getMonthYear());
+        proInsurance.setPreYearMonth(getTimeUtil.getPreMonthYear());
+        int del=wageService.delRepeatWage(proInsurance);
+        int num=wageService.createWage(proInsurance);
+        List<WageInfo> wageInfos=wageService.searchWageInfo(start,limit,proInsurance);
+        int count=wageService.searchCount(proInsurance);
+        map.put("code",0);
+        map.put("count",count);
+        map.put("data",wageInfos);
         return map;
     }
 }

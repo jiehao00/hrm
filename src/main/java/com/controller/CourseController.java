@@ -87,6 +87,7 @@ public class CourseController {
         Map<String,Object>map=new HashMap<>();
         List<CourseInfo> courseInfos=courseService.searchCourse(start,limit,courseInfo);
         int count=courseService.searchCourseCount();
+
         map.put("code",0);
         map.put("count",count);
         map.put("data",courseInfos);

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ProInsuranceMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.ProInsurance">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="Pro_of_Retirement_Insurance" jdbcType="DOUBLE" property="proOfRetirementInsurance" />
+    <result column="Pro_of_Medical_Insurance" jdbcType="DOUBLE" property="proOfMedicalInsurance" />
+    <result column="pro_of_Employment_Insurance" jdbcType="DOUBLE" property="proOfEmploymentInsurance" />
+    <result column="pro_of_Injury_Insurance" jdbcType="DOUBLE" property="proOfInjuryInsurance" />
+    <result column="pro_of_Maternity_Insurance" jdbcType="DOUBLE" property="proOfMaternityInsurance" />
+    <result column="pro_of_Housing_Fund" jdbcType="DOUBLE" property="proOfHousingFund" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, Pro_of_Retirement_Insurance, Pro_of_Medical_Insurance, pro_of_Employment_Insurance, 
+    pro_of_Injury_Insurance, pro_of_Maternity_Insurance, pro_of_Housing_Fund, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pro_insurance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pro_insurance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.ProInsurance">
+    insert into pro_insurance (id, Pro_of_Retirement_Insurance, Pro_of_Medical_Insurance, 
+      pro_of_Employment_Insurance, pro_of_Injury_Insurance, 
+      pro_of_Maternity_Insurance, pro_of_Housing_Fund, 
+      state)
+    values (#{id,jdbcType=INTEGER}, #{proOfRetirementInsurance,jdbcType=DOUBLE}, #{proOfMedicalInsurance,jdbcType=DOUBLE}, 
+      #{proOfEmploymentInsurance,jdbcType=DOUBLE}, #{proOfInjuryInsurance,jdbcType=DOUBLE}, 
+      #{proOfMaternityInsurance,jdbcType=DOUBLE}, #{proOfHousingFund,jdbcType=DOUBLE}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.ProInsurance">
+    insert into pro_insurance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="proOfRetirementInsurance != null">
+        Pro_of_Retirement_Insurance,
+      </if>
+      <if test="proOfMedicalInsurance != null">
+        Pro_of_Medical_Insurance,
+      </if>
+      <if test="proOfEmploymentInsurance != null">
+        pro_of_Employment_Insurance,
+      </if>
+      <if test="proOfInjuryInsurance != null">
+        pro_of_Injury_Insurance,
+      </if>
+      <if test="proOfMaternityInsurance != null">
+        pro_of_Maternity_Insurance,
+      </if>
+      <if test="proOfHousingFund != null">
+        pro_of_Housing_Fund,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="proOfRetirementInsurance != null">
+        #{proOfRetirementInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfMedicalInsurance != null">
+        #{proOfMedicalInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfEmploymentInsurance != null">
+        #{proOfEmploymentInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfInjuryInsurance != null">
+        #{proOfInjuryInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfMaternityInsurance != null">
+        #{proOfMaternityInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfHousingFund != null">
+        #{proOfHousingFund,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.ProInsurance">
+    update pro_insurance
+    <set>
+      <if test="proOfRetirementInsurance != null">
+        Pro_of_Retirement_Insurance = #{proOfRetirementInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfMedicalInsurance != null">
+        Pro_of_Medical_Insurance = #{proOfMedicalInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfEmploymentInsurance != null">
+        pro_of_Employment_Insurance = #{proOfEmploymentInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfInjuryInsurance != null">
+        pro_of_Injury_Insurance = #{proOfInjuryInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfMaternityInsurance != null">
+        pro_of_Maternity_Insurance = #{proOfMaternityInsurance,jdbcType=DOUBLE},
+      </if>
+      <if test="proOfHousingFund != null">
+        pro_of_Housing_Fund = #{proOfHousingFund,jdbcType=DOUBLE},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.ProInsurance">
+    update pro_insurance
+    set Pro_of_Retirement_Insurance = #{proOfRetirementInsurance,jdbcType=DOUBLE},
+      Pro_of_Medical_Insurance = #{proOfMedicalInsurance,jdbcType=DOUBLE},
+      pro_of_Employment_Insurance = #{proOfEmploymentInsurance,jdbcType=DOUBLE},
+      pro_of_Injury_Insurance = #{proOfInjuryInsurance,jdbcType=DOUBLE},
+      pro_of_Maternity_Insurance = #{proOfMaternityInsurance,jdbcType=DOUBLE},
+      pro_of_Housing_Fund = #{proOfHousingFund,jdbcType=DOUBLE},
+      state = #{state,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--jieHao 2019-05-20 查询五险一金比例-->
+  <select id="searchProInsurance" resultMap="BaseResultMap">
+    select * from pro_insurance where state='1'
+  </select>
+
+</mapper>
