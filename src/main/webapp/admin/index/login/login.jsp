@@ -117,13 +117,15 @@
             var password = document.getElementById("password").value;
             $.ajax({
                 url:'/login',
-                method:'post',
+                method:'Get',
                 data:{username:personnelId,password:password},
                 dataType:'json',
                 success:function (data) {
                     console.log(data);
-                    console.log(data.status);
-                    console.log(data.message);
+                    console.log("============");
+                    console.log(data.loginMessage);
+                    console.log(data.loginMessage.role);
+                    var name=data.loginMessage.role;
                     if (data.errorCode == 1){
                          $(".login").css({
                              "left":"0",
@@ -136,7 +138,13 @@
                         $(".tips").html(data.message);
                     }
                     else {
-                        window.location.href="${pageContext.request.contextPath}/admin/index/main/main.jsp";
+                        if (data.loginMessage.role==1){
+                            window.location.href="${pageContext.request.contextPath}/admin/index/main/main.jsp";
+                        }
+                        else {
+                            window.location.href="${pageContext.request.contextPath}/admin/index/main/personnelMain.jsp";
+                        }
+
                     }
                 }
             })

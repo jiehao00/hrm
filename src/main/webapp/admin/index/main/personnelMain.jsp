@@ -1,4 +1,4 @@
-﻿<%--
+<%--
   Created by IntelliJ IDEA.
   User: 41147
   Date: 2019/3/20
@@ -27,34 +27,34 @@
             <li class="layui-nav-item layui-nav-itemed">
                 <a href="javascript:;"><i class="iconfont">&#xe607;</i>组织架构</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/companyInfo.jsp" data-id='1' data-text="公司简介"><span class="l-line"></span>公司简介</a></dd>
+                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/companyMessage.jsp" data-id='1' data-text="公司简介"><span class="l-line"></span>公司简介</a></dd>
                     <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/CompanyStructure.jsp" data-id='11' data-text="组织结构"><span class="l-line"></span>组织结构</a></dd>
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/manageDepartmentAndPosition.jsp" data-id='12' data-text="职位部门"><span class="l-line"></span>职位部门</a></dd>
+                    <%--<dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/manageDepartmentAndPosition.jsp" data-id='12' data-text="职位部门"><span class="l-line"></span>职位部门</a></dd>--%>
                 </dl>
             </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><i class="iconfont">&#xe608;</i>员工管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/addPersonnel.jsp" data-id='3' data-text="添加员工"><span class="l-line"></span>添加员工</a></dd>
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/managePersonnel.jsp" data-id='7' data-text="管理员工"><span class="l-line"></span>管理员工</a></dd>
-                </dl>
-            </li>
+            <%--<li class="layui-nav-item">--%>
+                <%--<a href="javascript:;"><i class="iconfont">&#xe608;</i>员工管理</a>--%>
+                <%--<dl class="layui-nav-child">--%>
+                    <%--<dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/addPersonnel.jsp" data-id='3' data-text="添加员工"><span class="l-line"></span>添加员工</a></dd>--%>
+                    <%--<dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/managePersonnel.jsp" data-id='7' data-text="管理员工"><span class="l-line"></span>管理员工</a></dd>--%>
+                <%--</dl>--%>
+            <%--</li>--%>
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe604;</i>培训发展</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/addCourse.jsp" data-id="8" data-text="课程管理"><span class="l-line"></span>课程管理</a></dd>
-                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/manageCourse.jsp" data-id="9" data-text="培训课程"><span class="l-line"></span>培训课程</a></dd>
-                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/tt.jsp" data-id="10" data-text="申请记录"><span class="l-line"></span>申请记录</a></dd>
+                    <%--<dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/addCourse.jsp" data-id="8" data-text="课程管理"><span class="l-line"></span>课程管理</a></dd>--%>
+                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/personnelSignUp.jsp" data-id="9" data-text="培训课程"><span class="l-line"></span>培训课程</a></dd>
+                    <%--<dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/tt.jsp" data-id="10" data-text="申请记录"><span class="l-line"></span>申请记录</a></dd>--%>
                 </dl>
             </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;"><i class="iconfont">&#xe60c;</i>薪酬管理</a>
-                <dl class="layui-nav-child">
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/rewardsManage.jsp" data-id="13" data-text="奖励登记"><span class="l-line"></span>奖励登记</a></dd>
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/punishmentManage.jsp" data-id="14" data-text="惩罚登记"><span class="l-line"></span>惩罚登记</a></dd>
-                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/wageManage.jsp" data-id="15" data-text="工资管理"><span class="l-line"></span>工资管理</a></dd>
-                </dl>
-            </li>
+            <%--<li class="layui-nav-item">--%>
+                <%--<a href="javascript:;"><i class="iconfont">&#xe60c;</i>薪酬管理</a>--%>
+                <%--<dl class="layui-nav-child">--%>
+                    <%--<dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/rewardsManage.jsp" data-id="13" data-text="奖励登记"><span class="l-line"></span>奖励登记</a></dd>--%>
+                    <%--<dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/punishmentManage.jsp" data-id="14" data-text="惩罚登记"><span class="l-line"></span>惩罚登记</a></dd>--%>
+                    <%--<dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/wageManage.jsp" data-id="15" data-text="工资管理"><span class="l-line"></span>工资管理</a></dd>--%>
+                <%--</dl>--%>
+            <%--</li>--%>
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe60a;</i>RBAC</a>
             </li>

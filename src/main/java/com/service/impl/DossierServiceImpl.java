@@ -103,4 +103,6 @@ public class DossierServiceImpl implements DossierService {
     public int insertTransferredInfo(TransferredInfo transferredInfo) {
         return transferredInfoMapper.insertSelective(transferredInfo);
     }
+
+
 }

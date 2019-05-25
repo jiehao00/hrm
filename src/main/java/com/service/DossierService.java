@@ -68,4 +68,6 @@ public interface DossierService {
 
      int insertTransferredInfo(TransferredInfo transferredInfo);
 
+
+
 }
