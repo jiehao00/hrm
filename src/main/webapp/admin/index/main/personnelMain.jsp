@@ -43,8 +43,8 @@
                 <a href="javascript:;"><i class="iconfont">&#xe604;</i>培训发展</a>
                 <dl class="layui-nav-child">
                     <%--<dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/addCourse.jsp" data-id="8" data-text="课程管理"><span class="l-line"></span>课程管理</a></dd>--%>
-                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/personnelSignUp.jsp" data-id="9" data-text="培训课程"><span class="l-line"></span>培训课程</a></dd>
-                    <%--<dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/tt.jsp" data-id="10" data-text="申请记录"><span class="l-line"></span>申请记录</a></dd>--%>
+                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/personnelSignUp.jsp" data-id="9" data-text="课程报名"><span class="l-line"></span>课程报名</a></dd>
+                    <dd><a href="javascript:;"data-url="${pageContext.request.contextPath}/admin/index/main/enrolledCourse.jsp" data-id="16" data-text="已报课程"><span class="l-line"></span>已报课程</a></dd>
                 </dl>
             </li>
             <%--<li class="layui-nav-item">--%>

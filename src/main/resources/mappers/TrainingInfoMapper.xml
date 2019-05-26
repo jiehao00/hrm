@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.TrainingInfoMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.TrainingInfo">
+    <id column="Training_Id" jdbcType="INTEGER" property="trainingId" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Course_Code" jdbcType="VARCHAR" property="courseCode" />
+    <result column="Training_Course" jdbcType="VARCHAR" property="trainingCourse" />
+    <result column="Training_Hour" jdbcType="VARCHAR" property="trainingHour" />
+    <result column="Training_Scores" jdbcType="VARCHAR" property="trainingScores" />
+    <result column="Training_Expense" jdbcType="VARCHAR" property="trainingExpense" />
+    <result column="Training_Start" jdbcType="VARCHAR" property="trainingStart" />
+    <result column="Training_End" jdbcType="VARCHAR" property="trainingEnd" />
+    <result column="Training_Evaluation" jdbcType="VARCHAR" property="trainingEvaluation" />
+  </resultMap>
+
+  <resultMap id="enrolledCourseMessage" type="com.pojo.TrainingInfo">
+    <id column="Training_Id" jdbcType="INTEGER" property="trainingId" />
+    <result column="Personnel_Id" jdbcType="INTEGER" property="personnelId" />
+    <result column="Personnel_Name" jdbcType="VARCHAR" property="personnelName" />
+    <result column="Course_Code" jdbcType="VARCHAR" property="courseCode" />
+    <result column="Training_Course" jdbcType="VARCHAR" property="trainingCourse" />
+    <result column="Planned_Start_Time" jdbcType="VARCHAR" property="plannedStartTime" />
+    <result column="Planned_End_Time" jdbcType="VARCHAR" property="plannedEndTime" />
+    <result column="Actual_Start_Time" jdbcType="VARCHAR" property="actualStartTime" />
+    <result column="Course_Status" jdbcType="VARCHAR" property="courseStatus" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    Training_Id, Personnel_Id, Personnel_Name, Course_Code, Training_Course, Training_Hour, 
+    Training_Scores, Training_Expense, Training_Start, Training_End, Training_Evaluation
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from training_info
+    where Training_Id = #{trainingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from training_info
+    where Training_Id = #{trainingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.TrainingInfo">
+    insert into training_info (Training_Id, Personnel_Id, Personnel_Name, 
+      Course_Code, Training_Course, Training_Hour, 
+      Training_Scores, Training_Expense, Training_Start, 
+      Training_End, Training_Evaluation)
+    values (#{trainingId,jdbcType=INTEGER}, #{personnelId,jdbcType=INTEGER}, #{personnelName,jdbcType=VARCHAR}, 
+      #{courseCode,jdbcType=VARCHAR}, #{trainingCourse,jdbcType=VARCHAR}, #{trainingHour,jdbcType=VARCHAR}, 
+      #{trainingScores,jdbcType=VARCHAR}, #{trainingExpense,jdbcType=VARCHAR}, #{trainingStart,jdbcType=VARCHAR}, 
+      #{trainingEnd,jdbcType=VARCHAR}, #{trainingEvaluation,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.TrainingInfo">
+    insert into training_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="trainingId != null">
+        Training_Id,
+      </if>
+      <if test="personnelId != null">
+        Personnel_Id,
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name,
+      </if>
+      <if test="courseCode != null">
+        Course_Code,
+      </if>
+      <if test="trainingCourse != null">
+        Training_Course,
+      </if>
+      <if test="trainingHour != null">
+        Training_Hour,
+      </if>
+      <if test="trainingScores != null">
+        Training_Scores,
+      </if>
+      <if test="trainingExpense != null">
+        Training_Expense,
+      </if>
+      <if test="trainingStart != null">
+        Training_Start,
+      </if>
+      <if test="trainingEnd != null">
+        Training_End,
+      </if>
+      <if test="trainingEvaluation != null">
+        Training_Evaluation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="trainingId != null">
+        #{trainingId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelId != null">
+        #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCode != null">
+        #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingCourse != null">
+        #{trainingCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingHour != null">
+        #{trainingHour,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingScores != null">
+        #{trainingScores,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingExpense != null">
+        #{trainingExpense,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingStart != null">
+        #{trainingStart,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingEnd != null">
+        #{trainingEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingEvaluation != null">
+        #{trainingEvaluation,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.TrainingInfo">
+    update training_info
+    <set>
+      <if test="personnelId != null">
+        Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      </if>
+      <if test="personnelName != null">
+        Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCode != null">
+        Course_Code = #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingCourse != null">
+        Training_Course = #{trainingCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingHour != null">
+        Training_Hour = #{trainingHour,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingScores != null">
+        Training_Scores = #{trainingScores,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingExpense != null">
+        Training_Expense = #{trainingExpense,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingStart != null">
+        Training_Start = #{trainingStart,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingEnd != null">
+        Training_End = #{trainingEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingEvaluation != null">
+        Training_Evaluation = #{trainingEvaluation,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Training_Id = #{trainingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.TrainingInfo">
+    update training_info
+    set Personnel_Id = #{personnelId,jdbcType=INTEGER},
+      Personnel_Name = #{personnelName,jdbcType=VARCHAR},
+      Course_Code = #{courseCode,jdbcType=VARCHAR},
+      Training_Course = #{trainingCourse,jdbcType=VARCHAR},
+      Training_Hour = #{trainingHour,jdbcType=VARCHAR},
+      Training_Scores = #{trainingScores,jdbcType=VARCHAR},
+      Training_Expense = #{trainingExpense,jdbcType=VARCHAR},
+      Training_Start = #{trainingStart,jdbcType=VARCHAR},
+      Training_End = #{trainingEnd,jdbcType=VARCHAR},
+      Training_Evaluation = #{trainingEvaluation,jdbcType=VARCHAR}
+    where Training_Id = #{trainingId,jdbcType=INTEGER}
+  </update>
+
+  <select id="findIsExitSignUpMessage" resultMap="BaseResultMap">
+    select * from training_info
+    where Personnel_Id=#{personnelId} and Course_Code=#{courseCode}
+  </select>
+
+  <select id="findEnrolledCourse" resultMap="enrolledCourseMessage">
+    SELECT a.Training_Id,a.Personnel_Id,a.Personnel_Name,a.Course_Code,a.Training_Course,b.Planned_Start_Time,b.Planned_End_Time,b.Actual_Start_Time,b.Course_Status
+    FROM training_info a
+     LEFT JOIN course_info b
+     ON a.Course_Code=b.Course_Code
+     where a.Personnel_Id =#{trainingInfo.personnelId}
+     limit #{start},#{limit}
+  </select>
+
+  <select id="searchCount" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM training_info where Personnel_Id =#{personnelId}
+  </select>
+</mapper>

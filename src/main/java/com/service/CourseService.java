@@ -1,6 +1,8 @@
 package com.service;
 
 import com.pojo.CourseInfo;
+import com.pojo.TrainingInfo;
+import com.pojo.TransferredInfo;
 
 import java.util.List;
 
@@ -68,5 +70,24 @@ public interface CourseService {
     */
     int endCourse(Integer courseCode);
 
+    /**
+    * 方法实现说明 更新课程信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/26 22:15
+    */
     int updateCourseMessage(CourseInfo courseInfo);
+
+    TrainingInfo findIsExitSignUpMessage(TrainingInfo trainingInfo);
+
+    int insertSignMessage(TrainingInfo trainingInfo);
+
+    List<TrainingInfo> findEnrolledCourse(int start, int limit,TrainingInfo trainingInfo);
+
+
+    int searchCount(TrainingInfo trainingInfo);
+
+
 }

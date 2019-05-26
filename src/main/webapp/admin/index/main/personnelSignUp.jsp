@@ -59,6 +59,6 @@
 
 <script type="text/javascript" src="../../../js/jquery.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../../../layui/layui.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../../../js/manageCourse.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../../../js/personnelSignUp.js" charset="UTF-8"></script>
 </body>
 </html>

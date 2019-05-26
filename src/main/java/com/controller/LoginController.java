@@ -64,13 +64,11 @@ public class LoginController {
     @ResponseBody
     public Map login(String username, String password,HttpSession session) {
         Map<String, Object> map = new HashMap<String, Object>();
-
         UsernamePasswordCaptchaToken token = new UsernamePasswordCaptchaToken(username, password);
         Subject subject=SecurityUtils.getSubject();
-        System.out.println(username);
         LoginMessage loginMessage= loginMessageService.findMessage(Integer.valueOf(username));
-        System.out.println(loginMessage.getPersonnelName());
         session.setAttribute("userName",loginMessage.getPersonnelName());
+        session.setAttribute("personnelId",loginMessage.getPersonnelId());
         try {
             subject.login(token);
             map.put("status", "0");
@@ -108,11 +106,14 @@ public class LoginController {
         DossierInfo dossierInfo=new DossierInfo();
         dossierInfo.setPersonnelId(loginMessage.getPersonnelId());
         DossierInfo record=dossierService.findDossierInfoByPersonnelId(dossierInfo);
-        if (("员工").equals(record.getPosition())){
-            loginMessage.setRole("0");
-        }
-        else if (("经理").equals(record.getPosition())){
+        String position= record.getPosition();
+        String role=position.substring(position.length()-2,position.length());
+
+        if (("经理").equals(role)){
             loginMessage.setRole("1");
+        }
+        else {
+            loginMessage.setRole("0");
         }
         if(loginMessageService.insert(loginMessage)>0){
             map.put("status",0);

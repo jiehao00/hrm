@@ -67,6 +67,11 @@
                 <textarea placeholder="请输入内容" class="layui-textarea" id="courseIntroduction" name="courseIntroduction"></textarea>
             </div>
         </div>
+    <div class="layui-upload-drag" id="test10">
+        <i class="layui-icon"></i>
+        <p>点击上传，或将文件拖拽到此处</p>
+    </div>
+    <input type="text" id="actualStartTime" name="actualStartTime" style="display:none"/>
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="addCourse">添加课程</button>
@@ -74,6 +79,10 @@
         </div>
     </div>
 </form>
+
+
+
+
 <script src="../../../js/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../../layui/layui.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../../js/addCourse.js" type="text/javascript" charset="UTF-8"></script>

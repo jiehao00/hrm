@@ -1,12 +1,12 @@
 window.addEventListener('load',function () {
     var departmentSelt=document.getElementById("courseDepartment");
     var str1=" ";
-layui.use(['form','layer','laydate'],function () {
+layui.use(['form','layer','laydate','upload'],function () {
     $ = layui.jquery;
     var form = layui.form;
     var layer = layui.layer;
     var laydate = layui.laydate;
-
+    var upload = layui.upload;
     laydate.render({
         elem: '#plannedStartTime',
         type: 'date',
@@ -24,7 +24,6 @@ layui.use(['form','layer','laydate'],function () {
                 }
             }
     })
-
     $.ajax({
         url:"/searchDepartment",
         dataType:'json',
@@ -56,10 +55,24 @@ layui.use(['form','layer','laydate'],function () {
                 }
             }
         })
-
         return false;
     })
-
+    //拖拽上传
+    upload.render({
+        elem: '#test10'
+        ,url: '/uploadImage'
+        ,accept: 'file'
+        ,done: function(res){
+            //如果上传失败
+            if(res.code > 0){
+                return layer.msg('上传失败');
+            }
+            //上传成功
+            //$('#photo').attr('name',res.fileName);
+            layer.msg("上传成功");
+            document.getElementById("actualStartTime").value=res.fileName;
+        }
+    });
  })
 
 })

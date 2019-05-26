@@ -1,7 +1,11 @@
 package com.service.impl;
 
 import com.dao.CourseInfoMapper;
+import com.dao.TrainingInfoMapper;
+import com.dao.TransferredInfoMapper;
 import com.pojo.CourseInfo;
+import com.pojo.TrainingInfo;
+import com.pojo.TransferredInfo;
 import com.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +26,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private CourseInfoMapper courseInfoMapper;
+    @Autowired
+    private TrainingInfoMapper trainingInfoMapper;
 
 
     /**
@@ -92,6 +98,26 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public int updateCourseMessage(CourseInfo courseInfo) {
         return courseInfoMapper.updateByPrimaryKeySelective(courseInfo);
+    }
+
+    @Override
+    public TrainingInfo findIsExitSignUpMessage(TrainingInfo trainingInfo) {
+        return trainingInfoMapper.findIsExitSignUpMessage(trainingInfo);
+    }
+
+    @Override
+    public int insertSignMessage(TrainingInfo trainingInfo) {
+        return trainingInfoMapper.insertSelective(trainingInfo);
+    }
+
+    @Override
+    public List<TrainingInfo> findEnrolledCourse(int start, int limit, TrainingInfo trainingInfo) {
+        return trainingInfoMapper.findEnrolledCourse(start,limit,trainingInfo);
+    }
+
+    @Override
+    public int searchCount(TrainingInfo trainingInfo) {
+        return trainingInfoMapper.searchCount(trainingInfo);
     }
 
 

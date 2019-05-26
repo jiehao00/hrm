@@ -31,7 +31,7 @@ public class UploadImageController {
 
 
     /**
-    * 方法实现说明     上传图片
+    * 方法实现说明     上传图片、文件
     * @author：      jiehao
     * @return：
     * @exception：
@@ -49,12 +49,43 @@ public class UploadImageController {
             System.out.println("+++++++++++++");
         }
         uploadImage=new UoloadImage();
-        String  filename=uploadImage.uploadImage(file,dir);
+        String  filename=uploadImage.uploadFile(file,dir);
         Map<String,Object> map = new HashMap<String, Object>();
         String sqlPath=ImageConfig.imageUrl +filename;
         map.put("fileName",filename);
         return map;
     }
+//
+//    /**
+//    * 方法实现说明 上传文件
+//    * @author      jieHao
+//    *@param: null
+//    * @return
+//    * @exception
+//    * @date        2019/5/27 1:48
+//    */
+//    @RequestMapping(value = "uploadFile" ,method = RequestMethod.POST)
+//    @ResponseBody
+//    public Map uploadFile(MultipartFile file, HttpServletRequest request)throws Exception{
+//        String dir = request.getSession().getServletContext().getRealPath("")+"/upload/images/";
+//        File file1=new File(dir);
+//        //如果文件夹不存在
+//        if(!file1.exists()){
+//            //创建文件夹
+//            file1.mkdirs();
+//            System.out.println("+++++++++++++");
+//        }
+//        uploadImage=new UoloadImage();
+//        String  filename=uploadImage.uploadFile(file,dir);
+//        Map<String,Object> map = new HashMap<String, Object>();
+//        String sqlPath=ImageConfig.imageUrl +filename;
+//        map.put("fileName",filename);
+//        return map;
+//    }
+
+
+
+
 
 
 }

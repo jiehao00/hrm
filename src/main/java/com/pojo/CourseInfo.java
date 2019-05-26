@@ -11,10 +11,14 @@ public class CourseInfo {
 
     private String teachingHours;
 
+
     private String plannedStartTime;
 
     private String plannedEndTime;
 
+    /**
+     * 改：字段意义变成课程文件名字
+     */
     private String actualStartTime;
 
     private String actualEndTime;

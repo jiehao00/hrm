@@ -1,8 +1,8 @@
 layui.use(['table','laydate','form'], function() {
-    var table = layui.table;
-    var laydate=layui.laydate;
-    var form=layui.form;
-    var $ = layui.$;
+        var table = layui.table;
+        var laydate=layui.laydate;
+        var form=layui.form;
+        var $ = layui.$;
     laydate.render({
         elem: '#plannedStartTime',
         type:'date',

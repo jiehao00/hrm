@@ -2,14 +2,18 @@ package com.controller;
 
 import com.pojo.CourseInfo;
 import com.pojo.DepartmentInfo;
+import com.pojo.DossierInfo;
+import com.pojo.TrainingInfo;
 import com.service.CascadeService;
 import com.service.CourseService;
+import com.service.DossierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +37,8 @@ public class CourseController {
     private CascadeService cascadeService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private DossierService dossierService;
 
 
     /**
@@ -140,6 +146,14 @@ public class CourseController {
     }
 
 
+    /**
+    * 方法实现说明 更新课程信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/26 21:50
+    */
     @RequestMapping("updateCourseMessage")
     @ResponseBody
     public Map updateCourseMessage(CourseInfo courseInfo) throws ParseException {
@@ -165,6 +179,55 @@ public class CourseController {
             map.put("status",1);
             map.put("message","修改失败");
         }
+        return map;
+    }
+    /**
+    * 方法实现说明   员工报名课程信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/26 21:51
+    */
+    @RequestMapping("personnelSignUp")
+    @ResponseBody
+    public Map personnelSignUp(TrainingInfo trainingInfo,HttpSession session){
+        Map<String,Object>map=new HashMap<>();
+        Integer personnelId= (Integer) session.getAttribute("personnelId");
+        String personnelName= (String) session.getAttribute("userName");
+        trainingInfo.setPersonnelId(personnelId);
+        trainingInfo.setPersonnelName(personnelName);
+        if (courseService.findIsExitSignUpMessage(trainingInfo)==null){
+            if (courseService.insertSignMessage(trainingInfo)>0){
+                map.put("status","0");
+                map.put("message","报名成功");
+            }
+            else {
+                map.put("status","1");
+                map.put("message","报名失败");
+            }
+        }
+        else {
+            map.put("status","2");
+            map.put("message","请勿重复报名");
+        }
+        return map;
+    }
+
+    @RequestMapping("findEnrolledCourse")
+    @ResponseBody
+    public Map findEnrolledCourse(int page, int limit,TrainingInfo trainingInfo,HttpSession session){
+        Map<String,Object> map=new HashMap<>();
+        Integer personnelId= (Integer) session.getAttribute("personnelId");
+        int start = (page-1)*limit;
+        trainingInfo.setPersonnelId(personnelId);
+        List<TrainingInfo> trainingInfos=courseService.findEnrolledCourse(start,limit,trainingInfo);
+        System.out.println("========");
+        int count=courseService.searchCount(trainingInfo);
+        System.out.println("========");
+        map.put("code",0);
+        map.put("count",count);
+        map.put("data",trainingInfos);
         return map;
     }
 
