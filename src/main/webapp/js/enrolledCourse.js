@@ -41,7 +41,7 @@ layui.use(['table','laydate','form'], function() {
     table.on('tool(enrolledCourse)', function(obj) {
         var data = obj.data;
         if (obj.event ==='download'){
-            layer.msg(data.courseCode);
+            window.location.href='/downloadFile?fileName='+data.actualStartTime;
         }
     })
 

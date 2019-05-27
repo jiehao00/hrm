@@ -2,18 +2,22 @@ package com.controller;
 
 import com.pojo.CourseInfo;
 import com.pojo.DepartmentInfo;
-import com.pojo.DossierInfo;
 import com.pojo.TrainingInfo;
 import com.service.CascadeService;
 import com.service.CourseService;
 import com.service.DossierService;
+import com.util.config.ImageConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -93,7 +97,6 @@ public class CourseController {
         Map<String,Object>map=new HashMap<>();
         List<CourseInfo> courseInfos=courseService.searchCourse(start,limit,courseInfo);
         int count=courseService.searchCourseCount();
-
         map.put("code",0);
         map.put("count",count);
         map.put("data",courseInfos);
@@ -214,6 +217,14 @@ public class CourseController {
         return map;
     }
 
+    /**
+    * 方法实现说明   查找报名课程
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/27 12:10
+    */
     @RequestMapping("findEnrolledCourse")
     @ResponseBody
     public Map findEnrolledCourse(int page, int limit,TrainingInfo trainingInfo,HttpSession session){
@@ -222,14 +233,32 @@ public class CourseController {
         int start = (page-1)*limit;
         trainingInfo.setPersonnelId(personnelId);
         List<TrainingInfo> trainingInfos=courseService.findEnrolledCourse(start,limit,trainingInfo);
-        System.out.println("========");
         int count=courseService.searchCount(trainingInfo);
-        System.out.println("========");
         map.put("code",0);
         map.put("count",count);
         map.put("data",trainingInfos);
         return map;
     }
 
-
+    @RequestMapping(value = "downloadFile",method = RequestMethod.GET)
+    public void downloadFile(String fileName,HttpServletRequest request,HttpServletResponse response)throws IOException{
+        //String path = ImageConfig.imageUrl+fileName;
+        String path = request.getSession().getServletContext().getRealPath("upload\\images")+"\\"+fileName;
+        System.out.println(path);
+        //获取输入流
+        InputStream bis = new BufferedInputStream(new FileInputStream(new File(path)));
+        //转码，免得文件名中文乱码
+        fileName = URLEncoder.encode(fileName,"UTF-8");
+        //设置文件下载头
+        response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
+        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+        response.setContentType("multipart/form-data");
+        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        int len = 0;
+        while((len = bis.read()) != -1){
+            out.write(len);
+            out.flush();
+        }
+        out.close();
+    }
 }
