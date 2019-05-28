@@ -23,7 +23,8 @@
 <table id="enrolledCourse"  lay-filter="enrolledCourse"></table>
 </body>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="download">下载学习资源</a>
+    <a class="layui-btn layui-btn-xs" lay-event="download">下载文件</a>
+    <a class="layui-btn layui-btn-xs" lay-event="downloadVideo">下载视频</a>
 </script>
 
 <script type="text/javascript" src="../../../js/jquery.js" charset="UTF-8"></script>

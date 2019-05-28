@@ -29,6 +29,8 @@ public class TrainingInfo {
 
     private String actualStartTime;
 
+    private String actualEndTime;
+
     private String courseStatus;
 
 
@@ -151,5 +153,13 @@ public class TrainingInfo {
 
     public void setCourseStatus(String courseStatus) {
         this.courseStatus = courseStatus;
+    }
+
+    public String getActualEndTime() {
+        return actualEndTime;
+    }
+
+    public void setActualEndTime(String actualEndTime) {
+        this.actualEndTime = actualEndTime;
     }
 }

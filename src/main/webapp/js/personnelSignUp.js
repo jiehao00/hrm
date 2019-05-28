@@ -14,7 +14,7 @@ layui.use(['table','laydate','form'], function() {
     table.render({
         elem: '#manageCourse',
         height: 602,
-        width : 1260,
+        width : 1300,
         toolbar: '#toolbarDemo',
         url: '/searchCourse', //数据接口
         page: true, //开启分页

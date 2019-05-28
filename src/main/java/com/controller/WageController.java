@@ -216,6 +216,19 @@ public class WageController {
         Map<String,Object>map=new HashMap<>();
         GetYearAndMonthUtil getTimeUtil=new GetYearAndMonthUtil();
         ProInsurance proInsurance =wageService.searchProInsurance();
+        if (proInsurance.getProOfEmploymentInsurance()==null){
+            proInsurance.setProOfEmploymentInsurance(0.00);
+        }if (proInsurance.getProOfHousingFund()==null){
+            proInsurance.setProOfHousingFund(0.00);
+        }if (proInsurance.getProOfInjuryInsurance()==null){
+            proInsurance.setProOfInjuryInsurance(0.00);
+        }if (proInsurance.getProOfMaternityInsurance()==null){
+            proInsurance.setProOfMaternityInsurance(0.00);
+        }if (proInsurance.getProOfMedicalInsurance()==null){
+            proInsurance.setProOfMedicalInsurance(0.00);
+        }if (proInsurance.getProOfRetirementInsurance()==null){
+            proInsurance.setProOfRetirementInsurance(0.00);
+        }
         proInsurance.setYear(getTimeUtil.getYear());
         proInsurance.setMonth(getTimeUtil.getMonth());
         proInsurance.setYearMonth(getTimeUtil.getMonthYear());
@@ -227,6 +240,71 @@ public class WageController {
         map.put("code",0);
         map.put("count",count);
         map.put("data",wageInfos);
+        return map;
+    }
+
+    /**
+    * 方法实现说明  搜索五险一金比例信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/29 3:24
+    */
+    @RequestMapping("searchInsurance")
+    @ResponseBody
+    public Map searchInsurance(int page, int limit){
+        Map<String,Object>map=new HashMap<>();
+        int start = (page-1)*limit;
+        List<ProInsurance> proInsurances=wageService.searchInsurance(start,limit);
+        int count=wageService.searchInsuranceCount();
+        map.put("code",0);
+        map.put("count",count);
+        map.put("data",proInsurances);
+        return map;
+    }
+
+
+    /**
+    * 方法实现说明  更换五险一金比例
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/29 4:08
+    */
+    @RequestMapping("updateInsurance")
+    @ResponseBody
+    public Map updateInsurance(ProInsurance proInsurance){
+       Map<String,Object>map=new HashMap<>();
+       System.out.println(proInsurance.getId());
+       System.out.println(proInsurance.getState());
+       if (wageService.resetState()>0){
+           if (wageService.updateState(proInsurance)>0){
+               map.put("status",0);
+               map.put("message","修改成功");
+           }
+       }
+       else {
+           map.put("status",1);
+           map.put("message","修改失败");
+       }
+       return map;
+    }
+
+    @RequestMapping("addInsurance")
+    @ResponseBody
+    public Map addInsurance(ProInsurance proInsurance){
+        Map<String,Object>map=new HashMap<>();
+        if (wageService.addInsurance(proInsurance)>0) {
+            map.put("status", 0);
+            map.put("message", "添加成功");
+        }
+        else {
+            map.put("status", 1);
+            map.put("message", "添加失败");
+        }
+
         return map;
     }
 }

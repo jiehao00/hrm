@@ -53,6 +53,8 @@
                     <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/rewardsManage.jsp" data-id="13" data-text="奖励登记"><span class="l-line"></span>奖励登记</a></dd>
                     <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/punishmentManage.jsp" data-id="14" data-text="惩罚登记"><span class="l-line"></span>惩罚登记</a></dd>
                     <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/wageManage.jsp" data-id="15" data-text="工资管理"><span class="l-line"></span>工资管理</a></dd>
+                    <dd><a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/insurance.jsp" data-id="16" data-text="五险一金"><span class="l-line"></span>五险一金</a></dd>
+
                 </dl>
             </li>
             <li class="layui-nav-item">

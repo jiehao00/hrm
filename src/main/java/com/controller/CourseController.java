@@ -240,6 +240,14 @@ public class CourseController {
         return map;
     }
 
+    /**
+    * 方法实现说明 下载文件
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/27 15:02
+    */
     @RequestMapping(value = "downloadFile",method = RequestMethod.GET)
     public void downloadFile(String fileName,HttpServletRequest request,HttpServletResponse response)throws IOException{
         //String path = ImageConfig.imageUrl+fileName;

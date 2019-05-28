@@ -1,6 +1,9 @@
 package com.dao;
 
 import com.pojo.ProInsurance;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface ProInsuranceMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,11 +21,26 @@ public interface ProInsuranceMapper {
 
     /**
      * 方法实现说明  搜索五险一金比例信息
-     * @author      jieHao
-     *@param: null
+     *
      * @return
-     * @exception
-     * @date        2019/5/21 0:06
+     * @throws
+     * @author jieHao
+     * @param: null
+     * @date 2019/5/21 0:06
      */
     ProInsurance searchProInsurance();
+
+
+    List<ProInsurance> searchInsurance(@Param("start") int start, @Param("limit")int limit);
+
+    int searchInsuranceCount();
+
+
+    int resetState();
+
+
+    int updateState(ProInsurance proInsurance);
+
+
+
 }

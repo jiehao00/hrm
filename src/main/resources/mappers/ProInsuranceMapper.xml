@@ -134,4 +134,26 @@
     select * from pro_insurance where state='1'
   </select>
 
+
+
+  <select id="searchInsurance" resultMap="BaseResultMap">
+    select * from pro_insurance
+    limit #{start},#{limit}
+  </select>
+
+
+  <select id="searchInsuranceCount" resultType="java.lang.Integer">
+    select count(*) from pro_insurance
+  </select>
+
+
+  <update id="resetState">
+    UPDATE pro_insurance SET state='0'
+  </update>
+
+
+  <update id="updateState" parameterType="com.pojo.ProInsurance">
+    update pro_insurance SET state=#{state} where  id = #{id}
+  </update>
+
 </mapper>

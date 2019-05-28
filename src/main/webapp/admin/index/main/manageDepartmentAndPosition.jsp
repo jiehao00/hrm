@@ -30,7 +30,7 @@
 <!--部门-->
 <script type="text/html" id="toolbarDemo">
     <div class="demoTable">
-        <button class="layui-btn layui-btn-sm" id="addDepartment">
+        <button class="layui-btn layui-btn-sm" id="addInsurance">
             <i class="layui-icon">&#xe608;</i> 添加
         </button>
         <div class="layui-inline">

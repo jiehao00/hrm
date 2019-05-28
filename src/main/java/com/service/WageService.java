@@ -65,4 +65,17 @@ public interface WageService {
     * @date        2019/5/21 0:09
     */
     int  searchCount(ProInsurance proInsurance);
+
+
+    List<ProInsurance>searchInsurance(int start, int limit);
+
+    int searchInsuranceCount();
+
+
+    int resetState();
+
+    int updateState(ProInsurance proInsurance);
+
+
+    int addInsurance(ProInsurance proInsurance);
 }

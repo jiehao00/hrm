@@ -73,6 +73,4 @@ public class StructureController {
         List<TestMode> result=getDeptTree.getTree(test,0);
         return result;
     }
-
-
 }

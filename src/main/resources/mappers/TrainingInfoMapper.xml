@@ -24,6 +24,7 @@
     <result column="Planned_Start_Time" jdbcType="VARCHAR" property="plannedStartTime" />
     <result column="Planned_End_Time" jdbcType="VARCHAR" property="plannedEndTime" />
     <result column="Actual_Start_Time" jdbcType="VARCHAR" property="actualStartTime" />
+    <result column="Actual_End_Time" jdbcType="VARCHAR" property="actualEndTime" />
     <result column="Course_Status" jdbcType="VARCHAR" property="courseStatus" />
   </resultMap>
 
@@ -181,7 +182,7 @@
   </select>
 
   <select id="findEnrolledCourse" resultMap="enrolledCourseMessage">
-    SELECT a.Training_Id,a.Personnel_Id,a.Personnel_Name,a.Course_Code,a.Training_Course,b.Planned_Start_Time,b.Planned_End_Time,b.Actual_Start_Time,b.Course_Status
+    SELECT a.Training_Id,a.Personnel_Id,a.Personnel_Name,a.Course_Code,a.Training_Course,b.Planned_Start_Time,b.Planned_End_Time,b.Actual_Start_Time,b.Actual_End_Time,b.Course_Status
     FROM training_info a
      LEFT JOIN course_info b
      ON a.Course_Code=b.Course_Code

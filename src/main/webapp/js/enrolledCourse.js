@@ -43,6 +43,9 @@ layui.use(['table','laydate','form'], function() {
         if (obj.event ==='download'){
             window.location.href='/downloadFile?fileName='+data.actualStartTime;
         }
+        else if (obj.event ==='downloadVideo') {
+            window.location.href='/downloadFile?fileName='+data.actualEndTime;
+        }
     })
 
 })

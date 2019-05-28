@@ -91,4 +91,29 @@ public class WageServiceImpl implements WageService {
     public int searchCount(ProInsurance proInsurance) {
         return wageInfoMapper.searchCount(proInsurance);
     }
+
+    @Override
+    public List<ProInsurance> searchInsurance(int start, int limit) {
+        return proInsuranceMapper.searchInsurance(start,limit);
+    }
+
+    @Override
+    public int searchInsuranceCount() {
+        return proInsuranceMapper.searchInsuranceCount();
+    }
+
+    @Override
+    public int resetState() {
+        return proInsuranceMapper.resetState();
+    }
+
+    @Override
+    public int updateState(ProInsurance proInsurance) {
+        return proInsuranceMapper.updateState(proInsurance);
+    }
+
+    @Override
+    public int addInsurance(ProInsurance proInsurance) {
+        return proInsuranceMapper.insertSelective(proInsurance);
+    }
 }
