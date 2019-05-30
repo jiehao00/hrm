@@ -70,7 +70,7 @@
                 <a href="javascript:;"><i class="iconfont">&#xe600;</i>备份管理</a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" data-url="../admin-info.html" data-id='5' data-text="个人信息"><i class="iconfont">&#xe606;</i>个人信息</a>
+                <a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/personnelCenter.jsp" data-id='5' data-text="个人信息"><i class="iconfont">&#xe606;</i>个人信息</a>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;" data-url="../system.html" data-id='6' data-text="系统设置"><i class="iconfont">&#xe60b;</i>系统设置</a>

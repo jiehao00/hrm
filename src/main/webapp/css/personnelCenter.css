@@ -1,0 +1,70 @@
+.layui-card{
+    width: 1280px;
+    height: 615px;
+}
+.layui-card-body{
+    padding: 0px 0px;
+}
+.wholePage{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.top{
+    //background-color: #00F7DE;
+    background-image:url(https://www.ihr360.com//web/page/workplatform/static/media/personalbg.8929bf1a.png);
+    //background: #00b5f9 url(../images/login/ver-1.png) center center no-repeat;
+    //background: -webkit-linear-gradient(left, red 0%, orange 10%, yellow 90%, violet 100%);
+    width: 1280px;
+    height: 200px;
+}
+.image{
+    padding-top: 35px;
+    padding-left: 125px;
+    width: 120px;
+    height: 120px;
+    float: left;
+}
+.photo{
+    border-radius:50%;
+}
+.rightPart{
+    padding-top: 35px;
+    padding-left: 300px;
+}
+.link-top {
+    margin-top: 20px;
+    width: 90%;
+    height: 1px;
+    border-top: solid #ACC0D8 1px;
+}
+.top-bottom{
+    margin-top: 10px;
+}
+.center{
+    margin-left: 110px;
+    margin-top: 30px;
+}
+.link-bottom{
+    margin-left: 105px;
+    margin-top: 20px;
+    width: 85%;
+    height: 1px;
+    border-top: solid #ACC0D8 1px;
+}
+.bottom_left{
+    float: left;
+    width: 500px;
+    margin-left: 50px;
+}
+.bottom_right{
+    margin-left: 50px;
+}
+.bottom_1{
+    margin-top: 50px;
+    margin-left: 110px;
+    height: 25px;
+}
+
+
+
+
