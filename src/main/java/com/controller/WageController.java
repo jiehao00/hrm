@@ -277,8 +277,6 @@ public class WageController {
     @ResponseBody
     public Map updateInsurance(ProInsurance proInsurance){
        Map<String,Object>map=new HashMap<>();
-       System.out.println(proInsurance.getId());
-       System.out.println(proInsurance.getState());
        if (wageService.resetState()>0){
            if (wageService.updateState(proInsurance)>0){
                map.put("status",0);
@@ -292,6 +290,14 @@ public class WageController {
        return map;
     }
 
+    /**
+    * 方法实现说明   增加五险一金比例信息
+    * @author      jieHao
+    *@param: null
+    * @return
+    * @exception
+    * @date        2019/5/31 21:27
+    */
     @RequestMapping("addInsurance")
     @ResponseBody
     public Map addInsurance(ProInsurance proInsurance){
@@ -304,7 +310,6 @@ public class WageController {
             map.put("status", 1);
             map.put("message", "添加失败");
         }
-
         return map;
     }
 }

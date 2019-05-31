@@ -51,8 +51,6 @@ layui.use(['table','laydate','form','element','layer',], function() {
         })
 
     });
-
-
     $(document).on('click','#addInsurance',function () {
         layer.open({
             type: 2,
@@ -89,8 +87,6 @@ layui.use(['table','laydate','form','element','layer',], function() {
                         }
                     }
                 })
-
-
                 layer.close(index);
             }
 

@@ -58,10 +58,13 @@
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;"><i class="iconfont">&#xe60a;</i>RBAC</a>
+                <a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/announcementManage.jsp" data-id='4' data-text="公告管理"><i class="iconfont">&#xe603;</i>公告管理</a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" data-url="../email.html" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i>邮件系统</a>
+                <a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/personnelCenter.jsp" data-id='5' data-text="个人信息"><i class="iconfont">&#xe606;</i>个人信息</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;"><i class="iconfont">&#xe60a;</i>RBAC</a>
             </li>
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe60d;</i>生成静态</a>
@@ -69,9 +72,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;"><i class="iconfont">&#xe600;</i>备份管理</a>
             </li>
-            <li class="layui-nav-item">
-                <a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/personnelCenter.jsp" data-id='5' data-text="个人信息"><i class="iconfont">&#xe606;</i>个人信息</a>
-            </li>
+
             <li class="layui-nav-item">
                 <a href="javascript:;" data-url="../system.html" data-id='6' data-text="系统设置"><i class="iconfont">&#xe60b;</i>系统设置</a>
             </li>
@@ -87,9 +88,9 @@
                 </a>
             </div>
             <ul class="layui-nav" lay-filter="rightNav">
-                <li class="layui-nav-item"><a href="javascript:;" data-url="../email.html" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
+                <li class="layui-nav-item"><a href="javascript:;" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" data-url="../admin-info.html" data-id='5' data-text="个人信息"><%=request.getSession().getAttribute("userName")%></a>
+                    <a href="javascript:;" data-url="${pageContext.request.contextPath}/admin/index/main/personnelCenter.jsp" data-id='5' data-text="个人信息"><%=request.getSession().getAttribute("userName")%></a>
                 </li>
                 <li class="layui-nav-item"><a href="javascript:;">退出</a></li>
             </ul>

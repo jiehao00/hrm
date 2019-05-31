@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="com.pojo.Announcement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="announcement" jdbcType="VARCHAR" property="announcement" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, announcement, state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from announcement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from announcement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.pojo.Announcement">
+    insert into announcement (id, announcement, state
+      )
+    values (#{id,jdbcType=INTEGER}, #{announcement,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pojo.Announcement">
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="announcement != null">
+        announcement,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="announcement != null">
+        #{announcement,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pojo.Announcement">
+    update announcement
+    <set>
+      <if test="announcement != null">
+        announcement = #{announcement,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pojo.Announcement">
+    update announcement
+    set announcement = #{announcement,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="searchAnnouncement" resultMap="BaseResultMap">
+    select * from announcement where state='1'
+  </select>
+
+  <select id="searchAllAnnouncement" resultMap="BaseResultMap">
+    select  * from announcement limit #{start},#{limit}
+  </select>
+
+  <select id="searchCount" resultType="java.lang.Integer">
+    select count(*) from announcement
+  </select>
+
+  <update id="resetState">
+    UPDATE announcement SET state='0'
+  </update>
+
+
+  <update id="updateAnnouncementState" parameterType="com.pojo.Announcement">
+     UPDATE announcement SET state=#{state} where  id = #{id}
+  </update>
+
+</mapper>

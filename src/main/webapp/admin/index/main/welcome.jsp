@@ -51,6 +51,13 @@
        <div class="layui-card announcement" >
         <div class="layui-card-header ">公告</div>
         <div class="layui-card-body">
+            <p id="announcement">
+                   <%--经公司领导班子研究决定，新进公司的员工，--%>
+                <%--一年转正定级后，公司给统一办理缴纳社保。--%>
+                <%--现在由员工自己缴纳社保，缴费收据上交到公司人事部门。--%>
+                <%--为保证员工的合法权益，公司将以现金的形式给予补偿，每月每人补人民币180元，--%>
+                <%--体现在个人的工资里。此规定从2010年6月1日起执行。--%>
+            </p>
         </div>
        </div>
     </div >
@@ -72,6 +79,7 @@
 
 <script src="${pageContext.request.contextPath}/../../../static/admin/js/jquery-1.10.2.js" type="text/javascript" charset="utf-8"></script>
 <script src="${pageContext.request.contextPath}/../../../static/admin/js/main/index.js"></script>
+<script src="${pageContext.request.contextPath}/../../../js/announcement.js" type="text/javascript" charset="UTF-8"></script>
 <script>
     layui.use(['element','layer','jquery'],function () {
         var element=layui.element;
